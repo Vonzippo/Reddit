@@ -82,9 +82,19 @@ data/Posts/
 data/Comments/
 pushshift_dumps/
 reddit_data/
-*.jsonl
 *.torrent
 *.zst
+
+# Aber data_all soll auf GitHub (Top 1000 Posts)
+!data_all/
+!data_all/**/*.json
+!data_all/**/*.jsonl
+!data_all/**/*.txt
+!data_all/**/*.jpg
+!data_all/**/*.png
+!data_all/**/*.gif
+!data_all/**/*.jpeg
+!data_all/**/*.webp
 
 # Archive
 *.zip

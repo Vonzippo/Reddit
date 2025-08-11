@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit Top 200 Posts - Bildergalerie</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        
+        .filters {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .filter-btn {
+            background: #2d3748;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover {
+            background: #4a5568;
+            transform: translateY(-2px);
+        }
+        
+        .filter-btn.active {
+            background: #667eea;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .post-card {
+            background: #1a202c;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .post-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .post-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        
+        .no-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .post-info {
+            padding: 15px;
+        }
+        
+        .post-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            max-height: 2.8em;
+            overflow: hidden;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #a0aec0;
+        }
+        
+        .score {
+            background: #2b6cb1;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .subreddit {
+            color: #ffa500;
+        }
+        
+        .nsfw-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e53e3e;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .safe-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #48bb78;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+        
+        .modal-content {
+            margin: 2% auto;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #667eea;
+        }
+        
+        .post-number {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏆 Reddit Top 200 Posts - November 2024</h1>
+        <div class="stats">
+            <div class="stat">📊 Total: <span id="total">200</span></div>
+            <div class="stat">✅ Safe: <span id="safe">115</span></div>
+            <div class="stat">⚠️ NSFW: <span id="nsfw">19</span></div>
+            <div class="stat">📄 Text: <span id="text">66</span></div>
+        </div>
+    </div>
+    
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterPosts('all')">Alle Posts</button>
+        <button class="filter-btn" onclick="filterPosts('safe')">✅ Nur Safe</button>
+        <button class="filter-btn" onclick="filterPosts('nsfw')">⚠️ Nur NSFW</button>
+        <button class="filter-btn" onclick="filterPosts('images')">🖼️ Mit Bildern</button>
+        <button class="filter-btn" onclick="filterPosts('text')">📄 Nur Text</button>
+    </div>
+    
+    <div class="gallery" id="gallery">
+        <!-- Posts werden hier eingefügt -->
+    </div>
+    
+    <!-- Modal für große Bilder -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="">
+        </div>
+    </div>
+    
+    <script>
+        // Hier werden die Posts eingefügt
+        const posts = [];
+        let currentFilter = 'all';
+        
+        function loadPosts() {
+            // Diese Daten müssen aus den Ordnern geladen werden
+            const galleryDiv = document.getElementById('gallery');
+            galleryDiv.innerHTML = '<div style="text-align:center; width:100%; padding:50px;">Lade Posts...</div>';
+            
+            // Beispiel-Nachricht für den Nutzer
+            setTimeout(() => {
+                galleryDiv.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align:center; padding:50px; background: #2d3748; border-radius: 10px;">
+                        <h2>📁 So kannst du die Bilder durchgehen:</h2>
+                        <ol style="text-align:left; max-width:600px; margin:20px auto;">
+                            <li>Öffne den Finder/Explorer</li>
+                            <li>Navigiere zu: <code>/Users/patrick/Desktop/Reddit/data_all/Posts/</code></li>
+                            <li>Dort sind alle 200 Posts als Ordner</li>
+                            <li>Jeder Ordner enthält:
+                                <ul>
+                                    <li>image.jpg/png - Das Bild</li>
+                                    <li>post_data.json - Die Daten</li>
+                                    <li>info.txt - Lesbare Info</li>
+                                </ul>
+                            </li>
+                            <li>Du kannst die Bilder mit Vorschau/Quick Look durchgehen</li>
+                        </ol>
+                        <p style="margin-top:30px;">
+                            <strong>Tipp:</strong> Nutze die Galerie-Ansicht im Finder für schnelle Übersicht!
+                        </p>
+                    </div>
+                `;
+            }, 1000);
+        }
+        
+        function filterPosts(filter) {
+            currentFilter = filter;
+            // Filter-Buttons aktualisieren
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Posts filtern
+            loadPosts();
+        }
+        
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+        
+        // ESC zum Schließen
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+        
+        // Initial laden
+        loadPosts();
+    </script>
+</body>
+</html>

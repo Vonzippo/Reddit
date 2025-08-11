@@ -9,6 +9,9 @@ import json
 import random
 import time
 from pathlib import Path
+import urllib.request
+import os
+import mimetypes
 
 class PostBot:
     def __init__(self):
@@ -245,6 +248,70 @@ class PostBot:
         return file_path
     
     
+    def get_image_for_post(self, post_data):
+        """Sucht nach lokalem Bild oder lädt es herunter"""
+        # Prüfe zuerst ob lokales Bild existiert
+        post_id = post_data.get('id', '')
+        
+        # Suche nach lokalem Bild im Archiv
+        for folder in self.posts_dir.iterdir():
+            if folder.is_dir():
+                # Prüfe ob es der richtige Post ist
+                json_file = folder / "post_data.json"
+                if json_file.exists():
+                    with open(json_file, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                        if data.get('id') == post_id or data.get('title') == post_data.get('title'):
+                            # Suche nach Bilddatei
+                            for img_ext in ['.jpg', '.jpeg', '.png', '.gif']:
+                                img_path = folder / f"image{img_ext}"
+                                if img_path.exists():
+                                    print(f"   📂 Verwende lokales Bild: {img_path.name}")
+                                    return str(img_path)
+        
+        # Kein lokales Bild gefunden, versuche Download
+        return self.download_image(post_data.get('url', ''))
+    
+    def download_image(self, url):
+        """Lädt ein Bild herunter und speichert es temporär"""
+        if not url:
+            return None
+            
+        try:
+            # Erstelle temp_images Ordner
+            temp_dir = Path("/Users/patrick/Desktop/Reddit/temp_images")
+            temp_dir.mkdir(exist_ok=True)
+            
+            print(f"   ⬇️ Lade Bild herunter von URL...")
+            
+            # Bestimme Dateiendung
+            if '.gif' in url.lower():
+                ext = '.gif'
+            elif '.png' in url.lower():
+                ext = '.png'
+            else:
+                ext = '.jpg'
+            
+            # Download mit User-Agent
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            response = urllib.request.urlopen(req, timeout=10)
+            img_data = response.read()
+            
+            # Speichere temporär
+            from datetime import datetime
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            temp_path = temp_dir / f"img_{timestamp}{ext}"
+            
+            with open(temp_path, 'wb') as f:
+                f.write(img_data)
+            
+            print(f"   ✅ Bild heruntergeladen: {temp_path.name}")
+            return str(temp_path)
+            
+        except Exception as e:
+            print(f"   ❌ Fehler beim Bilddownload: {e}")
+            return None
+    
     def create_post(self, post_data, dry_run=True, ignore_limit=False):
         """Erstellt einen Post auf Reddit"""
         # Prüfe ob heute ein Pausentag ist (außer bei ignore_limit)
@@ -311,12 +378,49 @@ class PostBot:
                     flair_id=flair_id if flair_id else None
                 )
             elif post_data.get('url'):
-                # Link-Post
-                submission = subreddit.submit(
-                    title=post_data['title'],
-                    url=post_data.get('url'),
-                    flair_id=flair_id if flair_id else None
-                )
+                # Prüfe ob es ein Bild ist
+                url = post_data.get('url', '')
+                is_image = any(ext in url.lower() for ext in ['.jpg', '.jpeg', '.png', '.gif', 'i.redd.it', 'imgur'])
+                
+                if is_image:
+                    # Versuche lokales Bild zu finden oder herunterzuladen
+                    image_path = self.get_image_for_post(post_data)
+                    if image_path:
+                        try:
+                            # Versuche als Bild-Post mit Datei
+                            submission = subreddit.submit_image(
+                                title=post_data['title'],
+                                image_path=image_path,
+                                flair_id=flair_id if flair_id else None
+                            )
+                            print(f"   ✅ Bild-Post mit neuem Upload erstellt")
+                            # Lösche temporäres Bild (nicht lokale Archiv-Bilder)
+                            if 'temp_images' in image_path:
+                                os.remove(image_path)
+                        except Exception as e:
+                            print(f"   ⚠️ Upload fehlgeschlagen: {e}")
+                            # Fallback: Verwende Original-URL
+                            submission = subreddit.submit(
+                                title=post_data['title'],
+                                url=url,
+                                flair_id=flair_id if flair_id else None
+                            )
+                            print(f"   ⚠️ Verwende Original-URL stattdessen")
+                    else:
+                        # Fallback wenn Download fehlschlägt
+                        submission = subreddit.submit(
+                            title=post_data['title'],
+                            url=url,
+                            flair_id=flair_id if flair_id else None
+                        )
+                        print(f"   ⚠️ Verwende Original-URL (Download fehlgeschlagen)")
+                else:
+                    # Normaler Link-Post (kein Bild)
+                    submission = subreddit.submit(
+                        title=post_data['title'],
+                        url=url,
+                        flair_id=flair_id if flair_id else None
+                    )
             
             if submission and flair_text:
                 print(f"   🏷️ Flair gesetzt: {flair_text}")
