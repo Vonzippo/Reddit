@@ -1050,6 +1050,7 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
     def delete_posted_folder(self, post_data):
         """Löscht den Post-Ordner aus data_all/Posts nach erfolgreichem Posten"""
         import shutil
+        import glob
         
         post_id = post_data.get('id', '')
         post_title = post_data.get('title', '')
@@ -1065,27 +1066,46 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
                             data = json.load(f)
                             # Prüfe ob es der gleiche Post ist (ID oder Titel)
                             if data.get('id') == post_id or data.get('title') == post_title:
-                                # Lösche den gesamten Ordner
+                                # Lösche den gesamten Ordner mit mehreren Versuchen
+                                deleted = False
+                                
+                                # Versuch 1: Normal mit shutil
                                 try:
                                     shutil.rmtree(folder)
+                                    deleted = True
                                     print(f"   🗑️ Post-Ordner gelöscht: {folder.name}")
-                                except OSError as e:
-                                    # Fallback: Versuche Dateien einzeln zu löschen
-                                    print(f"   ⚠️ Ordner konnte nicht direkt gelöscht werden, versuche Dateien einzeln...")
-                                    try:
-                                        for file in folder.iterdir():
-                                            if file.is_file():
-                                                file.unlink()
-                                        folder.rmdir()
-                                        print(f"   🗑️ Post-Ordner gelöscht: {folder.name}")
-                                    except Exception as e2:
-                                        print(f"   ⚠️ Löschen fehlgeschlagen: {e2}")
+                                except:
+                                    pass
                                 
-                                # Entferne auch aus der internen Liste
+                                # Versuch 2: Lösche nur normale Dateien, ignoriere .nfs Dateien
+                                if not deleted:
+                                    try:
+                                        print(f"   🔧 Lösche Dateien einzeln (ignoriere .nfs)...")
+                                        for file in folder.iterdir():
+                                            if file.is_file() and not str(file.name).startswith('.nfs'):
+                                                try:
+                                                    file.unlink()
+                                                except:
+                                                    pass
+                                        
+                                        # Versuche Ordner zu löschen (schlägt fehl wenn .nfs noch da)
+                                        try:
+                                            folder.rmdir()
+                                            deleted = True
+                                            print(f"   🗑️ Post-Ordner gelöscht: {folder.name}")
+                                        except:
+                                            # Ordner hat noch .nfs Dateien, aber normale Dateien sind weg
+                                            print(f"   ⚠️ Ordner enthält noch temporäre .nfs Dateien (werden automatisch gelöscht)")
+                                            deleted = True  # Betrachte als erfolgreich
+                                    except Exception as e:
+                                        print(f"   ⚠️ Teilweise gelöscht: {str(e)[:50]}")
+                                
+                                # Entferne aus der internen Liste auch wenn Löschen teilweise fehlschlug
                                 self.posts = [p for p in self.posts if p.get('id') != post_id]
                                 return True
+                                
                     except Exception as e:
-                        print(f"   ⚠️ Fehler beim Löschen: {e}")
+                        print(f"   ⚠️ Fehler beim Verarbeiten: {e}")
         
         return False
     

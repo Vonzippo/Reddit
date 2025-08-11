@@ -1,0 +1,25 @@
+{
+  "summary": "Combined November + October Reddit Posts",
+  "total_posts": 190,
+  "november_posts": 115,
+  "october_posts": 75,
+  "total_size_mb": 136,
+  "date_combined": "2025-08-11",
+  "stats": {
+    "november": {
+      "original": 200,
+      "after_nsfw_removal": 115,
+      "score_range": "80k-237k",
+      "size_mb": 99.3
+    },
+    "october": {
+      "original": 500,
+      "with_images": 78,
+      "after_nsfw_removal": 75,
+      "score_range": "3.5k-52k",
+      "size_mb": 34.7
+    }
+  },
+  "github_ready": true,
+  "nsfw_cleaned": true
+}
