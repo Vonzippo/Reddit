@@ -1003,6 +1003,50 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
         # Hier kannst du die Logik für die Benutzerverarbeitung hinzufügen
         # z.B. Posts von diesen Benutzern laden, analysieren, etc.
     
+    def clean_post_title(self, title):
+        """Bereinigt Post-Titel von problematischen Elementen"""
+        import re
+        
+        # Entferne mehrfache Leerzeichen
+        title = ' '.join(title.split())
+        
+        # Entferne Emojis (optional - manche Subs erlauben sie)
+        # title = re.sub(r'[^\x00-\x7F]+', '', title)
+        
+        # Entferne verbotene Phrasen
+        banned_phrases = [
+            'upvote if', 'upvote this', 'please upvote',
+            'don\'t let this die', 'to the front page',
+            'karma please', 'give me karma',
+            '[OC]', '[oc]', '(OC)', '(oc)',  # Entferne OC tags wenn nicht eigener Content
+            'EDIT:', 'UPDATE:'
+        ]
+        
+        title_lower = title.lower()
+        for phrase in banned_phrases:
+            if phrase.lower() in title_lower:
+                # Entferne die Phrase case-insensitive
+                title = re.sub(re.escape(phrase), '', title, flags=re.IGNORECASE)
+        
+        # Prüfe auf ALL CAPS (mehr als 50% Großbuchstaben)
+        if sum(1 for c in title if c.isupper()) > len(title) * 0.5:
+            # Konvertiere zu normaler Schreibweise
+            title = title.title()
+            print(f"   📝 Titel von CAPS zu Normal konvertiert")
+        
+        # Entferne übermäßige Satzzeichen am Ende
+        title = re.sub(r'[!?.]{2,}$', '.', title)
+        
+        # Stelle sicher dass Titel nicht zu lang ist (max 300 Zeichen)
+        if len(title) > 300:
+            title = title[:297] + "..."
+            print(f"   ✂️ Titel gekürzt auf 300 Zeichen")
+        
+        # Entferne führende/nachfolgende Leerzeichen
+        title = title.strip()
+        
+        return title
+    
     def delete_posted_folder(self, post_data):
         """Löscht den Post-Ordner aus data_all/Posts nach erfolgreichem Posten"""
         import shutil
@@ -1166,6 +1210,22 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
                         print(f"   🏷️ Verwende Flair: {flair_text}")
                         break
             
+            # Prüfe Account-Alter und Karma
+            try:
+                account = self.reddit.user.me()
+                account_age_days = (time.time() - account.created_utc) / 86400
+                account_karma = account.link_karma + account.comment_karma
+                
+                print(f"   👤 Account: {account_age_days:.0f} Tage alt, {account_karma} Karma")
+                
+                # Warne bei jungem Account
+                if account_age_days < 30:
+                    print(f"   ⚠️ Account ist nur {account_age_days:.0f} Tage alt - manche Subs verlangen 30+ Tage")
+                if account_karma < 100:
+                    print(f"   ⚠️ Niedriges Karma ({account_karma}) - manche Subs verlangen 100+")
+            except:
+                pass
+            
             # Liste problematischer Subreddits mit strengen Regeln
             problematic_subs = {
                 'pics': ['interestingasfuck', 'Damnthatsinteresting', 'BeAmazed', 'nextfuckinglevel'],
@@ -1201,11 +1261,14 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
                         print(f"   ❌ r/{alt} nicht verfügbar: {str(e)[:50]}")
                         continue
             
+            # Bereinige Titel von problematischen Elementen
+            clean_title = self.clean_post_title(post_data['title'])
+            
             # Erstelle den Post mit Flair wenn möglich
             if post_data.get('selftext'):
                 # Text-Post
                 submission = subreddit.submit(
-                    title=post_data['title'],
+                    title=clean_title,
                     selftext=post_data.get('selftext', ''),
                     flair_id=flair_id if flair_id else None
                 )
@@ -1221,7 +1284,7 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
                         try:
                             # Versuche als Bild-Post mit Datei
                             submission = subreddit.submit_image(
-                                title=post_data['title'],
+                                title=clean_title,
                                 image_path=image_path,
                                 flair_id=flair_id if flair_id else None
                             )
@@ -1233,7 +1296,7 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
                             print(f"   ⚠️ Upload fehlgeschlagen: {e}")
                             # Fallback: Verwende Original-URL
                             submission = subreddit.submit(
-                                title=post_data['title'],
+                                title=clean_title,
                                 url=url,
                                 flair_id=flair_id if flair_id else None
                             )
@@ -1241,7 +1304,7 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
                     else:
                         # Fallback wenn Download fehlschlägt
                         submission = subreddit.submit(
-                            title=post_data['title'],
+                            title=clean_title,
                             url=url,
                             flair_id=flair_id if flair_id else None
                         )
@@ -1249,7 +1312,7 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
                 else:
                     # Normaler Link-Post (kein Bild)
                     submission = subreddit.submit(
-                        title=post_data['title'],
+                        title=clean_title,
                         url=url,
                         flair_id=flair_id if flair_id else None
                     )
