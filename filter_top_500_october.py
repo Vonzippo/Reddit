@@ -6,13 +6,13 @@ Nutzt Heap-Sortierung für effiziente Verarbeitung
 """
 
 import json
-import zstandard as zstd
 import heapq
 from pathlib import Path
 import time
 from datetime import datetime
 import multiprocessing as mp
 from functools import partial
+import io
 
 def process_chunk(chunk_data):
     """Verarbeitet einen Chunk von Zeilen"""
@@ -70,7 +70,7 @@ def filter_top_500_october():
     start_time = time.time()
     
     # Min-Score für erste Filterung (nur hohe Scores)
-    MIN_SCORE_THRESHOLD = 10000  # Nur Posts mit 10k+ Score
+    MIN_SCORE_THRESHOLD = 100  # Niedrigerer Schwellenwert für Oktober
     
     # Heap für Top 500 (verwende negatives Score für Max-Heap)
     top_posts_heap = []
@@ -79,7 +79,7 @@ def filter_top_500_october():
     print(f"⚙️ Einstellungen:")
     print(f"   - Suche Top 500 Posts")
     print(f"   - Nur Posts mit Score ≥ {MIN_SCORE_THRESHOLD:,}")
-    print(f"   - Nutze {mp.cpu_count()} CPU-Kerne")
+    print(f"   - Verwende sequenzielle Verarbeitung")
     print()
     
     for input_file in input_files:
@@ -98,68 +98,52 @@ def filter_top_500_october():
             chunk_lines = []
             CHUNK_SIZE = 10000
             
-            with mp.Pool(processes=mp.cpu_count()) as pool:
-                for line_num, line in enumerate(text_stream, 1):
-                    total_posts += 1
-                    
-                    # Schnell-Check für Score
-                    if '"score":' in line:
-                        try:
-                            # Extrahiere Score schnell
-                            score_start = line.index('"score":') + 8
-                            score_end = line.index(',', score_start)
-                            score = int(line[score_start:score_end])
-                            
-                            # Nur hohe Scores verarbeiten
-                            if score >= MIN_SCORE_THRESHOLD:
-                                high_score_posts += 1
-                                chunk_lines.append(line)
-                        except:
-                            continue
-                    
-                    # Verarbeite Chunk wenn voll
-                    if len(chunk_lines) >= CHUNK_SIZE:
-                        # Parallel verarbeiten
-                        results = pool.map(
-                            partial(process_chunk, min_score=MIN_SCORE_THRESHOLD),
-                            [(chunk_lines, MIN_SCORE_THRESHOLD)]
-                        )[0]
-                        
-                        # Füge zu Heap hinzu
-                        for post_tuple in results:
-                            if len(top_posts_heap) < HEAP_SIZE:
-                                heapq.heappush(top_posts_heap, post_tuple)
-                            else:
-                                # Ersetze kleinsten wenn neuer größer
-                                if post_tuple[0] < top_posts_heap[0][0]:
-                                    heapq.heapreplace(top_posts_heap, post_tuple)
-                        
-                        chunk_lines = []
-                        
-                        # Status Update
-                        if total_posts % 50000 == 0:
-                            elapsed = time.time() - start_time
-                            speed = total_posts / elapsed
-                            current_min = -top_posts_heap[0][0] if top_posts_heap else 0
-                            
-                            print(f"   📊 {total_posts:,} Posts | "
-                                  f"High-Score: {high_score_posts:,} | "
-                                  f"Speed: {speed:.0f}/s | "
-                                  f"Min in Top 500: {current_min:,}")
+            for line_num, line in enumerate(text_stream, 1):
+                total_posts += 1
                 
-                # Letzter Chunk
-                if chunk_lines:
-                    results = pool.map(
-                        partial(process_chunk, min_score=MIN_SCORE_THRESHOLD),
-                        [(chunk_lines, MIN_SCORE_THRESHOLD)]
-                    )[0]
+                try:
+                    post = json.loads(line)
+                    score = int(post.get('score', 0))
                     
-                    for post_tuple in results:
+                    # Nur hohe Scores verarbeiten
+                    if score >= MIN_SCORE_THRESHOLD:
+                        high_score_posts += 1
+                        
+                        # Vereinfachte Daten für Heap
+                        post_data = {
+                            'id': post.get('id', ''),
+                            'title': post.get('title', ''),
+                            'score': score,
+                            'subreddit': post.get('subreddit', ''),
+                            'url': post.get('url', ''),
+                            'selftext': post.get('selftext', ''),
+                            'author': post.get('author', ''),
+                            'created_utc': post.get('created_utc', 0),
+                            'num_comments': post.get('num_comments', 0),
+                            'over_18': post.get('over_18', False),
+                            'is_video': post.get('is_video', False),
+                            'permalink': post.get('permalink', '')
+                        }
+                        
                         if len(top_posts_heap) < HEAP_SIZE:
-                            heapq.heappush(top_posts_heap, post_tuple)
+                            heapq.heappush(top_posts_heap, (-score, post_data))
                         else:
-                            if post_tuple[0] < top_posts_heap[0][0]:
-                                heapq.heapreplace(top_posts_heap, post_tuple)
+                            # Ersetze kleinsten wenn neuer größer
+                            if -score < top_posts_heap[0][0]:
+                                heapq.heapreplace(top_posts_heap, (-score, post_data))
+                except:
+                    continue
+                
+                # Status Update
+                if total_posts % 50000 == 0:
+                    elapsed = time.time() - start_time
+                    speed = total_posts / elapsed
+                    current_min = -top_posts_heap[0][0] if top_posts_heap else 0
+                    
+                    print(f"   📊 {total_posts:,} Posts | "
+                          f"High-Score: {high_score_posts:,} | "
+                          f"Speed: {speed:.0f}/s | "
+                          f"Min in Top 500: {current_min:,}")
     
     # Extrahiere und sortiere Top 500
     print("\n📝 Extrahiere Top 500...")

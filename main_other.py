@@ -171,10 +171,14 @@ class CombinedBot:
         
         # OpenRouter API (optional)
         print("\n🤖 OPENROUTER API (Optional für KI-Kommentare):")
+        print("   ℹ️ Hinweis: Für intelligente Kommentare benötigt. Kostenlos auf openrouter.ai")
+        print("   Enter drücken zum Überspringen")
         openrouter_key = input(f"OpenRouter API Key [{'*' * 10 if self.config.get('openrouter_api_key') else 'nicht gesetzt'}]: ").strip()
         if openrouter_key:
             self.config['openrouter_api_key'] = openrouter_key
             self.openrouter_api_key = openrouter_key
+        else:
+            print("   ⚠️ Ohne OpenRouter Key werden nur einfache Kommentare generiert")
         
         # Speichern?
         save = input("\n💾 Konfiguration speichern? (j/n): ").strip().lower()
@@ -532,13 +536,41 @@ class CombinedBot:
     
     def get_random_post(self):
         """Gibt einen zufälligen Post zurück (bevorzugt noch nicht gepostete)"""
+        # Subreddits die OC verlangen oder strenge Regeln haben
+        problematic_subs = ['pics', 'photography', 'itookapicture', 'art', 'drawing', 'painting']
+        
+        # Sichere alternative Subreddits
+        safe_alternatives = {
+            'pics': ['interestingasfuck', 'Damnthatsinteresting', 'BeAmazed'],
+            'photography': ['nocontextpics', 'pic', 'images'],
+            'art': ['somethingimade', 'crafts'],
+            'funny': ['humor', 'memes', 'dankmemes'],
+            'videos': ['mealtimevideos', 'curiousvideos']
+        }
+        
         if self.posts:
             # Versuche einen noch nicht geposteten Post zu finden
             unposted = [p for p in self.posts if p.get('id') not in self.posted_posts]
             if unposted:
-                return random.choice(unposted)
-            # Falls alle gepostet, nimm irgendeinen
-            return random.choice(self.posts)
+                post = random.choice(unposted)
+            else:
+                # Falls alle gepostet, nimm irgendeinen
+                post = random.choice(self.posts)
+            
+            # Prüfe ob Subreddit problematisch ist
+            original_sub = post.get('subreddit', '').lower()
+            if original_sub in problematic_subs:
+                # Wähle sichere Alternative
+                if original_sub in safe_alternatives:
+                    new_sub = random.choice(safe_alternatives[original_sub])
+                else:
+                    # Generelle sichere Subreddits
+                    new_sub = random.choice(['interestingasfuck', 'Damnthatsinteresting', 'BeAmazed', 'nextfuckinglevel', 'MadeMeSmile'])
+                
+                print(f"   ⚠️ r/{original_sub} hat strenge Regeln - verwende r/{new_sub} stattdessen")
+                post['subreddit'] = new_sub
+            
+            return post
         return None
     
     def save_generated_post(self, post_data):
@@ -990,8 +1022,20 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
                             # Prüfe ob es der gleiche Post ist (ID oder Titel)
                             if data.get('id') == post_id or data.get('title') == post_title:
                                 # Lösche den gesamten Ordner
-                                shutil.rmtree(folder)
-                                print(f"   🗑️ Post-Ordner gelöscht: {folder.name}")
+                                try:
+                                    shutil.rmtree(folder)
+                                    print(f"   🗑️ Post-Ordner gelöscht: {folder.name}")
+                                except OSError as e:
+                                    # Fallback: Versuche Dateien einzeln zu löschen
+                                    print(f"   ⚠️ Ordner konnte nicht direkt gelöscht werden, versuche Dateien einzeln...")
+                                    try:
+                                        for file in folder.iterdir():
+                                            if file.is_file():
+                                                file.unlink()
+                                        folder.rmdir()
+                                        print(f"   🗑️ Post-Ordner gelöscht: {folder.name}")
+                                    except Exception as e2:
+                                        print(f"   ⚠️ Löschen fehlgeschlagen: {e2}")
                                 
                                 # Entferne auch aus der internen Liste
                                 self.posts = [p for p in self.posts if p.get('id') != post_id]
@@ -1121,6 +1165,41 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
                         flair_text = flair['text']
                         print(f"   🏷️ Verwende Flair: {flair_text}")
                         break
+            
+            # Liste problematischer Subreddits mit strengen Regeln
+            problematic_subs = {
+                'pics': ['interestingasfuck', 'Damnthatsinteresting', 'BeAmazed', 'nextfuckinglevel'],
+                'photography': ['nocontextpics', 'pic', 'images'],
+                'itookapicture': ['nocontextpics', 'pic', 'images'],
+                'art': ['somethingimade', 'crafts', 'DIY'],
+                'drawing': ['doodles', 'sketches'],
+                'painting': ['somethingimade', 'crafts'],
+                'earthporn': ['natureisfuckinglit', 'NatureIsFuckingLit', 'BeAmazed'],
+                'foodporn': ['food', 'FoodPorn', 'shittyfoodporn'],
+                'mildlyinteresting': ['interestingasfuck', 'Damnthatsinteresting'],
+                'oldschoolcool': ['TheWayWeWere', 'nostalgia']
+            }
+            
+            # Prüfe ob Subreddit problematisch ist
+            sub_name = subreddit.display_name.lower()
+            if sub_name in problematic_subs:
+                print(f"   ⚠️ r/{sub_name} hat strenge OC/Regeln")
+                print("   Verwende alternativen Subreddit...")
+                
+                # Wähle alternativen Subreddit
+                alternatives = problematic_subs.get(sub_name, ['interestingasfuck', 'Damnthatsinteresting', 'BeAmazed'])
+                
+                for alt in alternatives:
+                    try:
+                        subreddit = self.reddit.subreddit(alt)
+                        # Prüfe ob Subreddit existiert und zugänglich ist
+                        _ = subreddit.display_name
+                        print(f"   ✅ Verwende r/{alt} stattdessen")
+                        post_data['subreddit'] = alt
+                        break
+                    except Exception as e:
+                        print(f"   ❌ r/{alt} nicht verfügbar: {str(e)[:50]}")
+                        continue
             
             # Erstelle den Post mit Flair wenn möglich
             if post_data.get('selftext'):
