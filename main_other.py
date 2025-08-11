@@ -374,40 +374,33 @@ class CombinedBot:
             self.daily_comment_target = self.daily_comments[today].get('target')
             # Falls target nicht gesetzt oder None, setze neues Ziel
             if self.daily_comment_target is None:
-                self.daily_comment_target = random.randint(5, 20)
+                self.daily_comment_target = random.randint(3, 7)
                 self.daily_comments[today]['target'] = self.daily_comment_target
                 self._save_comment_daily_stats()
                 print(f"🎯 Kommentar-Tagesziel korrigiert: {self.daily_comment_target} Kommentare")
             elif self.daily_comment_target == 0:
-                print(f"🚫 Heute ist ein Pausentag - keine Kommentare")
+                # Falls irgendwie 0, setze neues Ziel
+                self.daily_comment_target = random.randint(3, 7)
+                self.daily_comments[today]['target'] = self.daily_comment_target
+                self._save_comment_daily_stats()
+                print(f"🎯 Kommentar-Tagesziel korrigiert: {self.daily_comment_target} Kommentare")
             else:
                 print(f"📊 Heutiges Kommentar-Ziel: {self.daily_comment_target} Kommentare")
                 print(f"   Bereits erstellt: {self.daily_comments[today].get('count', 0)}")
         else:
-            # 20% Chance für einen Pausentag
-            if random.random() < 0.2:
-                self.daily_comment_target = 0
-                self.daily_comments[today] = {
-                    'target': 0,
-                    'count': 0,
-                    'comments': [],
-                    'skip_day': True
-                }
-                print(f"😴 Heute ist ein Pausentag - keine Kommentare geplant")
-            else:
-                # Setze neues tägliches Ziel (5-20 Kommentare)
-                self.daily_comment_target = random.randint(5, 20)
-                self.daily_comments[today] = {
-                    'target': self.daily_comment_target,
-                    'count': 0,
-                    'comments': []
-                }
-                print(f"🎯 Neues Kommentar-Tagesziel gesetzt: {self.daily_comment_target} Kommentare")
+            # Setze IMMER ein tägliches Ziel (5-20 Kommentare, keine Pausentage)
+            self.daily_comment_target = random.randint(3, 7)
+            self.daily_comments[today] = {
+                'target': self.daily_comment_target,
+                'count': 0,
+                'comments': []
+            }
+            print(f"🎯 Neues Kommentar-Tagesziel gesetzt: {self.daily_comment_target} Kommentare")
             self._save_comment_daily_stats()
         
         # Finale Sicherheitsprüfung
-        if self.daily_comment_target is None:
-            self.daily_comment_target = random.randint(5, 20)
+        if self.daily_comment_target is None or self.daily_comment_target == 0:
+            self.daily_comment_target = random.randint(3, 7)
             print(f"🎯 Standard-Kommentar-Tagesziel gesetzt: {self.daily_comment_target} Kommentare")
     
     def _save_comment_daily_stats(self):
@@ -513,7 +506,7 @@ class CombinedBot:
         
         if today not in self.daily_comments:
             self.daily_comments[today] = {
-                'target': self.daily_comment_target or random.randint(5, 20),
+                'target': self.daily_comment_target or random.randint(3, 7),
                 'count': 0,
                 'comments': []
             }
@@ -628,7 +621,7 @@ class CombinedBot:
         
         # Stelle sicher dass heute ein Eintrag existiert
         if today not in self.daily_comments:
-            self.daily_comment_target = random.randint(5, 20)
+            self.daily_comment_target = random.randint(3, 7)
             self.daily_comments[today] = {
                 'target': self.daily_comment_target,
                 'count': 0,
@@ -847,7 +840,7 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
                     "Content-Type": "application/json"
                 },
                 json={
-                    "model": "meta-llama/llama-3.2-3b-instruct:free",
+                    "model": "openai/gpt-5-mini",
                     "messages": [
                         {"role": "user", "content": prompt}
                     ],
@@ -1421,7 +1414,7 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
         print("="*60)
         print(f"⏰ Aktive Zeit: {start_hour}:00 - {end_hour}:00 Uhr")
         print(f"📊 Post-Ziel: {self.daily_post_target} Posts (Max 4/Tag)")
-        print(f"📊 Kommentar-Ziel: {self.daily_comment_target} Kommentare (5-20/Tag)")
+        print(f"📊 Kommentar-Ziel: {self.daily_comment_target} Kommentare (3-7/Tag)")
         print(f"⏳ Wartezeit zwischen Posts: 0.5-2 Stunden")
         print(f"👥 Benutzer aus otherUser.txt: {len(self.users_to_process)}")
         print("\nDrücke Ctrl+C zum Beenden")
