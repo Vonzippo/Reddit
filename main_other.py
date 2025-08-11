@@ -797,40 +797,130 @@ class CombinedBot:
         
         return None
     
-    def generate_funny_contextual_comment(self, post_title, parent_comment, other_replies=[]):
-        """Generiert einen lustigen, kontextbezogenen Kommentar mit AI"""
+    def generate_funny_contextual_comment(self, post_title, parent_comment, other_replies=[], subreddit_name=""):
+        """Generiert einen kontextbezogenen Kommentar mit AI - kann lustig sein, Fragen stellen oder helfen"""
         
         if not self.openrouter_api_key:
             print("⚠️ OpenRouter API Key nicht gesetzt - verwende Fallback")
-            return self.generate_fallback_comment()
+            return self.generate_fallback_comment(subreddit_name)
         
         # Sammle Kontext von anderen Replies für bessere Anpassung
         reply_context = "\n".join([f"- {r.body[:100]}" for r in other_replies[:3]])
         
-        prompt = f"""You're commenting on a viral Reddit post. Be FUNNY, WITTY and NATURAL.
+        # Erkenne Nischen-Hobbys und spezielle Subreddits
+        niche_hobbies = ['bonsai', 'aquarium', 'pottery', 'woodworking', 'leathercraft', 
+                        'fermentation', 'mushroom', 'orchid', 'blacksmith', 'knitting',
+                        'vintage', 'coin', 'stamp', 'model', 'terrarium']
+        
+        help_subs = ['askdocs', 'fixit', 'askelectronics', 'diy', 'homeimprovement',
+                    'learnprogramming', 'nostupidquestions', 'explainlikeimfive']
+        
+        is_niche = any(hobby in subreddit_name.lower() for hobby in niche_hobbies)
+        is_help_sub = any(sub in subreddit_name.lower() for sub in help_subs)
+        
+        # Wähle Kommentar-Stil basierend auf Subreddit
+        if is_niche:
+            # Für Nischen-Hobbys: Stelle ehrliche Anfängerfragen
+            prompt = f"""You're a curious beginner in r/{subreddit_name} asking genuine questions.
 
 POST: "{post_title}"
+COMMENT: "{parent_comment[:200]}"
 
-TOP COMMENT: "{parent_comment[:200]}"
+Write a SHORT (1-2 sentences) beginner question or observation that:
+- Shows genuine interest in learning
+- Asks about technique, materials, or process
+- Is humble and respectful
+- Sounds like a real person discovering this hobby
 
-OTHER REPLIES:
-{reply_context}
+Examples:
+- "wow this is beautiful! how long did it take you to learn this technique?"
+- "i'm just starting out with this hobby, what tools would you recommend for a beginner?"
+- "this might be a dumb question but how do you keep it from [specific problem]?"
+- "your work is inspiring! did you learn from youtube or take classes?"
 
-Write a SHORT (1-2 sentences MAX), FUNNY reply that:
-- Relates to the comment thread naturally
-- Adds humor (puns, observations, self-deprecating)
-- Sounds like a real redditor (casual, maybe typos)
-- References something specific from the comment
-- Could get upvotes for being clever/funny
+Your genuine question (lowercase, casual):"""
+        
+        elif is_help_sub or "help" in parent_comment.lower() or "how" in parent_comment.lower():
+            # Für Hilfe-Anfragen: Biete Unterstützung oder teile Erfahrung
+            prompt = f"""You're helpfully responding in r/{subreddit_name}.
 
-Examples of good reddit humor:
+POST: "{post_title}"
+COMMENT: "{parent_comment[:200]}"
+
+Write a SHORT (1-2 sentences) helpful response that:
+- Offers a specific tip or solution
+- Shares personal experience with the issue
+- Is supportive and encouraging
+- Sounds genuine and knowledgeable
+
+Examples:
+- "i had this exact problem last week! try checking the [specific thing], that fixed it for me"
+- "this happened to me too, what worked was [specific solution]"
+- "hey just wanted to add that [specific tip] really helps with this"
+- "if that doesn't work, you might also want to try [alternative solution]"
+
+Your helpful response (lowercase, casual):"""
+        
+        else:
+            # Standard: Mix aus lustig, Fragen und normal
+            comment_types = random.choice(['funny', 'question', 'relate'])
+            
+            if comment_types == 'question':
+                prompt = f"""You're asking a follow-up question on Reddit.
+
+POST: "{post_title}"
+COMMENT: "{parent_comment[:200]}"
+
+Write a SHORT (1-2 sentences) curious question that:
+- Asks for more details or clarification
+- Shows you're interested in the topic
+- Sounds casual and conversational
+
+Examples:
+- "wait how did you even figure that out?"
+- "did this actually work or are you just lucky?"
+- "ok but seriously, how much did this cost you?"
+- "genuine question - is this common or super rare?"
+
+Your question (lowercase, casual):"""
+            
+            elif comment_types == 'relate':
+                prompt = f"""You're relating to a Reddit comment.
+
+POST: "{post_title}"
+COMMENT: "{parent_comment[:200]}"
+
+Write a SHORT (1-2 sentences) relatable response that:
+- Shares a similar experience
+- Agrees and adds to the point
+- Sounds genuine and conversational
+
+Examples:
+- "literally same thing happened to me last month"
+- "this is exactly why i stopped doing [thing]"
+- "can confirm, my [person] does this all the time"
+- "yep learned this the hard way too"
+
+Your relatable response (lowercase, casual):"""
+            
+            else:  # funny
+                prompt = f"""You're making a witty Reddit comment.
+
+POST: "{post_title}"
+COMMENT: "{parent_comment[:200]}"
+
+Write a SHORT (1-2 sentences) funny response that:
+- Makes a clever observation
+- Uses reddit-style humor
+- Sounds casual and natural
+
+Examples:
+- "this is the way"
 - "sir this is a wendys"
-- "i also choose this guys wife"
 - "username checks out"
-- observational humor about the situation
-- unexpected twists
+- "i also choose this guys [thing]"
 
-Your funny reply (1-2 sentences, lowercase, casual):"""
+Your witty response (lowercase, casual):"""
 
         try:
             response = requests.post(
@@ -860,9 +950,32 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
         
         return self.generate_fallback_comment()
     
-    def generate_fallback_comment(self):
-        """Fallback für lustige Kommentare ohne AI"""
-        funny_templates = [
+    def generate_fallback_comment(self, subreddit_name=""):
+        """Fallback für Kommentare ohne AI - angepasst an Subreddit"""
+        
+        # Erkenne Typ des Subreddits
+        if any(hobby in subreddit_name.lower() for hobby in ['bonsai', 'aquarium', 'woodworking', 'pottery']):
+            # Nischen-Hobby Fragen
+            templates = [
+                "wow this looks amazing! how long have you been doing this?",
+                "this is so cool! what got you started with this hobby?",
+                "beautiful work! is this difficult for beginners?",
+                "this is inspiring! any tips for someone wanting to start?",
+                "incredible detail! how long did this take you?",
+                "this looks professional! did you teach yourself?"
+            ]
+        elif any(help in subreddit_name.lower() for help in ['ask', 'help', 'fix', 'learn']):
+            # Hilfreiche Kommentare
+            templates = [
+                "i had this same issue, what helped me was checking the basics first",
+                "this might help - have you tried the simpler solution?",
+                "just wanted to add that this is more common than you think",
+                "don't give up, we all started somewhere!",
+                "great question, following this thread for answers too"
+            ]
+        else:
+            # Standard lustige Kommentare
+            templates = [
             "this is the way",
             "i felt that in my soul ngl",
             "why is this so accurate tho",
@@ -873,8 +986,9 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
             "cant believe i had to scroll this far for this",
             "take my upvote and leave",
             "this is peak comedy and nobody can convince me otherwise"
-        ]
-        return random.choice(funny_templates)
+            ]
+        
+        return random.choice(templates)
     
     def engage_with_viral_post(self, post_data):
         """Interagiert intelligent mit einem viralen Post"""
@@ -897,7 +1011,8 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
         main_comment = self.generate_funny_contextual_comment(
             post_data['title'],
             top_thread['body'],
-            list(top_thread['replies'])[:5]
+            list(top_thread['replies'])[:5],
+            post_data.get('subreddit', '')
         )
         
         print(f"\n🎯 Hauptkommentar: {main_comment}")
@@ -1578,42 +1693,231 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
     def find_popular_post_to_comment(self):
         """Findet einen beliebten Post zum Kommentieren"""
         try:
-            # Wähle zufälligen Subreddit aus unserer Liste
-            if not self.all_subreddits:
-                return None
+            # ALLE Communities gemischt - Freundliche, Memes, Nischen
+            popular_subs = [
+                # WHOLESOME & FREUNDLICHE
+                'MadeMeSmile', 'wholesomememes', 'HumansBeingBros', 'UpliftingNews',
+                'CongratsLikeImFive', 'toastme', 'RandomActsOfKindness', 'happy',
+                'CasualConversation', 'NewToReddit', 'findareddit', 'self',
                 
-            target_sub = random.choice(self.all_subreddits)
-            subreddit = self.reddit.subreddit(target_sub)
+                # Tiere (immer freundlich!)
+                'aww', 'Eyebleach', 'AnimalsBeingBros', 'AnimalsBeingDerps',
+                'rarepuppers', 'cats', 'dogs', 'puppies', 'kittens',
+                'tuckedinkitties', 'IllegallySmolCats', 'babyelephantgifs',
+                
+                # Entspannend & Beruhigend
+                'oddlysatisfying', 'CozyPlaces', 'RoomPorn', 'AmateurRoomPorn',
+                'cottagecore', 'fairycore', 'aestheticrain', 'raining',
+                
+                # Lernen & Helfen (sehr unterstützend)
+                'explainlikeimfive', 'NoStupidQuestions', 'TooAfraidToAsk',
+                'IWantToLearn', 'LearnUselessTalents', 'coolguides',
+                'YouShouldKnow', 'todayilearned', 'OutOfTheLoop',
+                
+                # Kreativ & Unterstützend
+                'crafts', 'somethingimade', 'DIY', 'ArtFundamentals',
+                'learnart', 'doodles', 'DigitalPainting', 'ArtProgressPics',
+                'writing', 'WritingPrompts', 'poetry', 'OCPoetry',
+                
+                # Hobbies (freundliche Communities)
+                'gardening', 'houseplants', 'IndoorGarden', 'succulents',
+                'Baking', 'Breadit', 'cooking', 'cookingforbeginners',
+                'tea', 'Coffee', 'slowcooking', 'MealPrepSunday',
+                
+                # Gaming (die netteren)
+                'AnimalCrossing', 'StardewValley', 'CozyGamers', 'GirlGamers',
+                'patientgamers', 'lowendgaming', 'casualnintendo', 'nintendo',
+                'MinecraftBuilds', 'Minecraft', 'wholesomegames',
+                
+                # Fitness & Wellness (unterstützend)
+                'flexibility', 'yoga', 'bodyweightfitness', 'C25K',
+                'getmotivated', 'DecidingToBeBetter', 'selfimprovement',
+                'meditation', 'Mindfulness', 'selfcare', '1200isplenty',
+                
+                # Bücher & Medien (freundlich)
+                'books', 'suggestmeabook', 'booksuggestions', 'Libraries',
+                'Fantasy', 'printSF', 'YAlit', 'comicbooks',
+                
+                # Support & Mental Health (sehr unterstützend)
+                'MomForAMinute', 'DadForAMinute', 'internetparents',
+                'KindVoice', 'MMFB', 'offmychest', 'congratslikeimfive',
+                
+                # Natur & Draußen
+                'NatureIsFuckingLit', 'EarthPorn', 'natureporn', 'hiking',
+                'camping', 'backpacking', 'WildernessBackpacking',
+                
+                # Essen (freundlich)
+                'food', 'FoodPorn', 'DessertPorn', 'veganrecipes',
+                'EatCheapAndHealthy', 'budgetfood', 'recipes',
+                
+                # Kleine nette Communities
+                'benignexistence', 'PointlessStories', 'self', 
+                'SimpleLiving', 'ZeroWaste', 'minimalism',
+                
+                # Musik (unterstützend)
+                'listentothis', 'ifyoulikeblank', 'makemeaplaylist',
+                'WeAreTheMusicMakers', 'musictheory', 'guitar', 'piano',
+                
+                # Lokale Communities (meist sehr freundlich)
+                'AskUK', 'CasualUK', 'AskAnAmerican', 'AskEurope',
+                
+                # Anfängerfreundlich
+                'beginnerfitness', 'beginnerrunning', 'learnprogramming',
+                'learntodraw', 'languagelearning', 'iwanttolearn',
+                
+                # SPEZIELLE NISCHEN-HOBBIES (sehr freundlich!)
+                'Bonsai', 'BonsaiPorn', 'IndoorBonsai', 'bonsaicommunity',
+                'Aquariums', 'PlantedTank', 'shrimptank', 'bettafish',
+                'terrariums', 'vivariums', 'orchids', 'carnivorrousplants',
+                'mushrooms', 'mycology', 'mushroomgrowers', 'unclebens',
+                
+                # Healthcare & Medizin (unterstützend)
+                'AskDocs', 'medical', 'nursing', 'medicine', 'healthcare',
+                'physicaltherapy', 'mentalhealth', 'chronicpain', 'migraine',
+                'Fibromyalgia', 'ChronicIllness', 'disability', 'invisible',
+                
+                # Handwerk & Spezialisiert
+                'Leathercraft', 'woodworking', 'BeginnerWoodWorking',
+                'metalworking', 'blacksmithing', 'jewelry', 'silversmithing',
+                'pottery', 'ceramics', 'glassblowing', 'stainedglass',
+                'quilting', 'sewing', 'knitting', 'crochet', 'CrossStitch',
+                'embroidery', 'weaving', 'spinning', 'yarnaddicts',
+                
+                # Sammler-Communities (super freundlich)
+                'coins', 'papermoney', 'stamps', 'philately',
+                'HotWheels', 'lego', 'ActionFigures', 'funkopop',
+                'vintageaudio', 'vinyl', 'cassetteculture', 'VHS',
+                'retrogaming', 'gamecollecting', 'comicbookcollecting',
+                
+                # Wissenschaft & Bildung (hilfsbereit)
+                'askscience', 'biology', 'chemistry', 'physics',
+                'astronomy', 'geology', 'meteorology', 'paleontology',
+                'archaeology', 'anthropology', 'linguistics', 'etymology',
+                
+                # Spezielle Tiere & Haustiere
+                'parrots', 'cockatiel', 'budgies', 'conures',
+                'reptiles', 'snakes', 'leopardgeckos', 'BeardedDragons',
+                'tarantulas', 'mantids', 'antkeeping', 'isopods',
+                'chickens', 'BackyardChickens', 'quails', 'ducks',
+                'goats', 'sheep', 'alpaca', 'rabbits', 'hedgehogs',
+                
+                # Vintage & Retro (nostalgisch freundlich)
+                'vintage', 'VintageApple', 'retrobattlestations',
+                'typewriters', 'fountainpens', 'mechanicalpencils',
+                'watches', 'Watchexchange', 'VintageWatches',
+                
+                # Essen-Spezialitäten (enthusiastisch)
+                'fermentation', 'kombucha', 'sourdough', 'cheesemaking',
+                'pickling', 'canning', 'foraging', 'mycology',
+                'spicy', 'hotsauce', 'HotPeppers', 'salsasnobs',
+                'bbq', 'smoking', 'grilling', 'sousvide',
+                
+                # Transport & Fahrzeuge (Enthusiasten)
+                'trains', 'modeltrains', 'aviation', 'flying',
+                'sailing', 'boating', 'kayaking', 'canoeing',
+                'electricvehicles', 'ebikes', 'onewheel', 'ElectricSkateboarding',
+                
+                # Kunst & Handarbeit Nischen
+                'minipainting', 'terrainbuilding', 'modelmakers',
+                'gunpla', 'scalemodels', 'dioramas', 'dollhouses',
+                'origami', 'papercraft', 'cardmaking', 'scrapbooking',
+                'calligraphy', 'penmanshipporn', 'handwriting',
+                
+                # Repair & DIY Communities
+                'fixit', 'AskElectronics', 'diyelectronics', 'arduino',
+                'raspberry_pi', '3Dprinting', 'functionalprint',
+                'homeimprovement', 'HomeRepair', 'appliancerepair',
+                
+                # MEMES & HUMOR
+                'memes', 'dankmemes', 'me_irl', 'meirl', 'funny',
+                'meme', 'AdviceAnimals', 'terriblefacebookmemes',
+                'comedyheaven', 'okbuddyretard', 'shitposting',
+                
+                # INTERESSANT & VIRAL
+                'interestingasfuck', 'Damnthatsinteresting', 'nextfuckinglevel',
+                'BeAmazed', 'blackmagicfuckery', 'unexpected', 'maybemaybemaybe',
+                'youseeingthisshit', 'toptalent', 'beamazed',
+                
+                # FRAGEN & DISKUSSION
+                'AskReddit', 'askmen', 'askwomen', 'askscience',
+                'nostupidquestions', 'tooafraidtoask', 'doesanybodyelse',
+                'showerthoughts', 'unpopularopinion', 'changemyview',
+                
+                # FAILS & HUMOR
+                'facepalm', 'therewasanattempt', 'instant_regret', 
+                'whatcouldgowrong', 'wellthatsucks', 'mildlyinfuriating',
+                'crappydesign', 'assholedesign', 'notmyjob',
+                
+                # GAMING MAINSTREAM
+                'gaming', 'pcgaming', 'ps5', 'xbox', 'nintendoswitch',
+                'steam', 'minecraft', 'fortnite', 'apexlegends',
+                
+                # TECH & INTERNET
+                'technology', 'gadgets', 'android', 'apple', 'iphone',
+                'buildapc', 'pcmasterrace', 'battlestations',
+                
+                # LIFESTYLE MAINSTREAM
+                'lifeprotips', 'youshouldknow', 'todayilearned',
+                'getmotivated', 'quotesporn', 'motivation',
+                
+                # ENTERTAINMENT
+                'movies', 'television', 'netflix', 'marvelstudios',
+                'starwars', 'gameofthrones', 'anime', 'manga'
+            ]
             
-            # Hole Hot Posts
-            posts = list(subreddit.hot(limit=25))
+            # Mische alle Subreddits zufällig
+            import random
+            random.shuffle(popular_subs)
             
-            # Filtere geeignete Posts
-            suitable_posts = []
-            for post in posts:
-                # Skip wenn wir schon kommentiert haben
-                if post.id in self.commented_posts:
+            # Mische unsere Subreddits mit populären
+            if self.all_subreddits:
+                mixed_subs = list(set(self.all_subreddits + popular_subs))
+            else:
+                mixed_subs = popular_subs
+                
+            # Versuche mehrere Subreddits
+            for attempt in range(3):
+                target_sub = random.choice(mixed_subs)
+                print(f"   🔎 Prüfe r/{target_sub}...")
+                
+                try:
+                    subreddit = self.reddit.subreddit(target_sub)
+                    # Hole Hot Posts
+                    posts = list(subreddit.hot(limit=25))
+                    
+                    # Filtere geeignete Posts
+                    suitable_posts = []
+                    for post in posts:
+                        # Skip wenn wir schon kommentiert haben
+                        if post.id in self.commented_posts:
+                            continue
+                            
+                        # Gelockerte Kriterien: 20+ Score, 5+ Kommentare, bis zu 24h alt
+                        post_age_hours = (time.time() - post.created_utc) / 3600
+                        if (post.score > 20 and 
+                            post.num_comments > 5 and 
+                            post_age_hours < 24 and 
+                            not post.locked and
+                            not post.archived):
+                            
+                            suitable_posts.append({
+                                'id': post.id,
+                                'title': post.title,
+                                'subreddit': post.subreddit.display_name,
+                                'score': post.score,
+                                'num_comments': post.num_comments,
+                                'submission': post
+                            })
+                    
+                    if suitable_posts:
+                        print(f"   ✅ {len(suitable_posts)} geeignete Posts gefunden")
+                        return random.choice(suitable_posts)
+                        
+                except Exception as e:
+                    print(f"   ⚠️ Fehler bei r/{target_sub}: {str(e)[:50]}")
                     continue
-                    
-                # Gute Kandidaten: 100+ Score, 10+ Kommentare, nicht zu alt
-                post_age_hours = (time.time() - post.created_utc) / 3600
-                if (post.score > 100 and 
-                    post.num_comments > 10 and 
-                    post_age_hours < 24 and 
-                    not post.locked and
-                    not post.archived):
-                    
-                    suitable_posts.append({
-                        'id': post.id,
-                        'title': post.title,
-                        'subreddit': post.subreddit.display_name,
-                        'score': post.score,
-                        'num_comments': post.num_comments,
-                        'submission': post
-                    })
             
-            if suitable_posts:
-                return random.choice(suitable_posts)
+            print("   ❌ Keine Posts nach 3 Versuchen gefunden")
                 
         except Exception as e:
             print(f"❌ Fehler bei Post-Suche: {e}")
@@ -1641,7 +1945,8 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
                 comment_text = self.generate_funny_contextual_comment(
                     post_data['title'],
                     target_comment.body,
-                    []
+                    [],
+                    post_data.get('subreddit', '')
                 )
                 
                 print(f"\n💬 Kommentar: {comment_text}")
