@@ -944,19 +944,61 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
         
         return comments_made
     
-    def post_comment_to_reddit(self, parent, comment_text, dry_run=True):
+    def post_comment_to_reddit(self, parent, comment_text, dry_run=False):
         """Postet einen Kommentar auf Reddit"""
         if dry_run:
             print(f"   [DRY RUN] Würde kommentieren: {comment_text}")
             return True
         
         try:
-            parent.reply(comment_text)
-            print(f"   ✅ Kommentar gepostet!")
+            # Poste den Kommentar
+            comment = parent.reply(comment_text)
+            print(f"   ✅ Kommentar erfolgreich gepostet!")
+            
+            # Speichere Kommentar-Info
+            self.save_generated_comment({
+                'post_id': parent.submission.id if hasattr(parent, 'submission') else 'unknown',
+                'parent_id': parent.id,
+                'comment': comment_text,
+                'subreddit': parent.subreddit.display_name if hasattr(parent, 'subreddit') else 'unknown',
+                'timestamp': time.time()
+            })
+            
             return True
         except Exception as e:
-            print(f"   ❌ Fehler beim Posten: {e}")
+            error_msg = str(e)
+            if 'THREAD_LOCKED' in error_msg:
+                print(f"   ❌ Thread ist gesperrt")
+            elif 'DELETED_COMMENT' in error_msg:
+                print(f"   ❌ Kommentar wurde gelöscht")
+            elif 'ratelimit' in error_msg.lower():
+                print(f"   ❌ Rate Limit erreicht - warte länger")
+            else:
+                print(f"   ❌ Fehler beim Posten: {error_msg[:100]}")
             return False
+    
+    def save_generated_comment(self, comment_data):
+        """Speichert generierten Kommentar"""
+        from datetime import datetime
+        
+        # Erstelle Ordnerstruktur
+        base_dir = Path("/home/lucawahl/Reddit/generated_comments")
+        date_now = datetime.now()
+        year_month = date_now.strftime("%Y-%m")
+        day = date_now.strftime("%d")
+        
+        comment_dir = base_dir / year_month / day
+        comment_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Speichere Kommentar
+        timestamp = date_now.strftime("%H%M%S")
+        filename = f"comment_{timestamp}.json"
+        
+        file_path = comment_dir / filename
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(comment_data, f, indent=2, ensure_ascii=False)
+        
+        return file_path
     
     def viral_engagement_loop(self):
         """Hauptloop für virale Post-Interaktion"""
@@ -1486,6 +1528,177 @@ Your funny reply (1-2 sentences, lowercase, casual):"""
             print(f"   Kommentare: {comment_count}/{self.daily_comment_target}")
             print(f"   Sessions heute: {session_count}")
     
+    def run_comment_loop(self):
+        """Hauptloop für automatische Kommentare"""
+        from datetime import datetime, timedelta
+        
+        print("\n💬 AUTOMATISCHER KOMMENTAR-LOOP")
+        print("="*60)
+        print(f"📊 Kommentar-Ziel heute: {self.daily_comment_target} Kommentare")
+        print(f"📊 Bereits erstellt: {self.get_today_comment_count()}")
+        print("\nDrücke Ctrl+C zum Beenden")
+        print("="*60)
+        
+        try:
+            while True:
+                # Prüfe ob heute noch Kommentare erlaubt
+                if not self.can_comment_today():
+                    print(f"\n✅ Tagesziel erreicht! Warte bis morgen...")
+                    time.sleep(3600)  # 1 Stunde warten
+                    continue
+                
+                # Finde beliebte Posts zum Kommentieren
+                print(f"\n🔍 Suche nach Posts zum Kommentieren...")
+                target_post = self.find_popular_post_to_comment()
+                
+                if target_post:
+                    print(f"\n📝 Gefunden: {target_post['title'][:60]}...")
+                    print(f"   Subreddit: r/{target_post['subreddit']}")
+                    print(f"   Score: {target_post['score']} | Kommentare: {target_post['num_comments']}")
+                    
+                    # Generiere und poste Kommentar
+                    success = self.create_smart_comment(target_post)
+                    
+                    if success:
+                        # Update Statistiken
+                        self.increment_comment_daily_count({
+                            'post_id': target_post['id'],
+                            'subreddit': target_post['subreddit'],
+                            'comment': 'Kommentar erstellt'
+                        })
+                        
+                        # Warte 2-4 Minuten bis zum nächsten
+                        wait_time = random.randint(120, 240)
+                        print(f"\n⏳ Warte {wait_time//60} Minuten bis zum nächsten Kommentar...")
+                        time.sleep(wait_time)
+                    else:
+                        print("❌ Kommentar fehlgeschlagen, versuche anderen Post...")
+                        time.sleep(30)
+                else:
+                    print("❌ Keine geeigneten Posts gefunden, warte...")
+                    time.sleep(300)  # 5 Minuten
+                    
+        except KeyboardInterrupt:
+            print(f"\n\n👋 Kommentar-Loop beendet")
+            print(f"📊 Heute erstellt: {self.get_today_comment_count()}/{self.daily_comment_target} Kommentare")
+    
+    def find_popular_post_to_comment(self):
+        """Findet einen beliebten Post zum Kommentieren"""
+        try:
+            # Wähle zufälligen Subreddit aus unserer Liste
+            if not self.all_subreddits:
+                return None
+                
+            target_sub = random.choice(self.all_subreddits)
+            subreddit = self.reddit.subreddit(target_sub)
+            
+            # Hole Hot Posts
+            posts = list(subreddit.hot(limit=25))
+            
+            # Filtere geeignete Posts
+            suitable_posts = []
+            for post in posts:
+                # Skip wenn wir schon kommentiert haben
+                if post.id in self.commented_posts:
+                    continue
+                    
+                # Gute Kandidaten: 100+ Score, 10+ Kommentare, nicht zu alt
+                post_age_hours = (time.time() - post.created_utc) / 3600
+                if (post.score > 100 and 
+                    post.num_comments > 10 and 
+                    post_age_hours < 24 and 
+                    not post.locked and
+                    not post.archived):
+                    
+                    suitable_posts.append({
+                        'id': post.id,
+                        'title': post.title,
+                        'subreddit': post.subreddit.display_name,
+                        'score': post.score,
+                        'num_comments': post.num_comments,
+                        'submission': post
+                    })
+            
+            if suitable_posts:
+                return random.choice(suitable_posts)
+                
+        except Exception as e:
+            print(f"❌ Fehler bei Post-Suche: {e}")
+        
+        return None
+    
+    def create_smart_comment(self, post_data):
+        """Erstellt einen intelligenten Kommentar auf einem Post"""
+        try:
+            submission = post_data['submission']
+            
+            # Hole Top-Kommentare für Kontext
+            submission.comments.replace_more(limit=0)
+            top_comments = submission.comments[:5]
+            
+            # Finde einen guten Kommentar zum Antworten
+            target_comment = None
+            for comment in top_comments:
+                if hasattr(comment, 'body') and len(comment.body) > 20:
+                    target_comment = comment
+                    break
+            
+            if target_comment:
+                # Generiere kontextbezogenen Kommentar
+                comment_text = self.generate_funny_contextual_comment(
+                    post_data['title'],
+                    target_comment.body,
+                    []
+                )
+                
+                print(f"\n💬 Kommentar: {comment_text}")
+                
+                # Poste den Kommentar
+                if not self.post_comment_to_reddit(target_comment, comment_text, dry_run=False):
+                    return False
+                    
+                # Markiere als kommentiert
+                self.commented_posts.add(post_data['id'])
+                self._save_commented_history()
+                
+                return True
+            else:
+                print("❌ Kein geeigneter Kommentar zum Antworten gefunden")
+                return False
+                
+        except Exception as e:
+            print(f"❌ Fehler beim Kommentieren: {e}")
+            return False
+    
+    def test_comment_generation(self):
+        """Testet die Kommentar-Generierung ohne zu posten"""
+        print("\n🧪 TESTE KOMMENTAR-GENERIERUNG")
+        print("="*60)
+        
+        # Beispiel-Daten
+        test_posts = [
+            "My cat learned how to open doors and now I have no privacy",
+            "Just finished my first marathon at 45 years old",
+            "Found this weird bug in my code after 3 hours of debugging"
+        ]
+        
+        test_comments = [
+            "This is literally the best thing I've seen all day",
+            "Same thing happened to me last week",
+            "You should definitely post this on the other subreddit too"
+        ]
+        
+        for i in range(3):
+            post = random.choice(test_posts)
+            comment = random.choice(test_comments)
+            
+            print(f"\n📝 Post: {post}")
+            print(f"💭 Top-Kommentar: {comment}")
+            
+            generated = self.generate_funny_contextual_comment(post, comment, [])
+            print(f"🤖 Generiert: {generated}")
+            print("-"*40)
+    
     def show_statistics(self):
         """Zeigt Statistiken über die geladenen Posts"""
         print("\n📊 STATISTIKEN:")
@@ -1609,12 +1822,14 @@ def main():
         
         if comment_choice == "1":
             print("\n🚀 Starte automatischen Kommentar-Loop...")
-            print("⚠️ HINWEIS: Diese Funktion generiert nur Kommentare, postet aber nicht auf Reddit")
-            # Hier könnte die Kommentar-Loop-Funktion kommen
-            print("   Funktion noch nicht vollständig implementiert")
+            confirm = input("\n⚠️ WARNUNG: Kommentare werden auf Reddit erstellt! Fortfahren? (j/n): ").strip().lower()
+            if confirm in ['j', 'ja', 'yes', 'y']:
+                bot.run_comment_loop()
+            else:
+                print("❌ Abgebrochen")
         else:
-            print("\n📝 Generiere Beispiel-Kommentare...")
-            print("   Funktion noch nicht vollständig implementiert")
+            print("\n📝 Teste Kommentar-Generierung...")
+            bot.test_comment_generation()
     
     elif choice == "4":
         # Viral Engagement Modus
