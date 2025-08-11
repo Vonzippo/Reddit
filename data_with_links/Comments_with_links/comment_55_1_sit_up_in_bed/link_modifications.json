@@ -1,0 +1,29 @@
+{
+  "applied_links": [
+    {
+      "original": "routine",
+      "replacement": "[routine](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 2347,
+      "confidence": 0.6
+    },
+    {
+      "original": "alarm",
+      "replacement": "[alarm](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 1641,
+      "confidence": 0.6
+    },
+    {
+      "original": "routine",
+      "replacement": "[routine](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 1044,
+      "confidence": 0.6
+    },
+    {
+      "original": "alarm",
+      "replacement": "[alarm](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 338,
+      "confidence": 0.6
+    }
+  ],
+  "original_path": "data/Comments/comment_55_1_sit_up_in_bed"
+}

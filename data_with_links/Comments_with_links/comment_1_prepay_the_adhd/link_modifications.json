@@ -1,0 +1,17 @@
+{
+  "applied_links": [
+    {
+      "original": "app",
+      "replacement": "[app](https://apps.apple.com/ch/app/adhsroutine/id6745971858)",
+      "position": 1780,
+      "confidence": 0.5
+    },
+    {
+      "original": "app",
+      "replacement": "[app](https://apps.apple.com/ch/app/adhsroutine/id6745971858)",
+      "position": 666,
+      "confidence": 0.5
+    }
+  ],
+  "original_path": "data/Comments/comment_1_prepay_the_adhd"
+}

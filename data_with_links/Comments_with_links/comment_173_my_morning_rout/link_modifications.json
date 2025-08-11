@@ -1,0 +1,17 @@
+{
+  "applied_links": [
+    {
+      "original": "routine",
+      "replacement": "[routine](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 607,
+      "confidence": 0.5
+    },
+    {
+      "original": "routine",
+      "replacement": "[routine](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 312,
+      "confidence": 0.5
+    }
+  ],
+  "original_path": "data/Comments/comment_173_my_morning_rout"
+}

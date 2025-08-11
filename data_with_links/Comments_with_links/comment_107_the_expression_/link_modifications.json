@@ -1,0 +1,17 @@
+{
+  "applied_links": [
+    {
+      "original": "organize",
+      "replacement": "[organize](https://www.etsy.com/shop/ADHDTime)",
+      "position": 1201,
+      "confidence": 0.6
+    },
+    {
+      "original": "organize",
+      "replacement": "[organize](https://www.etsy.com/shop/ADHDTime)",
+      "position": 561,
+      "confidence": 0.6
+    }
+  ],
+  "original_path": "data/Comments/comment_107_the_expression_"
+}

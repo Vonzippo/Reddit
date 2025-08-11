@@ -1,0 +1,17 @@
+{
+  "applied_links": [
+    {
+      "original": "routine",
+      "replacement": "[routine](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 975,
+      "confidence": 0.5
+    },
+    {
+      "original": "routine",
+      "replacement": "[routine](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 535,
+      "confidence": 0.5
+    }
+  ],
+  "original_path": "data/Comments/comment_264_yeah_recently_d"
+}

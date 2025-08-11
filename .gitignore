@@ -1,0 +1,93 @@
+# Credentials und API Keys
+config.py
+credentials.json
+secrets.py
+.env
+*.env
+config.ini
+*_credentials.py
+
+# API Keys
+openrouter_api_key.txt
+reddit_credentials.txt
+
+# Persönliche Daten
+daily_post_stats.json
+daily_comment_stats.json
+daily_*.json
+commented_posts.json
+posted_posts.json
+original_posted.json
+combined_*.json
+smart_mode_sessions.json
+
+# Generierte Inhalte (privat)
+generated_comments/
+generated_posts/
+original_posts/
+temp_images/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+*.txt
+
+# Backups
+*.bak
+*.backup
+*~
+
+# Test files
+test_*
+*_test.py
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Reddit Data (zu groß für GitHub)
+data/Posts/
+data/Comments/
+pushshift_dumps/
+reddit_data/
+*.jsonl
+*.torrent
+*.zst
+
+# Archive
+*.zip
+*.tar.gz
+*.rar
+*.7z

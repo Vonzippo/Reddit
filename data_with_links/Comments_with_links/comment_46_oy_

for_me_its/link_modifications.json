@@ -1,0 +1,17 @@
+{
+  "applied_links": [
+    {
+      "original": "reminder",
+      "replacement": "[reminder](https://adhd-time.com/)",
+      "position": 1615,
+      "confidence": 0.5
+    },
+    {
+      "original": "reminder",
+      "replacement": "[reminder](https://adhd-time.com/)",
+      "position": 656,
+      "confidence": 0.5
+    }
+  ],
+  "original_path": "data/Comments/comment_46_oy_\n\nfor_me_its"
+}

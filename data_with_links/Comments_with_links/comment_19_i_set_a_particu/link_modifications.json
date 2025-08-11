@@ -1,0 +1,29 @@
+{
+  "applied_links": [
+    {
+      "original": "alarm",
+      "replacement": "[alarm](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 990,
+      "confidence": 0.5
+    },
+    {
+      "original": "alarm",
+      "replacement": "[alarm](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 814,
+      "confidence": 0.5
+    },
+    {
+      "original": "alarm",
+      "replacement": "[alarm](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 487,
+      "confidence": 0.5
+    },
+    {
+      "original": "alarm",
+      "replacement": "[alarm](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 311,
+      "confidence": 0.5
+    }
+  ],
+  "original_path": "data/Comments/comment_19_i_set_a_particu"
+}

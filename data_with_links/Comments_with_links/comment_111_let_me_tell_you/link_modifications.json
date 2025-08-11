@@ -1,0 +1,17 @@
+{
+  "applied_links": [
+    {
+      "original": "tool",
+      "replacement": "[tool](https://adhd-time.com/)",
+      "position": 703,
+      "confidence": 0.6
+    },
+    {
+      "original": "tool",
+      "replacement": "[tool](https://adhd-time.com/)",
+      "position": 385,
+      "confidence": 0.6
+    }
+  ],
+  "original_path": "data/Comments/comment_111_let_me_tell_you"
+}

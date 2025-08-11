@@ -1,0 +1,17 @@
+{
+  "applied_links": [
+    {
+      "original": "app",
+      "replacement": "[app](https://apps.apple.com/ch/app/adhsroutine/id6745971858)",
+      "position": 450,
+      "confidence": 0.6
+    },
+    {
+      "original": "app",
+      "replacement": "[app](https://apps.apple.com/ch/app/adhsroutine/id6745971858)",
+      "position": 292,
+      "confidence": 0.6
+    }
+  ],
+  "original_path": "data/Comments/comment_167_what_app_is_thi"
+}

@@ -1,0 +1,78 @@
+{
+  "selection_criteria": {
+    "max_links_total": 10,
+    "percentage_with_links": 5,
+    "only_top_relevance": true,
+    "min_relevance_score": 0.7,
+    "require_question_context": true,
+    "avoid_promotional_appearance": true
+  },
+  "link_rules": [
+    {
+      "name": "ADHD Apps und Tools",
+      "keywords": ["looking for app", "need app", "any app", "recommend app", "suggestion app", "what app", "which tool", "best tool"],
+      "required_context": ["?", "help", "advice", "recommend", "suggestion", "anyone", "what do you use"],
+      "negative_keywords": ["hate", "terrible", "awful", "scam", "don't need", "already have"],
+      "links": [
+        {
+          "text": "Eine App die mir wirklich geholfen hat",
+          "url": "https://example.com/adhd-app",
+          "context": "Ich nutze seit einigen Monaten [App Name] und es hat mir sehr geholfen mit meiner Tagesstruktur."
+        },
+        {
+          "text": "dieses Tool für Fokus-Sessions",
+          "url": "https://example.com/focus-tool",
+          "context": "Für Pomodoro und Fokus-Sessions verwende ich"
+        }
+      ],
+      "min_score": 500,
+      "subreddits": ["ADHD", "ADHDwomen"],
+      "priority": 1
+    },
+    {
+      "name": "Mental Health Resources",
+      "keywords": ["therapist", "therapy", "help", "support", "resource", "cope", "coping"],
+      "negative_keywords": ["expensive", "insurance", "cost"],
+      "links": [
+        {
+          "text": "diese kostenlose Resource",
+          "url": "https://example.com/mental-health",
+          "context": "Mir hat besonders geholfen"
+        }
+      ],
+      "min_score": 150,
+      "subreddits": ["mentalhealth", "Anxiety", "depression"]
+    },
+    {
+      "name": "Study and Learning",
+      "keywords": ["study", "learn", "exam", "test", "homework", "assignment", "college", "university"],
+      "negative_keywords": ["cheat", "fail", "drop out"],
+      "links": [
+        {
+          "text": "diese Lernmethode",
+          "url": "https://example.com/study-method",
+          "context": "Was mir beim Lernen hilft ist"
+        }
+      ],
+      "min_score": 75,
+      "subreddits": ["ADHD", "GetDisciplined", "productivity"]
+    }
+  ],
+  "insertion_rules": {
+    "max_links_per_comment": 1,
+    "min_comment_length": 100,
+    "position": "end",
+    "add_disclaimer": true,
+    "disclaimer_text": "\n\nEdit: Hoffe das hilft! Hat mir persönlich sehr geholfen.",
+    "natural_variations": [
+      "\n\nBTW, {link} könnte auch hilfreich sein.",
+      "\n\nPS: Ich verwende auch {link} dafür.",
+      "\n\nAch ja, {link} ist auch einen Blick wert!",
+      "\n\nFalls es hilft, {link} hat bei mir Wunder gewirkt."
+    ]
+  },
+  "analytics": {
+    "track_insertions": true,
+    "log_file": "link_insertions.log"
+  }
+}

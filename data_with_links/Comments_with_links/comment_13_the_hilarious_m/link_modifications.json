@@ -1,0 +1,17 @@
+{
+  "applied_links": [
+    {
+      "original": "app",
+      "replacement": "[app](https://apps.apple.com/ch/app/adhsroutine/id6745971858)",
+      "position": 537,
+      "confidence": 0.5
+    },
+    {
+      "original": "app",
+      "replacement": "[app](https://apps.apple.com/ch/app/adhsroutine/id6745971858)",
+      "position": 344,
+      "confidence": 0.5
+    }
+  ],
+  "original_path": "data/Comments/comment_13_the_hilarious_m"
+}

@@ -1,0 +1,83 @@
+{
+  "adhd_core": {
+    "name": "🧠 ADHS – Kerncommunities",
+    "description": "Hauptforen für ADHS-Betroffene",
+    "subreddits": [
+      "ADHD", "ADHDwomen", "AdultADHD", "ADHDUK", "ADHDmemes",
+      "ADHD_Parenting", "HowToADHD", "AuDHD", "adhdmeme", "adhd_anxiety"
+    ]
+  },
+  "daily_life": {
+    "name": "🎯 ADHS im Alltag & Organisation",
+    "description": "Produktivität und Alltagsbewältigung",
+    "subreddits": [
+      "GetDisciplined", "productivity", "stopprocrastinating", "bulletjournal",
+      "organization", "declutter", "minimalism", "selfimprovement", 
+      "StudyTips", "college"
+    ]
+  },
+  "mental_health": {
+    "name": "❤️ Mental Health allgemein",
+    "description": "Psychische Gesundheit und verwandte Themen",
+    "subreddits": [
+      "mentalhealth", "depression", "Anxiety", "SocialAnxiety", "OCD",
+      "PTSD", "CPTSD", "bipolar", "schizophrenia", "therapy"
+    ]
+  },
+  "self_care": {
+    "name": "🌱 Self-Care & Wohlbefinden",
+    "description": "Selbstfürsorge und Wellness",
+    "subreddits": [
+      "selfcare", "Meditation", "mindfulness", "Gratitude", "GetMotivated",
+      "happiness", "slowcooking", "EatCheapAndHealthy", "Cooking", "Fitness"
+    ]
+  },
+  "neurodiversity": {
+    "name": "🧩 Neurodiversität & Lernen",
+    "description": "Neurodiversität und Bildung",
+    "subreddits": [
+      "neurodiversity", "autism", "aspergers", "dyslexia", "dyspraxia",
+      "gifted", "learningdisabilities", "education", "Teachers", "SpecialEducation"
+    ]
+  },
+  "support": {
+    "name": "💬 Support-Gruppen & Peer-Help",
+    "description": "Unterstützung und gegenseitige Hilfe",
+    "subreddits": [
+      "KindVoice", "needafriend", "depression_help", "Anxietyhelp", "SuicideWatch",
+      "MentalHealthUK", "MentalHealthPH", "AskDocs", "TwoXADHD", "MenGetADHDToo"
+    ]
+  },
+  "creative": {
+    "name": "🎨 Kreative Bewältigung & Hobbys",
+    "description": "Kreative Aktivitäten und Hobbys",
+    "subreddits": [
+      "ArtTherapy", "SketchDaily", "WritingPrompts", "Poetry", "crafts",
+      "DIY", "gardening", "houseplants", "AnimalsBeingBros", "wholesome"
+    ]
+  },
+  "career": {
+    "name": "🌍 ADHS & Beruf",
+    "description": "Karriere und Arbeitsleben mit ADHS",
+    "subreddits": [
+      "ADHD_Entrepreneurs", "ADHD_Programmers", "adhd_college", "ADHD_JobTips",
+      "freelance", "careerguidance", "jobs", "WorkReform", "digitalnomad", "smallbusiness"
+    ]
+  },
+  "tools": {
+    "name": "📚 Tools, Apps & Methoden",
+    "description": "Digitale Tools und Organisationsmethoden",
+    "subreddits": [
+      "notion", "Todoist", "ObsidianMD", "evernote", "GoogleCalendar",
+      "NotionTemplates", "ADHDPlanner", "habits", "AtomicHabits", "zenhabits"
+    ]
+  },
+  "community": {
+    "name": "💬 Community & Austausch",
+    "description": "Allgemeiner Austausch und Community",
+    "subreddits": [
+      "offmychest", "confessions", "TrueOffMyChest", "vent", "CasualConversation",
+      "decidingtobebetter", "selfhelp", "emotionalintelligence", "relationship_advice", "friendship"
+    ]
+  }
+}

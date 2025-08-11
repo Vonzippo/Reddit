@@ -1,0 +1,17 @@
+{
+  "applied_links": [
+    {
+      "original": "organize",
+      "replacement": "[organize](https://www.etsy.com/shop/ADHDTime)",
+      "position": 1032,
+      "confidence": 0.5
+    },
+    {
+      "original": "organize",
+      "replacement": "[organize](https://www.etsy.com/shop/ADHDTime)",
+      "position": 580,
+      "confidence": 0.5
+    }
+  ],
+  "original_path": "data/Comments/comment_72_dude_you_dont_g"
+}

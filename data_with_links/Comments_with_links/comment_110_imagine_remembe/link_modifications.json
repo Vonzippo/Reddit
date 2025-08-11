@@ -1,0 +1,29 @@
+{
+  "applied_links": [
+    {
+      "original": "app",
+      "replacement": "[app](https://apps.apple.com/ch/app/adhsroutine/id6745971858)",
+      "position": 477,
+      "confidence": 0.5
+    },
+    {
+      "original": "use the app",
+      "replacement": "use [this ADHD app](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 469,
+      "confidence": 0.5
+    },
+    {
+      "original": "app",
+      "replacement": "[app](https://apps.apple.com/ch/app/adhsroutine/id6745971858)",
+      "position": 309,
+      "confidence": 0.5
+    },
+    {
+      "original": "use the app",
+      "replacement": "use [this ADHD app](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 301,
+      "confidence": 0.5
+    }
+  ],
+  "original_path": "data/Comments/comment_110_imagine_remembe"
+}

@@ -1,0 +1,29 @@
+{
+  "applied_links": [
+    {
+      "original": "alarm",
+      "replacement": "[alarm](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 1040,
+      "confidence": 0.6
+    },
+    {
+      "original": "timer",
+      "replacement": "[timer](https://adhd-time.com/)",
+      "position": 978,
+      "confidence": 0.5
+    },
+    {
+      "original": "alarm",
+      "replacement": "[alarm](https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app)",
+      "position": 591,
+      "confidence": 0.6
+    },
+    {
+      "original": "timer",
+      "replacement": "[timer](https://adhd-time.com/)",
+      "position": 529,
+      "confidence": 0.5
+    }
+  ],
+  "original_path": "data/Comments/comment_214_good_tip_anothe"
+}

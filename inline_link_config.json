@@ -1,0 +1,104 @@
+{
+  "inline_rules": [
+    {
+      "name": "ADHD Apps",
+      "patterns": [
+        {
+          "match": "(use|using|used|tried|try) (an app|the app|this app|apps)",
+          "replacement": "use [this ADHD app]({url})",
+          "url": "https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app"
+        },
+        {
+          "match": "app",
+          "replacement": "[app]({url})",
+          "url": "https://apps.apple.com/ch/app/adhsroutine/id6745971858"
+        },
+        {
+          "match": "reminder",
+          "replacement": "[reminder]({url})",
+          "url": "https://adhd-time.com/"
+        },
+        {
+          "match": "timer",
+          "replacement": "[timer]({url})",
+          "url": "https://adhd-time.com/"
+        },
+        {
+          "match": "alarm",
+          "replacement": "[alarm]({url})",
+          "url": "https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "patterns": [
+        {
+          "match": "planner",
+          "replacement": "[planner]({url})",
+          "url": "https://www.etsy.com/ch/listing/1350866996/neurodivergenter-planer-adhs-planer-zum"
+        },
+        {
+          "match": "planning",
+          "replacement": "[planning]({url})",
+          "url": "https://www.etsy.com/ch/listing/1404600865/neurodivergent-block-planer-digitaler"
+        },
+        {
+          "match": "organize",
+          "replacement": "[organize]({url})",
+          "url": "https://www.etsy.com/shop/ADHDTime"
+        },
+        {
+          "match": "schedule",
+          "replacement": "[schedule]({url})",
+          "url": "https://adhd-time.com/"
+        },
+        {
+          "match": "routine",
+          "replacement": "[routine]({url})",
+          "url": "https://play.google.com/store/apps/details?id=com.adhdapp.adhd_routine_app"
+        }
+      ]
+    },
+    {
+      "name": "Resources",
+      "patterns": [
+        {
+          "match": "tool",
+          "replacement": "[tool]({url})",
+          "url": "https://adhd-time.com/"
+        },
+        {
+          "match": "tools",
+          "replacement": "[tools]({url})",
+          "url": "https://www.etsy.com/shop/ADHDTime"
+        },
+        {
+          "match": "shop",
+          "replacement": "[shop]({url})",
+          "url": "https://www.etsy.com/shop/ADHDTime"
+        },
+        {
+          "match": "digital planner",
+          "replacement": "[digital planner]({url})",
+          "url": "https://www.etsy.com/ch/listing/1404600865/neurodivergent-block-planer-digitaler"
+        },
+        {
+          "match": "adhd planner",
+          "replacement": "[ADHD planner]({url})",
+          "url": "https://www.etsy.com/ch/listing/1350866996/neurodivergenter-planer-adhs-planer-zum"
+        }
+      ]
+    }
+  ],
+  "insertion_strategy": {
+    "max_links_per_comment": 3,
+    "min_confidence": 0.3,
+    "preserve_readability": true
+  },
+  "target_comments": {
+    "min_score": 100,
+    "max_total_links": 1000,
+    "only_helpful_context": false
+  }
+}
