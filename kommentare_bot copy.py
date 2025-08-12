@@ -31,18 +31,38 @@ class KommentareBot:
         self.commented_posts = set()
         self._load_commented_history()
         
+        # Tägliches Kommentar-Tracking
+        self.daily_comments = {}
+        self.daily_target = None  # Wird täglich zufällig zwischen 5-20 gesetzt
+        self._load_daily_stats()
+        
         # OpenRouter API Konfiguration
-        self.openrouter_api_key = "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"
+        from config import OPENROUTER_API_KEY
+        self.openrouter_api_key = OPENROUTER_API_KEY
         self.openrouter_url = "https://openrouter.ai/api/v1/chat/completions"
         
-        # Reddit API Konfiguration
-        self.reddit = praw.Reddit(
-            client_id="HaZ8i53jCT_u2kinupgUow",
-            client_secret="IbKUPkTXuT3efIpIHeMkpnW2X_gKTw",
-            user_agent="bot:v1.0 (by /u/ReddiBoto)",
-            username="ReddiBoto",
-            password="Passwort1234*"
-        )
+        # Reddit API Konfiguration mit verbesserter Fehlerbehandlung
+        self._init_reddit_connection()
+    
+    def _init_reddit_connection(self):
+        """Initialisiert oder erneuert die Reddit-Verbindung"""
+        try:
+            from config import ACTIVE_CONFIG
+            
+            self.reddit = praw.Reddit(
+                client_id=ACTIVE_CONFIG["client_id"],
+                client_secret=ACTIVE_CONFIG["client_secret"],
+                user_agent=ACTIVE_CONFIG["user_agent"],
+                username=ACTIVE_CONFIG["username"],
+                password=ACTIVE_CONFIG["password"],
+                ratelimit_seconds=300  # Wartet automatisch bei Rate Limits
+            )
+            # Test der Verbindung
+            _ = self.reddit.user.me()
+            print(f"✅ Reddit-Verbindung erfolgreich hergestellt als u/{ACTIVE_CONFIG['username']}")
+        except Exception as e:
+            print(f"⚠️ Reddit-Verbindung fehlgeschlagen: {e}")
+            print("   Versuche es später erneut...")
         
         # Natürliche Variationen für Kommentare
         self.casual_starters = [
@@ -137,6 +157,125 @@ class KommentareBot:
         history_file = Path("/Users/patrick/Desktop/Reddit/commented_posts.json")
         with open(history_file, 'w', encoding='utf-8') as f:
             json.dump({'posts': list(self.commented_posts)}, f, indent=2)
+    
+    def _load_daily_stats(self):
+        """Lädt tägliche Kommentar-Statistiken"""
+        from datetime import datetime
+        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_comment_stats.json")
+        
+        if stats_file.exists():
+            try:
+                with open(stats_file, 'r', encoding='utf-8') as f:
+                    self.daily_comments = json.load(f)
+            except:
+                self.daily_comments = {}
+        else:
+            self.daily_comments = {}
+        
+        # Prüfe ob heute schon ein Target gesetzt wurde
+        today = datetime.now().strftime("%Y-%m-%d")
+        if today in self.daily_comments:
+            self.daily_target = self.daily_comments[today].get('target')
+            # Falls target nicht gesetzt oder None, setze neues Ziel
+            if self.daily_target is None:
+                self.daily_target = random.randint(5, 20)
+                self.daily_comments[today]['target'] = self.daily_target
+                self._save_daily_stats()
+                print(f"🎯 Tagesziel korrigiert: {self.daily_target} Kommentare")
+            elif self.daily_target == 0:
+                print(f"🚫 Heute ist ein Pausentag - keine Kommentare")
+            else:
+                print(f"📊 Heutiges Ziel: {self.daily_target} Kommentare")
+                print(f"   Bereits erstellt: {self.daily_comments[today].get('count', 0)}")
+        else:
+            # 20% Chance für einen Pausentag (Tag überspringen)
+            if random.random() < 0.2:
+                self.daily_target = 0
+                self.daily_comments[today] = {
+                    'target': 0,
+                    'count': 0,
+                    'comments': [],
+                    'skip_day': True
+                }
+                print(f"😴 Heute ist ein Pausentag - keine Kommentare geplant")
+            else:
+                # Setze neues tägliches Ziel
+                self.daily_target = random.randint(5, 20)
+                self.daily_comments[today] = {
+                    'target': self.daily_target,
+                    'count': 0,
+                    'comments': []
+                }
+                print(f"🎯 Neues Tagesziel gesetzt: {self.daily_target} Kommentare")
+            self._save_daily_stats()
+        
+        # Finale Sicherheitsprüfung
+        if self.daily_target is None:
+            self.daily_target = random.randint(5, 20)
+            print(f"🎯 Standard-Tagesziel gesetzt: {self.daily_target} Kommentare")
+    
+    def _save_daily_stats(self):
+        """Speichert tägliche Kommentar-Statistiken"""
+        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_comment_stats.json")
+        with open(stats_file, 'w', encoding='utf-8') as f:
+            json.dump(self.daily_comments, f, indent=2, ensure_ascii=False)
+    
+    def get_today_comment_count(self):
+        """Gibt zurück wie viele Kommentare heute bereits erstellt wurden"""
+        from datetime import datetime
+        today = datetime.now().strftime("%Y-%m-%d")
+        return self.daily_comments.get(today, {}).get('count', 0)
+    
+    def can_comment_today(self):
+        """Prüft ob heute noch Kommentare erstellt werden können"""
+        from datetime import datetime
+        today = datetime.now().strftime("%Y-%m-%d")
+        
+        # Stelle sicher dass heute ein Eintrag existiert
+        if today not in self.daily_comments:
+            self.daily_target = random.randint(5, 20)
+            self.daily_comments[today] = {
+                'target': self.daily_target,
+                'count': 0,
+                'comments': []
+            }
+            self._save_daily_stats()
+        
+        current_count = self.daily_comments[today].get('count', 0)
+        target = self.daily_comments[today].get('target', self.daily_target)
+        
+        if current_count >= target:
+            print(f"⚠️ Tageslimit erreicht: {current_count}/{target} Kommentare")
+            return False
+        return True
+    
+    def increment_daily_count(self, comment_info=None):
+        """Erhöht den täglichen Kommentar-Zähler"""
+        from datetime import datetime
+        today = datetime.now().strftime("%Y-%m-%d")
+        
+        if today not in self.daily_comments:
+            self.daily_comments[today] = {
+                'target': self.daily_target or random.randint(5, 20),
+                'count': 0,
+                'comments': []
+            }
+        
+        self.daily_comments[today]['count'] += 1
+        
+        if comment_info:
+            self.daily_comments[today]['comments'].append({
+                'time': datetime.now().isoformat(),
+                'post_id': comment_info.get('post_id'),
+                'subreddit': comment_info.get('subreddit'),
+                'comment_preview': comment_info.get('comment', '')[:100]
+            })
+        
+        self._save_daily_stats()
+        
+        current = self.daily_comments[today]['count']
+        target = self.daily_comments[today]['target']
+        print(f"📈 Tagesfortschritt: {current}/{target} Kommentare")
     
     def check_if_already_commented(self, post_id):
         """Prüft ob der Bot bereits auf diesem Post kommentiert hat"""
@@ -474,22 +613,56 @@ comment:"""
         """Findet neue Posts in einem Subreddit, sortiert nach Score"""
         print(f"\n🔍 Suche nach Posts in r/{subreddit_name} (sortiert nach {sort_by})...")
         
+        # Retry bei Verbindungsfehlern
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                # Kleine Pause vor API-Aufruf
+                if attempt > 0:
+                    wait_time = attempt * 2
+                    print(f"  ⏳ Warte {wait_time} Sekunden vor Retry {attempt + 1}/{max_retries}...")
+                    time.sleep(wait_time)
+                
+                subreddit = self.reddit.subreddit(subreddit_name)
+                posts = []
+                
+                # Wähle Sortierung
+                if sort_by == "hot":
+                    submissions = subreddit.hot(limit=limit * 2)  # Hole mehr für Filterung
+                elif sort_by == "top":
+                    submissions = subreddit.top(time_filter="day", limit=limit * 2)
+                else:
+                    submissions = subreddit.new(limit=limit * 2)
+                
+                # Wenn hier angekommen, war Verbindung erfolgreich
+                break
+                
+            except (requests.exceptions.SSLError, requests.exceptions.ConnectionError) as e:
+                if attempt < max_retries - 1:
+                    print(f"  ⚠️ Verbindungsfehler, versuche erneut...")
+                    continue
+                else:
+                    print(f"  ❌ Verbindung fehlgeschlagen nach {max_retries} Versuchen")
+                    return []
+            except Exception as e:
+                print(f"❌ Fehler beim Suchen in r/{subreddit_name}: {e}")
+                return []
+        
         try:
-            subreddit = self.reddit.subreddit(subreddit_name)
-            posts = []
-            
-            # Wähle Sortierung
-            if sort_by == "hot":
-                submissions = subreddit.hot(limit=limit * 2)  # Hole mehr für Filterung
-            elif sort_by == "top":
-                submissions = subreddit.top(time_filter="day", limit=limit * 2)
-            else:
-                submissions = subreddit.new(limit=limit * 2)
             
             for submission in submissions:
                 # Skip wenn bereits kommentiert
                 if submission.id in self.commented_posts:
                     print(f"  ⏭️ Überspringe (bereits kommentiert): {submission.title[:40]}...")
+                    continue
+                
+                # Skip wenn Post gesperrt oder archiviert
+                if submission.locked:
+                    print(f"  🔒 Überspringe (gesperrt): {submission.title[:40]}...")
+                    continue
+                    
+                if submission.archived:
+                    print(f"  📁 Überspringe (archiviert): {submission.title[:40]}...")
                     continue
                 
                 # Skip wenn Bot bereits kommentiert hat
@@ -584,6 +757,16 @@ comment:"""
             # Reddit Submission (Post) finden
             submission = self.reddit.submission(id=post_id)
             
+            # Prüfe ob Post gesperrt ist
+            submission._fetch()
+            if submission.locked:
+                print(f"🔒 Post ist gesperrt - keine Kommentare erlaubt")
+                return False
+            
+            if submission.archived:
+                print(f"📁 Post ist archiviert - keine Kommentare erlaubt")
+                return False
+            
             # Kommentar posten
             comment = submission.reply(comment_text)
             
@@ -598,12 +781,18 @@ comment:"""
             
             return True
             
-        except praw.exceptions.RateLimitException as e:
-            print(f"❌ Rate Limit erreicht! Warte {e.sleep_time} Sekunden")
-            return False
-            
-        except praw.exceptions.APIException as e:
-            print(f"❌ Reddit API Fehler: {e}")
+        except praw.exceptions.RedditAPIException as e:
+            error_msg = str(e)
+            if "THREAD_LOCKED" in error_msg:
+                print(f"🔒 Post ist gesperrt - keine Kommentare erlaubt")
+            elif "DELETED_LINK" in error_msg:
+                print(f"🗑️ Post wurde gelöscht")
+            elif "THREAD_ARCHIVED" in error_msg:
+                print(f"📁 Post ist archiviert (älter als 6 Monate)")
+            elif "RATELIMIT" in error_msg:
+                print(f"⏱️ Rate Limit erreicht - warte etwas")
+            else:
+                print(f"❌ Reddit API Fehler: {e}")
             return False
             
         except Exception as e:
@@ -704,8 +893,8 @@ comment:"""
                 
                 scanned_count += 1
                 
-                # Kleine Pause
-                time.sleep(random.uniform(0.3, 0.8))
+                # Längere Pause zwischen Subreddits um SSL-Fehler zu vermeiden
+                time.sleep(random.uniform(2.0, 4.0))
                 
             except Exception as e:
                 print(f"  ❌ Fehler bei r/{sub}: {str(e)[:50]}")
@@ -772,62 +961,131 @@ comment:"""
         
         return all_posts
     
-    def smart_mode_loop(self, comments_per_hour=2, min_score=50, start_hour=10, end_hour=22):
+    def smart_mode_loop(self, min_score=50, start_hour=10, end_hour=22):
         """
         Läuft automatisch im Loop und generiert Kommentare
+        Respektiert tägliches Limit (5-20 Kommentare pro Tag)
         Nur aktiv zwischen start_hour und end_hour (Standard: 10-22 Uhr)
         """
-        from datetime import datetime
+        from datetime import datetime, timedelta
         import time
         
-        print("\n🤖 SMART MODE - AUTOMATISCHER LOOP")
+        print("\n🤖 SMART MODE - AUTOMATISCHER LOOP MIT TAGESLIMIT")
         print("="*60)
         print(f"⏰ Aktive Zeit: {start_hour}:00 - {end_hour}:00 Uhr")
-        print(f"💬 {comments_per_hour} Kommentare pro Stunde")
+        print(f"📊 Tägliches Ziel: {self.daily_target} Kommentare")
         print(f"🎯 Mindest-Score: {min_score}")
         print("\nDrücke Ctrl+C zum Beenden")
         print("="*60)
         
         session_count = 0
+        last_comment_time = None
         
         try:
             while True:
                 current_hour = datetime.now().hour
                 current_time = datetime.now().strftime("%H:%M:%S")
+                today = datetime.now().strftime("%Y-%m-%d")
+                
+                # Prüfe ob neuer Tag
+                if today not in self.daily_comments:
+                    self._load_daily_stats()
+                    if self.daily_target == 0:
+                        print(f"\n😴 Heute ist ein Pausentag - keine Kommentare geplant")
+                    else:
+                        print(f"\n🌅 Neuer Tag! Ziel: {self.daily_target} Kommentare")
+                
+                # Prüfe ob heute ein Pausentag ist
+                if self.daily_target == 0:
+                    print(f"\n😴 [{current_time}] Pausentag - warte bis morgen...")
+                    # Warte 2 Stunden und prüfe dann ob neuer Tag
+                    time.sleep(7200)
+                    continue
+                
+                # Prüfe ob Tageslimit erreicht
+                if not self.can_comment_today():
+                    tomorrow = (datetime.now() + timedelta(days=1)).replace(hour=0, minute=0, second=0)
+                    wait_seconds = (tomorrow - datetime.now()).total_seconds()
+                    hours_to_wait = int(wait_seconds // 3600)
+                    minutes_to_wait = int((wait_seconds % 3600) // 60)
+                    
+                    print(f"\n✅ [{current_time}] Tagesziel erreicht!")
+                    print(f"   Warte bis morgen ({hours_to_wait}h {minutes_to_wait}m)")
+                    
+                    # Warte 1 Stunde und prüfe dann erneut
+                    time.sleep(3600)
+                    continue
                 
                 # Prüfe ob in aktiver Zeit
                 if current_hour < start_hour or current_hour >= end_hour:
                     print(f"\n😴 [{current_time}] Außerhalb der aktiven Zeit. Warte...")
-                    # Warte bis zur nächsten vollen Stunde
                     minutes_to_wait = 60 - datetime.now().minute
                     time.sleep(minutes_to_wait * 60)
                     continue
                 
-                print(f"\n🕐 [{current_time}] Starte neue Runde #{session_count + 1}")
+                # Berechne wie viele Kommentare noch heute erstellt werden sollen
+                current_count = self.get_today_comment_count()
+                
+                # Stelle sicher dass daily_target gesetzt ist
+                if self.daily_target is None:
+                    self._load_daily_stats()
+                    if self.daily_target is None:
+                        self.daily_target = random.randint(5, 20)
+                
+                remaining_today = self.daily_target - current_count
+                active_hours_left = end_hour - current_hour
+                
+                if remaining_today <= 0:
+                    continue
+                
+                # Verteile verbleibende Kommentare auf verbleibende Stunden
+                if active_hours_left > 0:
+                    comments_this_hour = max(1, min(3, remaining_today // active_hours_left))
+                else:
+                    comments_this_hour = min(3, remaining_today)
+                
+                # Mindestabstand zwischen Kommentaren (15-45 Minuten)
+                if last_comment_time:
+                    time_since_last = (datetime.now() - last_comment_time).total_seconds()
+                    min_wait = random.randint(900, 2700)  # 15-45 Minuten
+                    if time_since_last < min_wait:
+                        wait_time = int(min_wait - time_since_last)
+                        print(f"\n⏳ Warte noch {wait_time//60} Minuten bis zum nächsten Kommentar...")
+                        time.sleep(wait_time)
+                        continue
+                
+                print(f"\n🕐 [{current_time}] Erstelle {comments_this_hour} Kommentar(e)")
+                print(f"   Tagesfortschritt: {current_count}/{self.daily_target}")
                 print("-"*40)
                 
-                # Generiere Kommentare für diese Stunde
+                # Generiere Kommentare
                 generated = self.generate_comments_smart(
-                    max_posts=comments_per_hour,
+                    max_posts=comments_this_hour,
                     min_score=min_score
                 )
                 
                 if generated:
                     session_count += 1
-                    print(f"\n✅ Runde #{session_count} abgeschlossen")
-                    print(f"   {len(generated)} Kommentare generiert")
+                    last_comment_time = datetime.now()
+                    
+                    # Aktualisiere täglichen Zähler
+                    for comment in generated:
+                        self.increment_daily_count(comment)
+                    
+                    print(f"\n✅ {len(generated)} Kommentar(e) erstellt")
                     
                     # Speichere Session-Log
                     self._save_session_log(session_count, generated)
+                    
+                    # Wenn Tageslimit erreicht, melde es
+                    if not self.can_comment_today():
+                        print(f"\n🎉 Tagesziel erreicht! Bis morgen!")
                 else:
                     print("\n⚠️ Keine passenden Posts gefunden")
                 
-                # Warte bis zur nächsten Stunde
-                current_minute = datetime.now().minute
-                wait_minutes = 60 - current_minute
-                
-                print(f"\n⏰ Warte {wait_minutes} Minuten bis zur nächsten Stunde...")
-                print(f"   Nächste Runde: {(datetime.now().hour + 1) % 24}:00 Uhr")
+                # Zufällige Wartezeit (20-60 Minuten)
+                wait_minutes = random.randint(20, 60)
+                print(f"\n⏰ Warte {wait_minutes} Minuten bis zur nächsten Prüfung...")
                 
                 # Zeige Countdown
                 for i in range(wait_minutes):
@@ -836,8 +1094,10 @@ comment:"""
                     time.sleep(60)  # 1 Minute
                 
         except KeyboardInterrupt:
-            print(f"\n\n👋 Loop beendet nach {session_count} Runden")
-            print(f"📊 Insgesamt {session_count * comments_per_hour} Kommentare generiert")
+            current_count = self.get_today_comment_count()
+            print(f"\n\n👋 Loop beendet")
+            print(f"📊 Heute erstellt: {current_count}/{self.daily_target} Kommentare")
+            print(f"   Sessions heute: {session_count}")
     
     def _save_session_log(self, session_num, comments):
         """Speichert Log der aktuellen Session"""
@@ -866,10 +1126,55 @@ comment:"""
         with open(log_file, 'w', encoding='utf-8') as f:
             json.dump(sessions, f, indent=2, ensure_ascii=False)
     
+    def save_generated_comment(self, comment_data):
+        """Speichert generierten Kommentar in organisiertem Ordner"""
+        from datetime import datetime
+        
+        # Erstelle Ordnerstruktur: generated_comments/YYYY-MM/DD/
+        base_dir = Path("/Users/patrick/Desktop/Reddit/generated_comments")
+        date_now = datetime.now()
+        year_month = date_now.strftime("%Y-%m")
+        day = date_now.strftime("%d")
+        
+        comment_dir = base_dir / year_month / day
+        comment_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Erstelle eindeutigen Dateinamen
+        timestamp = date_now.strftime("%H%M%S")
+        subreddit = comment_data.get('subreddit', 'unknown')
+        filename = f"comment_{timestamp}_{subreddit}.json"
+        
+        # Füge Zeitstempel hinzu
+        comment_data['created_at'] = date_now.isoformat()
+        comment_data['date'] = date_now.strftime("%Y-%m-%d")
+        comment_data['time'] = date_now.strftime("%H:%M:%S")
+        
+        # Speichere Kommentar
+        file_path = comment_dir / filename
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(comment_data, f, indent=2, ensure_ascii=False)
+        
+        # Erstelle auch eine Textvorschau
+        preview_file = comment_dir / f"preview_{timestamp}_{subreddit}.txt"
+        with open(preview_file, 'w', encoding='utf-8') as f:
+            f.write(f"Subreddit: r/{subreddit}\n")
+            f.write(f"Post: {comment_data.get('post_title', '')[:100]}...\n")
+            f.write(f"Score: {comment_data.get('post_score', 0)}\n")
+            f.write(f"Zeit: {date_now.strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"\nKommentar:\n")
+            f.write(comment_data.get('comment', ''))
+        
+        return file_path
+    
     def generate_comments_smart(self, max_posts=10, min_score=10):
         """Generiert Kommentare nur für die besten Posts"""
         print("\n🤖 INTELLIGENTE KOMMENTAR-GENERIERUNG")
         print("="*60)
+        
+        # Prüfe ob heute ein Pausentag ist
+        if self.daily_target == 0:
+            print("😴 Heute ist ein Pausentag - keine Kommentare werden generiert")
+            return []
         
         # Sammle beste Posts
         best_posts = self.scan_all_subreddits_smart(max_subs=max_posts, min_score=min_score)
@@ -902,13 +1207,20 @@ comment:"""
             print(f"   📊 Stats: {post['num_comments']} Kommentare | {post.get('upvote_ratio', 0)*100:.0f}% upvoted")
             
             # Speichere für späteren Post
-            generated_comments.append({
+            comment_data = {
                 'post_id': post['id'],
                 'subreddit': post['subreddit'],
                 'post_title': post['title'],
+                'post_url': post.get('url', ''),
                 'comment': comment,
-                'post_score': post['score']
-            })
+                'post_score': post['score'],
+                'is_image': post.get('is_image', False)
+            }
+            generated_comments.append(comment_data)
+            
+            # Speichere in Ordnerstruktur
+            saved_path = self.save_generated_comment(comment_data)
+            print(f"   💾 Gespeichert: {saved_path.name}")
             
             # Markiere als kommentiert (für Simulation)
             self.commented_posts.add(post['id'])
@@ -916,16 +1228,29 @@ comment:"""
         # Speichere Historie
         self._save_commented_history()
         
-        # Automatisch in Datei speichern (ohne Rückfrage)
+        # Erstelle tägliche Zusammenfassung
         if generated_comments:
             from datetime import datetime
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-            filename = f"generated_comments_{timestamp}.json"
+            summary_dir = Path("/Users/patrick/Desktop/Reddit/generated_comments/daily_summaries")
+            summary_dir.mkdir(parents=True, exist_ok=True)
             
-            with open(filename, 'w', encoding='utf-8') as f:
-                json.dump(generated_comments, f, indent=2, ensure_ascii=False)
+            date_str = datetime.now().strftime('%Y-%m-%d')
+            summary_file = summary_dir / f"summary_{date_str}.json"
             
-            print(f"\n💾 Automatisch gespeichert in: {filename}")
+            # Lade existierende Summary wenn vorhanden
+            existing_summary = []
+            if summary_file.exists():
+                with open(summary_file, 'r', encoding='utf-8') as f:
+                    existing_summary = json.load(f)
+            
+            # Füge neue Kommentare hinzu
+            existing_summary.extend(generated_comments)
+            
+            # Speichere aktualisierte Summary
+            with open(summary_file, 'w', encoding='utf-8') as f:
+                json.dump(existing_summary, f, indent=2, ensure_ascii=False)
+            
+            print(f"\n📊 Tägliche Zusammenfassung aktualisiert: {summary_file.name}")
         
         # ============================================
         # OPTIONAL: Posts an Reddit senden (AUSKOMMENTIERT)
@@ -1126,37 +1451,53 @@ def main():
     choice = input("\nAuswahl (1-7): ").strip()
     
     if choice == "1":
-        # SMART MODE - Automatischer Loop
-        print("\n🎯 SMART MODE - Automatischer Loop")
+        # SMART MODE - Automatischer Loop mit Tageslimit
+        print("\n🎯 SMART MODE - Automatischer Loop mit Tageslimit")
         print("="*60)
         print("Dieser Modus läuft automatisch:")
-        print("• Generiert 2 Kommentare pro Stunde")
-        print("• Nur aktiv von 10:00 - 22:00 Uhr")
+        # Stelle sicher dass daily_target gesetzt ist
+        if bot.daily_target is None:
+            bot.daily_target = random.randint(5, 20)
+        print(f"• Tägliches Ziel: {bot.daily_target} Kommentare (zufällig 5-20)")
+        print(f"• Heute bereits: {bot.get_today_comment_count()} Kommentare")
+        print("• Aktiv von 10:00 - 22:00 Uhr")
         print("• Mindest-Score: 50")
+        print("• Wartezeit zwischen Kommentaren: 15-45 Minuten")
         print("• Speichert alle Sessions automatisch")
         
         print("\nModus wählen:")
         print("1. Automatischer Loop (empfohlen)")
-        print("2. Einmalige Ausführung")
+        print("2. Einmalige Ausführung (respektiert Tageslimit)")
         
         mode = input("\nWahl (1-2): ").strip()
         
         if mode == "1":
             # Automatischer Loop
-            print("\n🚀 Starte automatischen Loop...")
+            print("\n🚀 Starte automatischen Loop mit Tageslimit...")
             bot.smart_mode_loop(
-                comments_per_hour=2,
                 min_score=50,  # Immer 50
                 start_hour=10,
                 end_hour=22
             )
         else:
-            # Einmalige Ausführung
-            results = bot.generate_comments_smart(max_posts=2, min_score=50)  # Immer Score 50
-            
-            if results:
-                print(f"\n✅ {len(results)} Kommentare generiert!")
-                # Automatisch gespeichert durch generate_comments_smart()
+            # Einmalige Ausführung mit Limit-Check
+            if not bot.can_comment_today():
+                print("\n⚠️ Tageslimit bereits erreicht! Versuche es morgen wieder.")
+            else:
+                # Stelle sicher dass daily_target gesetzt ist
+                if bot.daily_target is None:
+                    bot.daily_target = random.randint(5, 20)
+                remaining = bot.daily_target - bot.get_today_comment_count()
+                comments_to_make = min(2, remaining)
+                print(f"\n📝 Erstelle {comments_to_make} Kommentar(e)...")
+                
+                results = bot.generate_comments_smart(max_posts=comments_to_make, min_score=50)
+                
+                if results:
+                    for comment in results:
+                        bot.increment_daily_count(comment)
+                    print(f"\n✅ {len(results)} Kommentar(e) generiert!")
+                    print(f"   Tagesfortschritt: {bot.get_today_comment_count()}/{bot.daily_target}")
                 
     elif choice == "2":
         # Normale Durchsuchung

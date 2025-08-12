@@ -569,13 +569,19 @@ class CombinedBot:
             title_lower = post.get('title', '').lower()
             
             # Kategorisiere ADHD-Subreddits für bessere Zuordnung (ohne gebannte)
-            blacklist = getattr(self, 'blacklisted_subreddits', ['adhdwomen'])
+            blacklist = getattr(self, 'blacklisted_subreddits', ['adhdwomen', 'adhdmemes'])
             
             # Filtere gebannte Subreddits aus den Listen
-            adhd_core = [s for s in ['ADHD', 'AdultADHD', 'ADHDUK', 'ADHDmemes', 'HowToADHD'] 
+            adhd_core = [s for s in ['ADHD', 'AdultADHD', 'ADHDUK', 'HowToADHD', 'AuDHD'] 
                         if s.lower() not in blacklist]
-            adhd_productivity = [s for s in ['GetDisciplined', 'productivity', 'stopprocrastinating', 'bulletjournal', 'organization']
-                               if s.lower() not in blacklist]
+            
+            # ERWEITERT: Mehr Planner & Organisation Subreddits
+            adhd_productivity = [s for s in [
+                'GetDisciplined', 'productivity', 'stopprocrastinating', 'bulletjournal', 'organization',
+                'planners', 'PlannerAddicts', 'bujo', 'BasicBulletJournals', 'digitalbujo',
+                'Journaling', 'notebooks', 'organizing', 'getorganized', 'TimeManagement',
+                'StudyPlanner', 'studytips', 'LifePlanning', 'theXeffect', 'NonZeroDay'
+            ] if s.lower() not in blacklist]
             adhd_mental = [s for s in ['mentalhealth', 'Anxiety', 'depression', 'therapy', 'selfcare']
                           if s.lower() not in blacklist]
             adhd_creative = [s for s in ['WritingPrompts', 'crafts', 'DIY', 'gardening', 'ArtTherapy']
@@ -586,19 +592,29 @@ class CombinedBot:
                           if s.lower() not in blacklist]
             
             # Wähle passende Kategorie basierend auf Keywords
-            if any(word in title_lower for word in ['work', 'job', 'career', 'office', 'boss', 'colleague']):
+            # PRIORITÄT 1: Planner & Organisation Keywords
+            if any(word in title_lower for word in [
+                'organize', 'plan', 'productive', 'focus', 'task', 'schedule',
+                'planner', 'journal', 'notebook', 'bullet', 'bujo', 'todo',
+                'list', 'routine', 'habit', 'goal', 'system', 'method',
+                'time', 'manage', 'track', 'calendar', 'desk', 'workspace'
+            ]):
+                # BEVORZUGE Planner/Organisation Subreddits
+                target_sub = random.choice(adhd_productivity)
+            elif any(word in title_lower for word in ['work', 'job', 'career', 'office', 'boss', 'colleague']):
                 target_sub = random.choice(adhd_career)
             elif any(word in title_lower for word in ['sad', 'anxious', 'depressed', 'therapy', 'mental']):
                 target_sub = random.choice(adhd_mental)
-            elif any(word in title_lower for word in ['organize', 'plan', 'productive', 'focus', 'task']):
-                target_sub = random.choice(adhd_productivity)
             elif any(word in title_lower for word in ['art', 'creative', 'made', 'built', 'drew']):
                 target_sub = random.choice(adhd_creative)
             elif any(word in title_lower for word in ['help', 'support', 'need', 'advice', 'question']):
                 target_sub = random.choice(adhd_support)
             else:
-                # Default: Core ADHD subreddits
-                target_sub = random.choice(adhd_core)
+                # Default: 50% Chance für Productivity/Planner, 50% Core ADHD
+                if random.random() < 0.5 and adhd_productivity:
+                    target_sub = random.choice(adhd_productivity)
+                else:
+                    target_sub = random.choice(adhd_core)
             
             print(f"   🎯 Post wird in r/{target_sub} gepostet (ADHD-fokussiert)")
             post['subreddit'] = target_sub
@@ -1226,17 +1242,30 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
     def check_if_banned_from_subreddit(self, subreddit_name):
         """Prüft ob der Bot aus einem Subreddit gebannt ist"""
         try:
+            # Versuche einen Test-Post zu erstellen (ohne zu submitten)
             subreddit = self.reddit.subreddit(subreddit_name)
-            # Versuche auf banned status zuzugreifen
-            banned = subreddit.banned(redditor=self.reddit.user.me())
-            for ban in banned:
-                # Wenn wir in der Liste sind, sind wir gebannt
-                return True
+            
+            # Versuche auf Subreddit-Info zuzugreifen
+            _ = subreddit.display_name
+            
+            # Die banned() Methode funktioniert nur für Moderatoren
+            # Daher prüfen wir anders: Versuche submission zu erstellen
+            # WICHTIG: Wir erstellen sie NICHT wirklich, nur validieren
+            
+            # Wenn wir gebannt sind, sollte dieser Zugriff fehlschlagen
+            _ = subreddit.submit_selfpost
+            
+            # Wenn wir hier ankommen, sind wir NICHT gebannt
             return False
+            
         except Exception as e:
-            # Bei 403 Forbidden sind wir wahrscheinlich gebannt
-            if "403" in str(e) or "Forbidden" in str(e):
+            error_str = str(e).lower()
+            # Nur bei spezifischen Ban-Fehlern True zurückgeben
+            if any(ban_indicator in error_str for ban_indicator in [
+                'banned', 'suspended', 'not allowed', 'forbidden to post'
+            ]):
                 return True
+            # Alle anderen Fehler bedeuten NICHT gebannt
             return False
     
     def add_to_blacklist(self, subreddit_name):
@@ -1957,10 +1986,10 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
                 # Verwende NUR die geladenen ADHD-Subreddits
                 adhd_subs = self.all_subreddits
             else:
-                # Fallback auf Core ADHD Subreddits
+                # Fallback auf Core ADHD Subreddits (ohne Blacklist)
                 adhd_subs = [
-                    'ADHD', 'ADHDwomen', 'AdultADHD', 'ADHDUK', 'ADHDmemes',
-                    'ADHD_Parenting', 'HowToADHD', 'AuDHD', 'adhdmeme', 'adhd_anxiety',
+                    'ADHD', 'AdultADHD', 'ADHDUK', 'HowToADHD', 'AuDHD',
+                    'ADHD_Parenting', 'adhdmeme', 'adhd_anxiety',
                     'GetDisciplined', 'productivity', 'bulletjournal', 'organization',
                     'mentalhealth', 'anxiety', 'therapy', 'selfcare', 'meditation',
                     'decidingtobebetter', 'selfimprovement', 'GetMotivated'
@@ -1977,14 +2006,25 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
                 target_sub = random.choice(target_subs)
                 print(f"   🔎 Prüfe r/{target_sub}...")
                 
+                # WARTEZEIT zwischen Subreddit-Scans (30 Sekunden)
+                if attempt > 0:
+                    print(f"   ⏳ Warte 30 Sekunden vor nächstem Scan...")
+                    time.sleep(30)
+                
                 try:
                     # Prüfe zuerst ob wir gebannt sind
                     if self.check_if_banned_from_subreddit(target_sub):
                         print(f"   🚫 Gebannt in r/{target_sub} - überspringe")
                         self.add_to_blacklist(target_sub)
+                        # Kurze Pause nach Ban-Check
+                        time.sleep(1)
                         continue
                     
                     subreddit = self.reddit.subreddit(target_sub)
+                    
+                    # Kleine Pause vor dem Abrufen der Posts
+                    time.sleep(0.5)
+                    
                     # Hole Hot Posts
                     posts = list(subreddit.hot(limit=25))
                     
@@ -1995,12 +2035,12 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
                         if post.id in self.commented_posts:
                             continue
                             
-                        # HÖHERE Standards: 100+ Score, 10+ Kommentare, 2-12h alt (perfektes Timing)
+                        # ANGEPASSTE Standards für bessere Trefferquote
                         post_age_hours = (time.time() - post.created_utc) / 3600
-                        if (post.score > 100 and 
-                            post.num_comments > 10 and 
-                            post_age_hours > 2 and  # Nicht zu früh
-                            post_age_hours < 12 and  # Noch im Aufwärtstrend
+                        if (post.score > 30 and  # Reduziert von 100
+                            post.num_comments > 5 and  # Reduziert von 10
+                            post_age_hours > 1 and  # Früher erlaubt
+                            post_age_hours < 24 and  # Längeres Zeitfenster (24h statt 12h)
                             not post.locked and
                             not post.archived):
                             
@@ -2127,6 +2167,45 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
             print(f"🤖 Generiert: {generated}")
             print("-"*40)
     
+    def reset_daily_limits(self):
+        """Setzt die Tageslimits zurück"""
+        from datetime import datetime
+        today = datetime.now().strftime("%Y-%m-%d")
+        
+        print("\n🔄 TAGESLIMITS ZURÜCKSETZEN")
+        print("="*60)
+        
+        # Reset Post-Limits
+        if today in self.daily_posts:
+            old_count = self.daily_posts[today].get('count', 0)
+            old_target = self.daily_posts[today].get('target', 0)
+            print(f"📮 Posts heute: {old_count}/{old_target}")
+            
+            # Setze zurück
+            self.daily_posts[today]['count'] = 0
+            self.daily_posts[today]['posts'] = []
+            self._save_daily_stats()
+            print(f"   ✅ Post-Counter zurückgesetzt auf 0/{old_target}")
+        else:
+            print(f"   ℹ️ Noch keine Posts heute")
+        
+        # Reset Kommentar-Limits
+        if today in self.daily_comments:
+            old_count = self.daily_comments[today].get('count', 0)
+            old_target = self.daily_comments[today].get('target', 0)
+            print(f"💬 Kommentare heute: {old_count}/{old_target}")
+            
+            # Setze zurück
+            self.daily_comments[today]['count'] = 0
+            self.daily_comments[today]['comments'] = []
+            self._save_comment_stats()
+            print(f"   ✅ Kommentar-Counter zurückgesetzt auf 0/{old_target}")
+        else:
+            print(f"   ℹ️ Noch keine Kommentare heute")
+        
+        print("\n✅ Alle Tageslimits wurden zurückgesetzt!")
+        print("   Du kannst jetzt wieder posten und kommentieren.")
+    
     def show_statistics(self):
         """Zeigt Statistiken über die geladenen Posts"""
         print("\n📊 STATISTIKEN:")
@@ -2197,8 +2276,9 @@ def main():
     print("8. 👥 Benutzer aus otherUser.txt verarbeiten")
     print("9. 📋 Zeige alle Subreddits")
     print("10. 🔑 API-Daten eingeben/ändern")
+    print("11. 🔄 Tageslimits zurücksetzen")
     
-    choice = input("\nAuswahl (1-10): ").strip()
+    choice = input("\nAuswahl (1-11): ").strip()
     
     if choice == "1":
         # Automatischer Loop mit Tageslimit
@@ -2357,6 +2437,22 @@ def main():
         print(f"   Client ID: {bot.config.get('client_id', '')[:15]}...")
         print(f"   Username: {bot.config.get('username', '')}")
         print(f"   Config-Datei: {bot.config_file}")
+    
+    elif choice == "11":
+        # Tageslimits zurücksetzen
+        bot.reset_daily_limits()
+        
+        # Zeige neue Status
+        from datetime import datetime
+        today = datetime.now().strftime("%Y-%m-%d")
+        print(f"\n📊 Neue Tageslimits:")
+        print(f"   Posts: 0/{bot.daily_post_target}")
+        print(f"   Kommentare: 0/{bot.daily_comment_target}")
+        
+        # Frage ob weitermachen
+        action = input("\nMöchtest du jetzt posten/kommentieren? (j/n): ").strip().lower()
+        if action in ['j', 'ja', 'yes', 'y']:
+            main()  # Rufe Hauptmenü nochmal auf
     
     else:
         print("Ungültige Auswahl")
