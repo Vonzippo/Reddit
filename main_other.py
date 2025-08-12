@@ -275,6 +275,7 @@ class CombinedBot:
         """Lädt alle Target-Subreddits aus den Dateien und entfernt gebannte"""
         self.all_subreddits = []
         self.blacklisted_subreddits = []
+        self.text_only_subreddits = []
         
         # Lade Blacklist zuerst
         blacklist_file = Path("/home/lucawahl/Reddit/blacklist_subreddits.txt")
@@ -285,6 +286,16 @@ class CombinedBot:
                     if sub and not sub.startswith('#'):
                         self.blacklisted_subreddits.append(sub.lower())
             print(f"🚫 Blacklist geladen: {len(self.blacklisted_subreddits)} gesperrte Subreddits")
+        
+        # Lade Text-only Subreddits
+        text_only_file = Path("/home/lucawahl/Reddit/text_only_subreddits.txt")
+        if text_only_file.exists():
+            with open(text_only_file, 'r', encoding='utf-8') as f:
+                for line in f:
+                    sub = line.strip()
+                    if sub and not sub.startswith('#'):
+                        self.text_only_subreddits.append(sub.lower())
+            print(f"📝 Text-only geladen: {len(self.text_only_subreddits)} Subreddits")
         
         # Lade aus target_subreddits.txt
         target_file = Path("/home/lucawahl/Reddit/target_subreddits.txt")
@@ -1637,8 +1648,21 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
             # Bereinige Titel von problematischen Elementen
             clean_title = self.clean_post_title(post_data['title'])
             
+            # Prüfe ob Subreddit nur Text erlaubt
+            is_text_only = subreddit.display_name.lower() in getattr(self, 'text_only_subreddits', [])
+            
+            # Bei Text-only Subreddits: Konvertiere Bild/Link-Posts zu Text
+            if is_text_only and not post_data.get('selftext'):
+                print(f"   📝 r/{subreddit.display_name} ist text-only - erstelle Text-Post")
+                if post_data.get('url'):
+                    # Füge URL als Text hinzu
+                    post_data['selftext'] = f"Link: {post_data['url']}\n\n(Dieses Subreddit erlaubt keine direkten Links/Bilder)"
+                else:
+                    # Generiere einen passenden Text
+                    post_data['selftext'] = "Was denkt ihr darüber?"
+            
             # Erstelle den Post mit Flair wenn möglich
-            if post_data.get('selftext'):
+            if post_data.get('selftext') or is_text_only:
                 # Text-Post
                 submission = subreddit.submit(
                     title=clean_title,
@@ -1716,7 +1740,38 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
             
         except Exception as e:
             error_msg = str(e)
-            if "FLAIR_REQUIRED" in error_msg or "flair" in error_msg.lower():
+            
+            # Spezielle Fehlerbehandlung für NO_IMAGES/NO_LINKS
+            if "NO_IMAGES" in error_msg or "NO_LINKS" in error_msg:
+                print(f"❌ r/{post_data.get('subreddit')} erlaubt keine Bilder/Links!")
+                
+                # Füge zur Text-only Liste hinzu
+                text_only_file = Path("/home/lucawahl/Reddit/text_only_subreddits.txt")
+                sub_name = post_data.get('subreddit', '')
+                
+                # Lese existierende Liste
+                existing = []
+                if text_only_file.exists():
+                    with open(text_only_file, 'r', encoding='utf-8') as f:
+                        existing = [line.strip() for line in f.readlines()]
+                
+                # Füge hinzu wenn noch nicht vorhanden
+                if sub_name and sub_name not in existing and not sub_name.startswith('#'):
+                    with open(text_only_file, 'a', encoding='utf-8') as f:
+                        f.write(f"\n{sub_name}")
+                    print(f"   📝 r/{sub_name} zur Text-only Liste hinzugefügt")
+                    
+                    # Update in-memory Liste
+                    if hasattr(self, 'text_only_subreddits'):
+                        self.text_only_subreddits.append(sub_name.lower())
+                
+                print("   🔄 Versuche als Text-Post...")
+                # Konvertiere zu Text-Post und versuche erneut
+                post_data['selftext'] = post_data.get('selftext', 'Was denkt ihr darüber?')
+                post_data.pop('url', None)  # Entferne URL
+                return self.create_post(post_data, dry_run=False, ignore_limit=True)
+                
+            elif "FLAIR_REQUIRED" in error_msg or "flair" in error_msg.lower():
                 print(f"❌ Flair-Fehler: Subreddit r/{post_data.get('subreddit')} erfordert Flair")
                 print("   Versuche mit anderem Post...")
             else:
