@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1733060263
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "halalovesloki",
+  "author_flair_background_color": "transparent",
+  "author_flair_css_class": null,
+  "author_flair_richtext": [
+    {
+      "e": "text",
+      "t": "ADHD,OCD,GAD"
+    }
+  ],
+  "author_flair_template_id": "1ee2e79c-c0ec-11ee-a08a-de4e5d3abf45",
+  "author_flair_text": "ADHD,OCD,GAD",
+  "author_flair_text_color": "dark",
+  "author_flair_type": "richtext",
+  "author_fullname": "t2_frnmzc68",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1732930657,
+  "created_utc": 1732930657,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "i.redd.it",
+  "downs": 0,
+  "edited": false,
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1h31gzn",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": true,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#ff4500",
+  "link_flair_css_class": "",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Meme Therapy"
+    }
+  ],
+  "link_flair_template_id": "d661c672-23d8-11eb-8236-0edfc8e356c9",
+  "link_flair_text": "Meme Therapy",
+  "link_flair_text_color": "light",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1h31gzn",
+  "no_follow": true,
+  "num_comments": 36,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/adhdwomen/comments/1h31gzn/i_sit_in_class_teary_eyed_because_im_trying_so/",
+  "pinned": false,
+  "post_hint": "image",
+  "preview": {
+    "enabled": true,
+    "images": [
+      {
+        "id": "NZdh7hNixWz9nuxzu4D5IcxL4AacFlGmusOTsTk-n1o",
+        "resolutions": [
+          {
+            "height": 110,
+            "url": "https://preview.redd.it/2dlpwpzj0y3e1.jpeg?width=108&crop=smart&auto=webp&s=c864411b4cf1fb6e986e60e46ab18610436111de",
+            "width": 108
+          },
+          {
+            "height": 221,
+            "url": "https://preview.redd.it/2dlpwpzj0y3e1.jpeg?width=216&crop=smart&auto=webp&s=cc0f256a4cb248b81ae1a72916660476239ca557",
+            "width": 216
+          },
+          {
+            "height": 328,
+            "url": "https://preview.redd.it/2dlpwpzj0y3e1.jpeg?width=320&crop=smart&auto=webp&s=d8a24f6004442321ccb64042134ee4568b1c2092",
+            "width": 320
+          },
+          {
+            "height": 656,
+            "url": "https://preview.redd.it/2dlpwpzj0y3e1.jpeg?width=640&crop=smart&auto=webp&s=695d728fe800b4b8b7812a0b35269463379ca541",
+            "width": 640
+          },
+          {
+            "height": 983,
+            "url": "https://preview.redd.it/2dlpwpzj0y3e1.jpeg?width=960&crop=smart&auto=webp&s=80ec57c18a40c74fbbbf6e37d3b1622dbbb7a78c",
+            "width": 960
+          },
+          {
+            "height": 1107,
+            "url": "https://preview.redd.it/2dlpwpzj0y3e1.jpeg?width=1080&crop=smart&auto=webp&s=d773f3e6b615fd57c70d3cddd19c02dcc38dff00",
+            "width": 1080
+          }
+        ],
+        "source": {
+          "height": 1230,
+          "url": "https://preview.redd.it/2dlpwpzj0y3e1.jpeg?auto=webp&s=56a3f551a434c38e6f20c4df5176c2e2fdc6480b",
+          "width": 1200
+        },
+        "variants": {}
+      }
+    ]
+  },
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1732930675,
+  "saved": false,
+  "score": 1482,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "adhdwomen",
+  "subreddit_id": "t5_31aao",
+  "subreddit_name_prefixed": "r/adhdwomen",
+  "subreddit_subscribers": 383259,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "image",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "I sit in class teary eyed because I'm trying so hard to focus but it's not working and nobody gets it LOL",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 1482,
+  "upvote_ratio": 1,
+  "url": "https://i.redd.it/2dlpwpzj0y3e1.jpeg",
+  "url_overridden_by_dest": "https://i.redd.it/2dlpwpzj0y3e1.jpeg",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

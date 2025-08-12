@@ -1,0 +1,281 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1735324894
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "ch3rryc0deine",
+  "author_flair_background_color": "transparent",
+  "author_flair_css_class": null,
+  "author_flair_richtext": [
+    {
+      "e": "text",
+      "t": "ADHD-C"
+    }
+  ],
+  "author_flair_template_id": "9ea6b60c-e784-11ee-8217-fee08b6c2dde",
+  "author_flair_text": "ADHD-C",
+  "author_flair_text_color": "dark",
+  "author_flair_type": "richtext",
+  "author_fullname": "t2_c0wrw3pr",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1735195253,
+  "created_utc": 1735195253,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "reddit.com",
+  "downs": 0,
+  "edited": false,
+  "gallery_data": {
+    "items": [
+      {
+        "id": 574303776,
+        "media_id": "jfer5m1d259e1"
+      },
+      {
+        "id": 574303777,
+        "media_id": "z9w8fm1d259e1"
+      },
+      {
+        "id": 574303778,
+        "media_id": "z6exma2d259e1"
+      }
+    ]
+  },
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1hmiteh",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_gallery": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": false,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#ffd635",
+  "link_flair_css_class": "",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Cleaning, Organizing, Decluttering"
+    }
+  ],
+  "link_flair_template_id": "222808bc-e65e-11eb-a155-0e24f5267923",
+  "link_flair_text": "Cleaning, Organizing, Decluttering",
+  "link_flair_text_color": "dark",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_metadata": {
+    "jfer5m1d259e1": {
+      "e": "Image",
+      "id": "jfer5m1d259e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/jfer5m1d259e1.jpg?width=108&crop=smart&auto=webp&s=70f29ec710e1d73319ca020bbb2a794e935be031",
+          "x": 108,
+          "y": 143
+        },
+        {
+          "u": "https://preview.redd.it/jfer5m1d259e1.jpg?width=216&crop=smart&auto=webp&s=c0fff7dcf148e6f561a0563e2fe39ab5a60385ce",
+          "x": 216,
+          "y": 287
+        },
+        {
+          "u": "https://preview.redd.it/jfer5m1d259e1.jpg?width=320&crop=smart&auto=webp&s=cd9bbb9418717d47e9bde32a9fad3a49ba6667cf",
+          "x": 320,
+          "y": 426
+        },
+        {
+          "u": "https://preview.redd.it/jfer5m1d259e1.jpg?width=640&crop=smart&auto=webp&s=0a5323ed2457cb45fc8d44a5ae300341235bd6e1",
+          "x": 640,
+          "y": 853
+        },
+        {
+          "u": "https://preview.redd.it/jfer5m1d259e1.jpg?width=960&crop=smart&auto=webp&s=b982ee1ea744a0cb8f026636ed799623dd39a570",
+          "x": 960,
+          "y": 1279
+        },
+        {
+          "u": "https://preview.redd.it/jfer5m1d259e1.jpg?width=1080&crop=smart&auto=webp&s=2cfbfbbdf0fec710f298bcf99aef19d038c941c2",
+          "x": 1080,
+          "y": 1439
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/jfer5m1d259e1.jpg?width=1615&format=pjpg&auto=webp&s=73f581ee10b0ba8daf653a09241565b3867bbcaf",
+        "x": 1615,
+        "y": 2153
+      },
+      "status": "valid"
+    },
+    "z6exma2d259e1": {
+      "e": "Image",
+      "id": "z6exma2d259e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/z6exma2d259e1.jpg?width=108&crop=smart&auto=webp&s=cdbb81dc77277ab1a313a83efb3eae15cafe2600",
+          "x": 108,
+          "y": 143
+        },
+        {
+          "u": "https://preview.redd.it/z6exma2d259e1.jpg?width=216&crop=smart&auto=webp&s=18d7b44e3319eba8382df73a5252eb1a41c380e9",
+          "x": 216,
+          "y": 287
+        },
+        {
+          "u": "https://preview.redd.it/z6exma2d259e1.jpg?width=320&crop=smart&auto=webp&s=df2a7381c450ebf282c4ac5b4c8a003763f0cbb1",
+          "x": 320,
+          "y": 426
+        },
+        {
+          "u": "https://preview.redd.it/z6exma2d259e1.jpg?width=640&crop=smart&auto=webp&s=766722c5f2a7c318ab413d703c97b05bbca6e8be",
+          "x": 640,
+          "y": 853
+        },
+        {
+          "u": "https://preview.redd.it/z6exma2d259e1.jpg?width=960&crop=smart&auto=webp&s=815666d16b1fec2d5ee17393b8045407e63e8f6c",
+          "x": 960,
+          "y": 1279
+        },
+        {
+          "u": "https://preview.redd.it/z6exma2d259e1.jpg?width=1080&crop=smart&auto=webp&s=f4add0653a63adf64bb61bdfd16fce34d028631b",
+          "x": 1080,
+          "y": 1439
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/z6exma2d259e1.jpg?width=1615&format=pjpg&auto=webp&s=fe70b2fd30838cfa396fa6316ff357156f61216b",
+        "x": 1615,
+        "y": 2153
+      },
+      "status": "valid"
+    },
+    "z9w8fm1d259e1": {
+      "e": "Image",
+      "id": "z9w8fm1d259e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/z9w8fm1d259e1.jpg?width=108&crop=smart&auto=webp&s=fa57a6484bd652455ac959a8f030f6a6cc04a740",
+          "x": 108,
+          "y": 143
+        },
+        {
+          "u": "https://preview.redd.it/z9w8fm1d259e1.jpg?width=216&crop=smart&auto=webp&s=14c4c91440b7925f373151121275718c80e5b0e7",
+          "x": 216,
+          "y": 287
+        },
+        {
+          "u": "https://preview.redd.it/z9w8fm1d259e1.jpg?width=320&crop=smart&auto=webp&s=f5cf99c505e8a36f42d8d279795a34c7ddbe03f2",
+          "x": 320,
+          "y": 426
+        },
+        {
+          "u": "https://preview.redd.it/z9w8fm1d259e1.jpg?width=640&crop=smart&auto=webp&s=770a102065ca9b706d9261ac483e9a3964a85beb",
+          "x": 640,
+          "y": 853
+        },
+        {
+          "u": "https://preview.redd.it/z9w8fm1d259e1.jpg?width=960&crop=smart&auto=webp&s=227e640bfaca713277a76e262f18446019acf92a",
+          "x": 960,
+          "y": 1279
+        },
+        {
+          "u": "https://preview.redd.it/z9w8fm1d259e1.jpg?width=1080&crop=smart&auto=webp&s=b6782de0be7bc631596fc27a73df685d0b2f7aa6",
+          "x": 1080,
+          "y": 1439
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/z9w8fm1d259e1.jpg?width=1615&format=pjpg&auto=webp&s=b1101e0a8c4bc73a45f18e32b00b7cd5e59ac24e",
+        "x": 1615,
+        "y": 2153
+      },
+      "status": "valid"
+    }
+  },
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1hmiteh",
+  "no_follow": false,
+  "num_comments": 466,
+  "num_crossposts": 1,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/adhdwomen/comments/1hmiteh/holiday_present_to_myself_a_personalized_adhd/",
+  "pinned": false,
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1735195268,
+  "saved": false,
+  "score": 5410,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "hi all! this is my first post to this sub so i’m sorry if there are any issues with my post. \n\ni have a habit of keeping drinks and a few of my most-used belongings in an absolute mess all over my room. now that i’m off university for the holidays, i’ve organized all of my drinks and most-used ADHD related belongings into one small rolling cart!\n\ni’m really proud of myself for thinking of this. it looks so much better than before and i can move it around my room whenever i need or want to! \n\ni just wanted to share a huge organizational success of mine! i’ve been using this cart for absolutely everything and i love it! i wish i thought of making something like this sooner!\n\n",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "adhdwomen",
+  "subreddit_id": "t5_31aao",
+  "subreddit_name_prefixed": "r/adhdwomen",
+  "subreddit_subscribers": 391965,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "https://b.thumbs.redditmedia.com/hz4XCof9_auO5AXO7DjfWISfUV4XiRoCqXg0CcYX8vA.jpg",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "Holiday present to myself: a personalized ADHD “rescue” station!",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 5410,
+  "upvote_ratio": 0.9800000190734863,
+  "url": "https://www.reddit.com/gallery/1hmiteh",
+  "url_overridden_by_dest": "https://www.reddit.com/gallery/1hmiteh",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

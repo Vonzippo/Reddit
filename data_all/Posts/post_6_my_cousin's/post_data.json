@@ -1,0 +1,253 @@
+{
+  "_meta": {
+    "is_edited": true,
+    "retrieved_2nd_on": 1733391592
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "whoooodatt",
+  "author_flair_background_color": null,
+  "author_flair_css_class": null,
+  "author_flair_richtext": [],
+  "author_flair_template_id": null,
+  "author_flair_text": null,
+  "author_flair_text_color": null,
+  "author_flair_type": "text",
+  "author_fullname": "t2_2iweuh91",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1733261979,
+  "created_utc": 1733261979,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "self.adhdwomen",
+  "downs": 0,
+  "edited": false,
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1h5yzhe",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": false,
+  "is_robot_indexable": true,
+  "is_self": true,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#00a6a5",
+  "link_flair_css_class": "",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Family"
+    }
+  ],
+  "link_flair_template_id": "3fb3c2f0-23da-11eb-b20c-0e59193ba047",
+  "link_flair_text": "Family",
+  "link_flair_text_color": "light",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1h5yzhe",
+  "no_follow": true,
+  "num_comments": 600,
+  "num_crossposts": 3,
+  "num_reports": null,
+  "over_18": true,
+  "permalink": "/r/adhdwomen/comments/1h5yzhe/my_cousins_adhd_just_killed_him/",
+  "pinned": false,
+  "preview": {
+    "enabled": false,
+    "images": [
+      {
+        "id": "Qh9BysCRhw3BhT7nZMJ4vccTfRMyHQKhhLUq1qZkG00",
+        "resolutions": [
+          {
+            "height": 191,
+            "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=108&crop=smart&auto=webp&s=8c06463845371bf971fb942a67c3d1da4a60de2e",
+            "width": 108
+          },
+          {
+            "height": 383,
+            "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=216&crop=smart&auto=webp&s=4d8fdf08392f1923d2a95f21f983e9fc74ba837e",
+            "width": 216
+          },
+          {
+            "height": 568,
+            "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=320&crop=smart&auto=webp&s=83986c79c26f4e5e941a322d2bee19bcba7648cd",
+            "width": 320
+          },
+          {
+            "height": 1137,
+            "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=640&crop=smart&auto=webp&s=1a010fc8b2c8342e1f91ade436b036364b2dd6f7",
+            "width": 640
+          },
+          {
+            "height": 1705,
+            "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=960&crop=smart&auto=webp&s=c96892b302effc7d16cb9ed264c6cb09313a4c35",
+            "width": 960
+          },
+          {
+            "height": 1918,
+            "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=1080&crop=smart&auto=webp&s=0609a7988fc1b53d19fdecdcb9189ed9f5e6ba11",
+            "width": 1080
+          }
+        ],
+        "source": {
+          "height": 3024,
+          "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?auto=webp&s=b05123c779ba8a122803802b7a4cb4cd296fb124",
+          "width": 1702
+        },
+        "variants": {
+          "nsfw": {
+            "resolutions": [
+              {
+                "height": 191,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=108&crop=smart&blur=10&format=pjpg&auto=webp&s=2065bbf7579f7ecb4762eb34081bef4830ea3e06",
+                "width": 108
+              },
+              {
+                "height": 383,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=216&crop=smart&blur=21&format=pjpg&auto=webp&s=568fa46c1d2de73e877d1e50c2713ad5ac2ee9f3",
+                "width": 216
+              },
+              {
+                "height": 568,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=320&crop=smart&blur=32&format=pjpg&auto=webp&s=318934dd3589aa295206ebf6f0978643c7c5319b",
+                "width": 320
+              },
+              {
+                "height": 1137,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=640&crop=smart&blur=40&format=pjpg&auto=webp&s=49f073ded58355ff5fc74a0565578b7e1cf56802",
+                "width": 640
+              },
+              {
+                "height": 1705,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=960&crop=smart&blur=40&format=pjpg&auto=webp&s=ffcff163984b0988a48ab76a16fc32c0a410924e",
+                "width": 960
+              },
+              {
+                "height": 1918,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=1080&crop=smart&blur=40&format=pjpg&auto=webp&s=96c65fc44f54de76dddad0ca2f5436fc28d14ecf",
+                "width": 1080
+              }
+            ],
+            "source": {
+              "height": 3024,
+              "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?blur=40&format=pjpg&auto=webp&s=7354a83ea3b9e547e11ff6141416311680b2e76f",
+              "width": 1702
+            }
+          },
+          "obfuscated": {
+            "resolutions": [
+              {
+                "height": 191,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=108&crop=smart&blur=10&format=pjpg&auto=webp&s=2065bbf7579f7ecb4762eb34081bef4830ea3e06",
+                "width": 108
+              },
+              {
+                "height": 383,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=216&crop=smart&blur=21&format=pjpg&auto=webp&s=568fa46c1d2de73e877d1e50c2713ad5ac2ee9f3",
+                "width": 216
+              },
+              {
+                "height": 568,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=320&crop=smart&blur=32&format=pjpg&auto=webp&s=318934dd3589aa295206ebf6f0978643c7c5319b",
+                "width": 320
+              },
+              {
+                "height": 1137,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=640&crop=smart&blur=40&format=pjpg&auto=webp&s=49f073ded58355ff5fc74a0565578b7e1cf56802",
+                "width": 640
+              },
+              {
+                "height": 1705,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=960&crop=smart&blur=40&format=pjpg&auto=webp&s=ffcff163984b0988a48ab76a16fc32c0a410924e",
+                "width": 960
+              },
+              {
+                "height": 1918,
+                "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?width=1080&crop=smart&blur=40&format=pjpg&auto=webp&s=96c65fc44f54de76dddad0ca2f5436fc28d14ecf",
+                "width": 1080
+              }
+            ],
+            "source": {
+              "height": 3024,
+              "url": "https://external-preview.redd.it/-vmql1XD005XBB6fGkfR0ey13HwmI4SolVklJYDxoPE.jpg?blur=40&format=pjpg&auto=webp&s=7354a83ea3b9e547e11ff6141416311680b2e76f",
+              "width": 1702
+            }
+          }
+        }
+      }
+    ]
+  },
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1733261997,
+  "saved": false,
+  "score": 6658,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "Sorry if this is sad.  It's such a surreal accident.  He was out running errands, and he hopped out of his car after forgetting to put it in park.  It rolled over him, crushing his chest and dragging him 30 feet.  He's going to be taken off of life support today.  \n\nI don't want to be a downer, but I though that it needed to be talked about.  All you lovely wonderful people PLEASE be careful, especially with cars.  We are twice as likely to die from accidents in general, and apparently it's our leading cause of death.  It's not worth the rush.",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "adhdwomen",
+  "subreddit_id": "t5_31aao",
+  "subreddit_name_prefixed": "r/adhdwomen",
+  "subreddit_subscribers": 384543,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "self",
+  "thumbnail_height": null,
+  "thumbnail_width": null,
+  "title": "My Cousin's ADHD just killed him.",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 6658,
+  "upvote_ratio": 0.9900000095367432,
+  "url": "https://www.reddit.com/r/adhdwomen/comments/1h5yzhe/my_cousins_adhd_just_killed_him/",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

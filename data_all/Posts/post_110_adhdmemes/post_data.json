@@ -1,0 +1,233 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1731386782
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "noxu-art",
+  "author_flair_background_color": null,
+  "author_flair_css_class": null,
+  "author_flair_richtext": [],
+  "author_flair_template_id": null,
+  "author_flair_text": null,
+  "author_flair_text_color": null,
+  "author_flair_type": "text",
+  "author_fullname": "t2_7dy4zl9k",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1731257171,
+  "created_utc": 1731257171,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "i.redd.it",
+  "downs": 0,
+  "edited": false,
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1go4v06",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": true,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "",
+  "link_flair_css_class": null,
+  "link_flair_richtext": [],
+  "link_flair_text": null,
+  "link_flair_text_color": "dark",
+  "link_flair_type": "text",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1go4v06",
+  "no_follow": true,
+  "num_comments": 116,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": true,
+  "permalink": "/r/ADHDmemes/comments/1go4v06/hypersexuality/",
+  "pinned": false,
+  "post_hint": "image",
+  "preview": {
+    "enabled": true,
+    "images": [
+      {
+        "id": "6M6RSlawjh0IoihNyNruEZv9j8o4AgCErAB91URrkg0",
+        "resolutions": [
+          {
+            "height": 120,
+            "url": "https://preview.redd.it/gpz907das30e1.png?width=108&crop=smart&auto=webp&s=78fe1afae370e3263f07f273858c939c610db36f",
+            "width": 108
+          },
+          {
+            "height": 241,
+            "url": "https://preview.redd.it/gpz907das30e1.png?width=216&crop=smart&auto=webp&s=30dadb456670f9cebedc4e00c746e9d2b58299b0",
+            "width": 216
+          },
+          {
+            "height": 357,
+            "url": "https://preview.redd.it/gpz907das30e1.png?width=320&crop=smart&auto=webp&s=364c818acc0ae830836aa875df485df04732fbcd",
+            "width": 320
+          },
+          {
+            "height": 714,
+            "url": "https://preview.redd.it/gpz907das30e1.png?width=640&crop=smart&auto=webp&s=98c7ff35a30ac13f2101626953ca732a022018ea",
+            "width": 640
+          },
+          {
+            "height": 1072,
+            "url": "https://preview.redd.it/gpz907das30e1.png?width=960&crop=smart&auto=webp&s=125ede3457a33b0911c7bda30539b0362e8df9f2",
+            "width": 960
+          }
+        ],
+        "source": {
+          "height": 1072,
+          "url": "https://preview.redd.it/gpz907das30e1.png?auto=webp&s=12df22b2a030069474726e89eca4589a291d2c28",
+          "width": 960
+        },
+        "variants": {
+          "nsfw": {
+            "resolutions": [
+              {
+                "height": 120,
+                "url": "https://preview.redd.it/gpz907das30e1.png?width=108&crop=smart&blur=10&format=pjpg&auto=webp&s=7820bc6834b77c63b757eca09a43be8b3862a4d6",
+                "width": 108
+              },
+              {
+                "height": 241,
+                "url": "https://preview.redd.it/gpz907das30e1.png?width=216&crop=smart&blur=21&format=pjpg&auto=webp&s=0a3d534e047f32e3eef4f059b23fa50c5ad5646e",
+                "width": 216
+              },
+              {
+                "height": 357,
+                "url": "https://preview.redd.it/gpz907das30e1.png?width=320&crop=smart&blur=32&format=pjpg&auto=webp&s=0b9f73662798be94a7568330ae086adfdcfb27f2",
+                "width": 320
+              },
+              {
+                "height": 714,
+                "url": "https://preview.redd.it/gpz907das30e1.png?width=640&crop=smart&blur=40&format=pjpg&auto=webp&s=d09d84401f0ea3f6e036cc353b6058de34282f3b",
+                "width": 640
+              },
+              {
+                "height": 1072,
+                "url": "https://preview.redd.it/gpz907das30e1.png?width=960&crop=smart&blur=40&format=pjpg&auto=webp&s=10bf8a74fce1ad66ff1e5fcbef880821bbcca882",
+                "width": 960
+              }
+            ],
+            "source": {
+              "height": 1072,
+              "url": "https://preview.redd.it/gpz907das30e1.png?blur=40&format=pjpg&auto=webp&s=bcd112534b5bdc33dacde1c72b63fb51dc84dca4",
+              "width": 960
+            }
+          },
+          "obfuscated": {
+            "resolutions": [
+              {
+                "height": 120,
+                "url": "https://preview.redd.it/gpz907das30e1.png?width=108&crop=smart&blur=10&format=pjpg&auto=webp&s=7820bc6834b77c63b757eca09a43be8b3862a4d6",
+                "width": 108
+              },
+              {
+                "height": 241,
+                "url": "https://preview.redd.it/gpz907das30e1.png?width=216&crop=smart&blur=21&format=pjpg&auto=webp&s=0a3d534e047f32e3eef4f059b23fa50c5ad5646e",
+                "width": 216
+              },
+              {
+                "height": 357,
+                "url": "https://preview.redd.it/gpz907das30e1.png?width=320&crop=smart&blur=32&format=pjpg&auto=webp&s=0b9f73662798be94a7568330ae086adfdcfb27f2",
+                "width": 320
+              },
+              {
+                "height": 714,
+                "url": "https://preview.redd.it/gpz907das30e1.png?width=640&crop=smart&blur=40&format=pjpg&auto=webp&s=d09d84401f0ea3f6e036cc353b6058de34282f3b",
+                "width": 640
+              },
+              {
+                "height": 1072,
+                "url": "https://preview.redd.it/gpz907das30e1.png?width=960&crop=smart&blur=40&format=pjpg&auto=webp&s=10bf8a74fce1ad66ff1e5fcbef880821bbcca882",
+                "width": 960
+              }
+            ],
+            "source": {
+              "height": 1072,
+              "url": "https://preview.redd.it/gpz907das30e1.png?blur=40&format=pjpg&auto=webp&s=bcd112534b5bdc33dacde1c72b63fb51dc84dca4",
+              "width": 960
+            }
+          }
+        }
+      }
+    ]
+  },
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1731257186,
+  "saved": false,
+  "score": 1758,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "ADHDmemes",
+  "subreddit_id": "t5_fatrt",
+  "subreddit_name_prefixed": "r/ADHDmemes",
+  "subreddit_subscribers": 139243,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "nsfw",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "Hypersexuality",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 1758,
+  "upvote_ratio": 0.9800000190734863,
+  "url": "https://i.redd.it/gpz907das30e1.png",
+  "url_overridden_by_dest": "https://i.redd.it/gpz907das30e1.png",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

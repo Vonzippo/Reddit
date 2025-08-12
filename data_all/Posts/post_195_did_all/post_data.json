@@ -1,0 +1,231 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1731191536
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "Euphoric_Rough2709",
+  "author_flair_background_color": null,
+  "author_flair_css_class": null,
+  "author_flair_richtext": [],
+  "author_flair_template_id": null,
+  "author_flair_text": null,
+  "author_flair_text_color": null,
+  "author_flair_type": "text",
+  "author_fullname": "t2_btk8b0bx",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1731061929,
+  "created_utc": 1731061929,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "reddit.com",
+  "downs": 0,
+  "edited": false,
+  "gallery_data": {
+    "items": [
+      {
+        "caption": "",
+        "id": 547961805,
+        "media_id": "ytxvfx6vnnzd1"
+      },
+      {
+        "caption": "",
+        "id": 547961806,
+        "media_id": "ktzcbpbvnnzd1"
+      }
+    ]
+  },
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1gmfjru",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_gallery": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": false,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#a06324",
+  "link_flair_css_class": "",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Hype Squad (help me do things!)"
+    }
+  ],
+  "link_flair_template_id": "7ab8ef3c-3ec6-11ef-bd2b-4292f7272b79",
+  "link_flair_text": "Hype Squad (help me do things!)",
+  "link_flair_text_color": "light",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_metadata": {
+    "ktzcbpbvnnzd1": {
+      "e": "Image",
+      "id": "ktzcbpbvnnzd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/ktzcbpbvnnzd1.jpg?width=108&crop=smart&auto=webp&s=c5ab47246b6f383472313377b5dd9bcec33f72e1",
+          "x": 108,
+          "y": 81
+        },
+        {
+          "u": "https://preview.redd.it/ktzcbpbvnnzd1.jpg?width=216&crop=smart&auto=webp&s=6ac53325298e6463f1217f7b9e7cc7b93f4e09f1",
+          "x": 216,
+          "y": 162
+        },
+        {
+          "u": "https://preview.redd.it/ktzcbpbvnnzd1.jpg?width=320&crop=smart&auto=webp&s=dbaec9cf5baaad8dda1af2cd5f6ea3daba3a9d7a",
+          "x": 320,
+          "y": 240
+        },
+        {
+          "u": "https://preview.redd.it/ktzcbpbvnnzd1.jpg?width=640&crop=smart&auto=webp&s=54552221ef5b171ba0b7ccc7c51fdc7e69e32efb",
+          "x": 640,
+          "y": 480
+        },
+        {
+          "u": "https://preview.redd.it/ktzcbpbvnnzd1.jpg?width=960&crop=smart&auto=webp&s=3dcb559faaaeb2f93914d26dad3e05cce14ea011",
+          "x": 960,
+          "y": 720
+        },
+        {
+          "u": "https://preview.redd.it/ktzcbpbvnnzd1.jpg?width=1080&crop=smart&auto=webp&s=fb06819c0c13d082f0512064ce3b55f1f7b32567",
+          "x": 1080,
+          "y": 810
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/ktzcbpbvnnzd1.jpg?width=4032&format=pjpg&auto=webp&s=aefbd56a929e3ed7b492dba4906f9aac7caceaed",
+        "x": 4032,
+        "y": 3024
+      },
+      "status": "valid"
+    },
+    "ytxvfx6vnnzd1": {
+      "e": "Image",
+      "id": "ytxvfx6vnnzd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/ytxvfx6vnnzd1.jpg?width=108&crop=smart&auto=webp&s=4947f0b9358e3d08497bf2ef1680c5e8392146a0",
+          "x": 108,
+          "y": 81
+        },
+        {
+          "u": "https://preview.redd.it/ytxvfx6vnnzd1.jpg?width=216&crop=smart&auto=webp&s=b4378805be025433008803aa006c888fc6880cc0",
+          "x": 216,
+          "y": 162
+        },
+        {
+          "u": "https://preview.redd.it/ytxvfx6vnnzd1.jpg?width=320&crop=smart&auto=webp&s=7f78e25bf27883b83a7df5e7d75acf01c519ede2",
+          "x": 320,
+          "y": 240
+        },
+        {
+          "u": "https://preview.redd.it/ytxvfx6vnnzd1.jpg?width=640&crop=smart&auto=webp&s=11392953f3f756d8f1e54acbeb9a018f60713b18",
+          "x": 640,
+          "y": 480
+        },
+        {
+          "u": "https://preview.redd.it/ytxvfx6vnnzd1.jpg?width=960&crop=smart&auto=webp&s=949de0d9f933f2f8effc0009e5477d94288490f4",
+          "x": 960,
+          "y": 720
+        },
+        {
+          "u": "https://preview.redd.it/ytxvfx6vnnzd1.jpg?width=1080&crop=smart&auto=webp&s=0045b55fb2d0448da8d953d797a6e1c09cf79191",
+          "x": 1080,
+          "y": 810
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/ytxvfx6vnnzd1.jpg?width=4032&format=pjpg&auto=webp&s=59a441f078879f528fade86f326f1e1c59787b9d",
+        "x": 4032,
+        "y": 3024
+      },
+      "status": "valid"
+    }
+  },
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1gmfjru",
+  "no_follow": true,
+  "num_comments": 87,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/adhdwomen/comments/1gmfjru/did_all_of_this_in_the_morning_but_have_been/",
+  "pinned": false,
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1731061956,
+  "saved": false,
+  "score": 1197,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "This is so frustrating. It will literally take me 5 mins. But I can't ge myself to so it. Hoping this helps. ",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "adhdwomen",
+  "subreddit_id": "t5_31aao",
+  "subreddit_name_prefixed": "r/adhdwomen",
+  "subreddit_subscribers": 375883,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "default",
+  "thumbnail_height": 105,
+  "thumbnail_width": 140,
+  "title": "Did all of this in the morning, but have been struggling for over 2 hours bacause I need to make a phone call. Help! ",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 1197,
+  "upvote_ratio": 1,
+  "url": "https://www.reddit.com/gallery/1gmfjru",
+  "url_overridden_by_dest": "https://www.reddit.com/gallery/1gmfjru",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

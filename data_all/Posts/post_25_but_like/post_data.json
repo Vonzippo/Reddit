@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1733021185
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "zoopysreign",
+  "author_flair_background_color": "transparent",
+  "author_flair_css_class": null,
+  "author_flair_richtext": [
+    {
+      "e": "text",
+      "t": "You don’t get to know the poop, babe."
+    }
+  ],
+  "author_flair_template_id": "1ee2e79c-c0ec-11ee-a08a-de4e5d3abf45",
+  "author_flair_text": "You don’t get to know the poop, babe.",
+  "author_flair_text_color": "dark",
+  "author_flair_type": "richtext",
+  "author_fullname": "t2_4zqziv78",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1732891579,
+  "created_utc": 1732891579,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "i.redd.it",
+  "downs": 0,
+  "edited": false,
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1h2nc6o",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": true,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#ff4500",
+  "link_flair_css_class": "",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Meme Therapy"
+    }
+  ],
+  "link_flair_template_id": "d661c672-23d8-11eb-8236-0edfc8e356c9",
+  "link_flair_text": "Meme Therapy",
+  "link_flair_text_color": "light",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1h2nc6o",
+  "no_follow": true,
+  "num_comments": 124,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/adhdwomen/comments/1h2nc6o/but_like_should_we/",
+  "pinned": false,
+  "post_hint": "image",
+  "preview": {
+    "enabled": true,
+    "images": [
+      {
+        "id": "DLHrTxe0JAvnZyQiX1KLgvO5La2_bcxK4K6kZyU6Eng",
+        "resolutions": [
+          {
+            "height": 108,
+            "url": "https://preview.redd.it/7fqxf9ycsu3e1.jpeg?width=108&crop=smart&auto=webp&s=c15d31854e1fbae4a35a02c7d19118c3da0d1365",
+            "width": 108
+          },
+          {
+            "height": 216,
+            "url": "https://preview.redd.it/7fqxf9ycsu3e1.jpeg?width=216&crop=smart&auto=webp&s=1361bc8c01fc28f73f0e98879061de9698410cc2",
+            "width": 216
+          },
+          {
+            "height": 321,
+            "url": "https://preview.redd.it/7fqxf9ycsu3e1.jpeg?width=320&crop=smart&auto=webp&s=3f93b012c37d0d8f80cdcac69c6db2d645c7408f",
+            "width": 320
+          },
+          {
+            "height": 642,
+            "url": "https://preview.redd.it/7fqxf9ycsu3e1.jpeg?width=640&crop=smart&auto=webp&s=3236217d50b01731c3fea41e0c8deaee3b0460cd",
+            "width": 640
+          },
+          {
+            "height": 963,
+            "url": "https://preview.redd.it/7fqxf9ycsu3e1.jpeg?width=960&crop=smart&auto=webp&s=9e40c8b1ee0d5383bac8247e81ee936cf2becdd6",
+            "width": 960
+          },
+          {
+            "height": 1083,
+            "url": "https://preview.redd.it/7fqxf9ycsu3e1.jpeg?width=1080&crop=smart&auto=webp&s=edf6764b14475a7df13c2749aec1384c30d7a980",
+            "width": 1080
+          }
+        ],
+        "source": {
+          "height": 1183,
+          "url": "https://preview.redd.it/7fqxf9ycsu3e1.jpeg?auto=webp&s=6c526a033eeef8880760c9a688afa317c2aec240",
+          "width": 1179
+        },
+        "variants": {}
+      }
+    ]
+  },
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1732891596,
+  "saved": false,
+  "score": 3481,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "adhdwomen",
+  "subreddit_id": "t5_31aao",
+  "subreddit_name_prefixed": "r/adhdwomen",
+  "subreddit_subscribers": 383122,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "image",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "But like, should we?",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 3481,
+  "upvote_ratio": 1,
+  "url": "https://i.redd.it/7fqxf9ycsu3e1.jpeg",
+  "url_overridden_by_dest": "https://i.redd.it/7fqxf9ycsu3e1.jpeg",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

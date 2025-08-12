@@ -1,0 +1,417 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1732616360
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "Confused_Moth9",
+  "author_flair_background_color": null,
+  "author_flair_css_class": null,
+  "author_flair_richtext": [],
+  "author_flair_template_id": null,
+  "author_flair_text": null,
+  "author_flair_text_color": null,
+  "author_flair_type": "text",
+  "author_fullname": "t2_1d1hdewb4a",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1732486751,
+  "created_utc": 1732486751,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "reddit.com",
+  "downs": 0,
+  "edited": false,
+  "gallery_data": {
+    "items": [
+      {
+        "id": 556924688,
+        "media_id": "9szcpppkcx2e1"
+      },
+      {
+        "id": 556924689,
+        "media_id": "u1d4yppkcx2e1"
+      },
+      {
+        "id": 556924690,
+        "media_id": "itsx8ppkcx2e1"
+      },
+      {
+        "id": 556924691,
+        "media_id": "duh1gppkcx2e1"
+      },
+      {
+        "id": 556924692,
+        "media_id": "m1agzopkcx2e1"
+      },
+      {
+        "id": 556924693,
+        "media_id": "b75n5ppkcx2e1"
+      }
+    ]
+  },
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1gz38c1",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_gallery": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": false,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": null,
+  "link_flair_css_class": "su",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Success"
+    }
+  ],
+  "link_flair_template_id": "8282f03e-d59d-11e3-9f80-12313b0a74a7",
+  "link_flair_text": "Success",
+  "link_flair_text_color": "dark",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_metadata": {
+    "9szcpppkcx2e1": {
+      "e": "Image",
+      "id": "9szcpppkcx2e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/9szcpppkcx2e1.jpg?width=108&crop=smart&auto=webp&s=e690cbd6ea5306c09b68ba87d25209b47fff0740",
+          "x": 108,
+          "y": 81
+        },
+        {
+          "u": "https://preview.redd.it/9szcpppkcx2e1.jpg?width=216&crop=smart&auto=webp&s=b985af5a2d66a08907f9bcb78938c9db419dc3a7",
+          "x": 216,
+          "y": 162
+        },
+        {
+          "u": "https://preview.redd.it/9szcpppkcx2e1.jpg?width=320&crop=smart&auto=webp&s=af70e927cd8048635c076c207c6b1511d5f7fbaf",
+          "x": 320,
+          "y": 240
+        },
+        {
+          "u": "https://preview.redd.it/9szcpppkcx2e1.jpg?width=640&crop=smart&auto=webp&s=4dbc942f72edbd959e96f27a3decfc5c88e937e1",
+          "x": 640,
+          "y": 480
+        },
+        {
+          "u": "https://preview.redd.it/9szcpppkcx2e1.jpg?width=960&crop=smart&auto=webp&s=6a5986d63fc3312017baad06cdd33206aacd5d54",
+          "x": 960,
+          "y": 720
+        },
+        {
+          "u": "https://preview.redd.it/9szcpppkcx2e1.jpg?width=1080&crop=smart&auto=webp&s=038ca2755ca5c016a8693c455f6d71f27193020c",
+          "x": 1080,
+          "y": 810
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/9szcpppkcx2e1.jpg?width=4032&format=pjpg&auto=webp&s=a1fc6387d5ed5fda51a650f9ca1809b61c168d7d",
+        "x": 4032,
+        "y": 3024
+      },
+      "status": "valid"
+    },
+    "b75n5ppkcx2e1": {
+      "e": "Image",
+      "id": "b75n5ppkcx2e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/b75n5ppkcx2e1.jpg?width=108&crop=smart&auto=webp&s=569328661fbe72f8477839df86c152c0b6e5ebe5",
+          "x": 108,
+          "y": 81
+        },
+        {
+          "u": "https://preview.redd.it/b75n5ppkcx2e1.jpg?width=216&crop=smart&auto=webp&s=7a88bfcfbf576c29aec293b3e59295daa6a53096",
+          "x": 216,
+          "y": 162
+        },
+        {
+          "u": "https://preview.redd.it/b75n5ppkcx2e1.jpg?width=320&crop=smart&auto=webp&s=e7fbf517f9b2dcebaa3edb90f15d61e499240466",
+          "x": 320,
+          "y": 240
+        },
+        {
+          "u": "https://preview.redd.it/b75n5ppkcx2e1.jpg?width=640&crop=smart&auto=webp&s=cb5b5efd118eb6565e43bd8019811f6e2d609d6a",
+          "x": 640,
+          "y": 480
+        },
+        {
+          "u": "https://preview.redd.it/b75n5ppkcx2e1.jpg?width=960&crop=smart&auto=webp&s=d5ab53d1721e2e8538bbfa9633c2dc35c093130c",
+          "x": 960,
+          "y": 720
+        },
+        {
+          "u": "https://preview.redd.it/b75n5ppkcx2e1.jpg?width=1080&crop=smart&auto=webp&s=ce750977a9e985fbd2c9c53995ff5384f0db0d08",
+          "x": 1080,
+          "y": 810
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/b75n5ppkcx2e1.jpg?width=4032&format=pjpg&auto=webp&s=a0c34e067a2c371fb27022e87addac818762bd21",
+        "x": 4032,
+        "y": 3024
+      },
+      "status": "valid"
+    },
+    "duh1gppkcx2e1": {
+      "e": "Image",
+      "id": "duh1gppkcx2e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/duh1gppkcx2e1.jpg?width=108&crop=smart&auto=webp&s=56234f630e33d04104effb375fc8c9b868422473",
+          "x": 108,
+          "y": 81
+        },
+        {
+          "u": "https://preview.redd.it/duh1gppkcx2e1.jpg?width=216&crop=smart&auto=webp&s=2c9c9f4f89774113e2f32951a2eb9457fe765767",
+          "x": 216,
+          "y": 162
+        },
+        {
+          "u": "https://preview.redd.it/duh1gppkcx2e1.jpg?width=320&crop=smart&auto=webp&s=9f3d45f36316aec3c00d735991910187ee025804",
+          "x": 320,
+          "y": 240
+        },
+        {
+          "u": "https://preview.redd.it/duh1gppkcx2e1.jpg?width=640&crop=smart&auto=webp&s=5f0aa67e76cf31f0c4eefc5030d317affbd2817e",
+          "x": 640,
+          "y": 480
+        },
+        {
+          "u": "https://preview.redd.it/duh1gppkcx2e1.jpg?width=960&crop=smart&auto=webp&s=6af6c50ca02664fa4effc0860b43c447b1088a4e",
+          "x": 960,
+          "y": 720
+        },
+        {
+          "u": "https://preview.redd.it/duh1gppkcx2e1.jpg?width=1080&crop=smart&auto=webp&s=3a0843233019f4041274d307f2e1a6ded7ca6161",
+          "x": 1080,
+          "y": 810
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/duh1gppkcx2e1.jpg?width=4032&format=pjpg&auto=webp&s=ecb927e923dfa61cd44ed387b06b0848808eb758",
+        "x": 4032,
+        "y": 3024
+      },
+      "status": "valid"
+    },
+    "itsx8ppkcx2e1": {
+      "e": "Image",
+      "id": "itsx8ppkcx2e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/itsx8ppkcx2e1.jpg?width=108&crop=smart&auto=webp&s=dc03ad838f6debc640595b8875972436573792ee",
+          "x": 108,
+          "y": 81
+        },
+        {
+          "u": "https://preview.redd.it/itsx8ppkcx2e1.jpg?width=216&crop=smart&auto=webp&s=73299d045ae9497c0eb16a28d2322c28b320912b",
+          "x": 216,
+          "y": 162
+        },
+        {
+          "u": "https://preview.redd.it/itsx8ppkcx2e1.jpg?width=320&crop=smart&auto=webp&s=897e68dbe8cb34a561dcffd4bf17f375ca21b71c",
+          "x": 320,
+          "y": 240
+        },
+        {
+          "u": "https://preview.redd.it/itsx8ppkcx2e1.jpg?width=640&crop=smart&auto=webp&s=a74520237772f050d4d5be4bd02ba9f17aabbbd5",
+          "x": 640,
+          "y": 480
+        },
+        {
+          "u": "https://preview.redd.it/itsx8ppkcx2e1.jpg?width=960&crop=smart&auto=webp&s=e58dc1acf0bcc776544b7d50b8a87c02a1374021",
+          "x": 960,
+          "y": 720
+        },
+        {
+          "u": "https://preview.redd.it/itsx8ppkcx2e1.jpg?width=1080&crop=smart&auto=webp&s=c8b5230b53acae7e40584f4c4819b497cda542bf",
+          "x": 1080,
+          "y": 810
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/itsx8ppkcx2e1.jpg?width=4032&format=pjpg&auto=webp&s=4508f9436699c577c1bc6dab9f648524e64d6881",
+        "x": 4032,
+        "y": 3024
+      },
+      "status": "valid"
+    },
+    "m1agzopkcx2e1": {
+      "e": "Image",
+      "id": "m1agzopkcx2e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/m1agzopkcx2e1.jpg?width=108&crop=smart&auto=webp&s=c03d28dad484433f875a83832c8cfcfe3651a1cc",
+          "x": 108,
+          "y": 81
+        },
+        {
+          "u": "https://preview.redd.it/m1agzopkcx2e1.jpg?width=216&crop=smart&auto=webp&s=b28e1860cc65a23163e1a887495ffbdfb5b6dff8",
+          "x": 216,
+          "y": 162
+        },
+        {
+          "u": "https://preview.redd.it/m1agzopkcx2e1.jpg?width=320&crop=smart&auto=webp&s=190a3eb4785a2eaca62ab5dbf93426f964de2480",
+          "x": 320,
+          "y": 240
+        },
+        {
+          "u": "https://preview.redd.it/m1agzopkcx2e1.jpg?width=640&crop=smart&auto=webp&s=6d0df05dae9678915e7688de4ae421b7dd2d6d9e",
+          "x": 640,
+          "y": 480
+        },
+        {
+          "u": "https://preview.redd.it/m1agzopkcx2e1.jpg?width=960&crop=smart&auto=webp&s=70f93c054f3d8df308ba99ab77db5b5586fe8674",
+          "x": 960,
+          "y": 720
+        },
+        {
+          "u": "https://preview.redd.it/m1agzopkcx2e1.jpg?width=1080&crop=smart&auto=webp&s=5ada47c6ebffc65cab568887fe486dbb83ddc3f4",
+          "x": 1080,
+          "y": 810
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/m1agzopkcx2e1.jpg?width=4032&format=pjpg&auto=webp&s=11b5ff235f788cc16fcda8939e23e9b323a7dd82",
+        "x": 4032,
+        "y": 3024
+      },
+      "status": "valid"
+    },
+    "u1d4yppkcx2e1": {
+      "e": "Image",
+      "id": "u1d4yppkcx2e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/u1d4yppkcx2e1.jpg?width=108&crop=smart&auto=webp&s=ed054e17ec1596613a5c61bfd59c446b71bac157",
+          "x": 108,
+          "y": 81
+        },
+        {
+          "u": "https://preview.redd.it/u1d4yppkcx2e1.jpg?width=216&crop=smart&auto=webp&s=c93cae80b9c1f9b586e7738d342de06cb9046621",
+          "x": 216,
+          "y": 162
+        },
+        {
+          "u": "https://preview.redd.it/u1d4yppkcx2e1.jpg?width=320&crop=smart&auto=webp&s=2a34cb22be4d9583b52436c0b44ded237bd9ef1c",
+          "x": 320,
+          "y": 240
+        },
+        {
+          "u": "https://preview.redd.it/u1d4yppkcx2e1.jpg?width=640&crop=smart&auto=webp&s=759b2335f9e9cc6f15a0802bfd7531dd6c323c02",
+          "x": 640,
+          "y": 480
+        },
+        {
+          "u": "https://preview.redd.it/u1d4yppkcx2e1.jpg?width=960&crop=smart&auto=webp&s=2fd86c054098a7e701083086fb61f91daf10bb38",
+          "x": 960,
+          "y": 720
+        },
+        {
+          "u": "https://preview.redd.it/u1d4yppkcx2e1.jpg?width=1080&crop=smart&auto=webp&s=eaa1826b3c47227921b7d50238014e2b5f047ef6",
+          "x": 1080,
+          "y": 810
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/u1d4yppkcx2e1.jpg?width=4032&format=pjpg&auto=webp&s=460dec5414dfdb6f34c802b60c375351010e94de",
+        "x": 4032,
+        "y": 3024
+      },
+      "status": "valid"
+    }
+  },
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1gz38c1",
+  "no_follow": true,
+  "num_comments": 391,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/autism/comments/1gz38c1/my_bedroom_as_an_autistic_adult/",
+  "pinned": false,
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1732486793,
+  "saved": false,
+  "score": 3122,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "(Please remove if not allowed!!)\n\nHi, so I (18, NB) just wanted to share some photos of my bedroom since I was able to organise it a bit better. (I like to think of my room as organised chaos lol)\n\nI tried to make myself grow up to faster and got rid of a lot of the things that made me happy when I was 15-16 to make my ex happy, however I was miserable. I can happily say we’ve been no-contact for over 6 months now and it was the best decision of my life. I started to indulge in my hobbies and do things that genuinely make me happy again. \n\nThis is my colourful, plushie-filled room that I’ve always dreamed of having. I wanted to share as a bit of a positive post and because I’m genuinely proud that I’ve been able to look after myself and my possessions so much better since the break-up. \n\n(Also if anyone here likes any of the stuff I have in my room, especially furbies or build-a-bears, feel free to talk to me about it! I could genuinely talk about furbies for ages I love them so much lol)",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "autism",
+  "subreddit_id": "t5_2qhs6",
+  "subreddit_name_prefixed": "r/autism",
+  "subreddit_subscribers": 411426,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "https://b.thumbs.redditmedia.com/UfDMyISIXp8grjas3jGEFUwy1lBJvtjSEnqeZG7OB_E.jpg",
+  "thumbnail_height": 105,
+  "thumbnail_width": 140,
+  "title": "My bedroom as an autistic adult :)",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 3122,
+  "upvote_ratio": 0.9900000095367432,
+  "url": "https://www.reddit.com/gallery/1gz38c1",
+  "url_overridden_by_dest": "https://www.reddit.com/gallery/1gz38c1",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

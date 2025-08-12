@@ -1,0 +1,276 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1731312159
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "Limp-Good-6737",
+  "author_flair_background_color": null,
+  "author_flair_css_class": null,
+  "author_flair_richtext": [],
+  "author_flair_template_id": null,
+  "author_flair_text": null,
+  "author_flair_text_color": null,
+  "author_flair_type": "text",
+  "author_fullname": "t2_19ovf5lutn",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1731182551,
+  "created_utc": 1731182551,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "reddit.com",
+  "downs": 0,
+  "edited": false,
+  "gallery_data": {
+    "items": [
+      {
+        "id": 548733993,
+        "media_id": "s33z4aijmxzd1"
+      },
+      {
+        "id": 548733994,
+        "media_id": "o9sqo9ijmxzd1"
+      },
+      {
+        "id": 548733995,
+        "media_id": "ofon79ijmxzd1"
+      }
+    ]
+  },
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1gnil27",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_gallery": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": false,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#7193ff",
+  "link_flair_css_class": "",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Hobby & Hyperfixation Sharing"
+    }
+  ],
+  "link_flair_template_id": "95da2abc-eb8c-11ed-bf0f-464bf52c69a5",
+  "link_flair_text": "Hobby & Hyperfixation Sharing",
+  "link_flair_text_color": "light",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_metadata": {
+    "o9sqo9ijmxzd1": {
+      "e": "Image",
+      "id": "o9sqo9ijmxzd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/o9sqo9ijmxzd1.jpg?width=108&crop=smart&auto=webp&s=864c50299564b34bd55d502cafc40856e3b294d8",
+          "x": 108,
+          "y": 130
+        },
+        {
+          "u": "https://preview.redd.it/o9sqo9ijmxzd1.jpg?width=216&crop=smart&auto=webp&s=4ff3fc11fcb416e36990da07103b0c7f91bf0fbb",
+          "x": 216,
+          "y": 261
+        },
+        {
+          "u": "https://preview.redd.it/o9sqo9ijmxzd1.jpg?width=320&crop=smart&auto=webp&s=894d7312921b5057d3843ca7039fec2376eb5f7a",
+          "x": 320,
+          "y": 386
+        },
+        {
+          "u": "https://preview.redd.it/o9sqo9ijmxzd1.jpg?width=640&crop=smart&auto=webp&s=7cafbab509403cd6d72692b51fcb78bcb0c165e9",
+          "x": 640,
+          "y": 773
+        },
+        {
+          "u": "https://preview.redd.it/o9sqo9ijmxzd1.jpg?width=960&crop=smart&auto=webp&s=a7350a291b77d36ee33969c62c227e9961a6868f",
+          "x": 960,
+          "y": 1160
+        },
+        {
+          "u": "https://preview.redd.it/o9sqo9ijmxzd1.jpg?width=1080&crop=smart&auto=webp&s=dfb117b421093905553bc9650b02484ab55faab1",
+          "x": 1080,
+          "y": 1305
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/o9sqo9ijmxzd1.jpg?width=1179&format=pjpg&auto=webp&s=dec9efaf5ab1330e360478642309634798e12943",
+        "x": 1179,
+        "y": 1425
+      },
+      "status": "valid"
+    },
+    "ofon79ijmxzd1": {
+      "e": "Image",
+      "id": "ofon79ijmxzd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/ofon79ijmxzd1.jpg?width=108&crop=smart&auto=webp&s=71d5793428f203148c592ce37614022c9b30c201",
+          "x": 108,
+          "y": 144
+        },
+        {
+          "u": "https://preview.redd.it/ofon79ijmxzd1.jpg?width=216&crop=smart&auto=webp&s=a766ee9e851858a81ed0de41d54c67d809f7c0e9",
+          "x": 216,
+          "y": 288
+        },
+        {
+          "u": "https://preview.redd.it/ofon79ijmxzd1.jpg?width=320&crop=smart&auto=webp&s=f5cb0f8a459cbac9e7bedc99b9ef4240a1e51bf3",
+          "x": 320,
+          "y": 426
+        },
+        {
+          "u": "https://preview.redd.it/ofon79ijmxzd1.jpg?width=640&crop=smart&auto=webp&s=60fcfe83008333a441e6cb268962b5c23329b9be",
+          "x": 640,
+          "y": 853
+        },
+        {
+          "u": "https://preview.redd.it/ofon79ijmxzd1.jpg?width=960&crop=smart&auto=webp&s=8e5dfa704ef62e9bb0781d35cb447d7f4a742d5c",
+          "x": 960,
+          "y": 1280
+        },
+        {
+          "u": "https://preview.redd.it/ofon79ijmxzd1.jpg?width=1080&crop=smart&auto=webp&s=ec3ac329b8a02906f024e3a20eaa3f883fdbf59e",
+          "x": 1080,
+          "y": 1440
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/ofon79ijmxzd1.jpg?width=1575&format=pjpg&auto=webp&s=f81886f83d6f37a434824bf28ad488dcdb71aad0",
+        "x": 1575,
+        "y": 2100
+      },
+      "status": "valid"
+    },
+    "s33z4aijmxzd1": {
+      "e": "Image",
+      "id": "s33z4aijmxzd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/s33z4aijmxzd1.jpg?width=108&crop=smart&auto=webp&s=7ac1f38b12b2bb6bae2f7d285f6f8d37fcfada9e",
+          "x": 108,
+          "y": 144
+        },
+        {
+          "u": "https://preview.redd.it/s33z4aijmxzd1.jpg?width=216&crop=smart&auto=webp&s=e89968b4e15f498ed41ee213b5fece97ee4316be",
+          "x": 216,
+          "y": 288
+        },
+        {
+          "u": "https://preview.redd.it/s33z4aijmxzd1.jpg?width=320&crop=smart&auto=webp&s=7ca0046fcfb580095bcbc27673c701b1231bee1c",
+          "x": 320,
+          "y": 426
+        },
+        {
+          "u": "https://preview.redd.it/s33z4aijmxzd1.jpg?width=640&crop=smart&auto=webp&s=c2064544d5e184a6131962f0d3dfe6504fc284ea",
+          "x": 640,
+          "y": 853
+        },
+        {
+          "u": "https://preview.redd.it/s33z4aijmxzd1.jpg?width=960&crop=smart&auto=webp&s=81b8cb7e3ad8a30a4248fa39743504fbce7d8c23",
+          "x": 960,
+          "y": 1280
+        },
+        {
+          "u": "https://preview.redd.it/s33z4aijmxzd1.jpg?width=1080&crop=smart&auto=webp&s=f1ea70155c5a9c6b0ff77d46923daa9e08fc499f",
+          "x": 1080,
+          "y": 1440
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/s33z4aijmxzd1.jpg?width=1575&format=pjpg&auto=webp&s=61c17411c4b833c35bcf63dee82d53f7edd2d8f3",
+        "x": 1575,
+        "y": 2100
+      },
+      "status": "valid"
+    }
+  },
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1gnil27",
+  "no_follow": false,
+  "num_comments": 74,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/adhdwomen/comments/1gnil27/knitting_has_been_a_literal_godsend_for_me_and_my/",
+  "pinned": false,
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1731182568,
+  "saved": false,
+  "score": 2359,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "I learned to knit on a whim 15 years ago this month. (It’s funny because I was officially diagnosed this year in my mid-30s) Like so many, I have a habit of picking up hobbies and putting them down never to be done again, but with knitting it was and is SO SO different. Knitting touches something in my brain: I just feel so good and it helps me concentrate whether it's a movie, show, lecture, sermon, or just keeping me as close to the present as possible. Or I can daydream if I want 😆 I take it with me to coffee shops, hang with friends or waiting for an appointment. \n\nAll I know is that knitting helps calm my anxiety and scratches the deep parts in my brain where I feel a sense of pleasure, accomplishment, creativity, and optimism whether I finish a piece or not! Just wanted to share if you’re looking for your next hobby! FYI: it became automatic after a several months to a year of consistent practice. \n\nImage Description: first photo: picture of me on the right in a self-made green tweed textured knit with a friend on my left in a Christmas themed dress. Second photo: picture of me knitting a gray ribbed cardigan at an outdoor cafe. Third photo: selfie of me with self-made light gray textured ribbed scarf wrapped around my neck. ",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "adhdwomen",
+  "subreddit_id": "t5_31aao",
+  "subreddit_name_prefixed": "r/adhdwomen",
+  "subreddit_subscribers": 376427,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "default",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "Knitting has been a literal God-send for me and my brain!",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 2359,
+  "upvote_ratio": 1,
+  "url": "https://www.reddit.com/gallery/1gnil27",
+  "url_overridden_by_dest": "https://www.reddit.com/gallery/1gnil27",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

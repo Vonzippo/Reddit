@@ -1,0 +1,256 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1731234780
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "Epicgrapesoda98",
+  "author_flair_background_color": null,
+  "author_flair_css_class": null,
+  "author_flair_richtext": [],
+  "author_flair_template_id": null,
+  "author_flair_text": null,
+  "author_flair_text_color": null,
+  "author_flair_type": "text",
+  "author_fullname": "t2_2q6z05es",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1731076674,
+  "created_utc": 1731076674,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "reddit.com",
+  "downs": 0,
+  "edited": false,
+  "gallery_data": {
+    "items": [
+      {
+        "id": 548042258,
+        "media_id": "tqrmxrnpvozd1"
+      },
+      {
+        "id": 548042259,
+        "media_id": "xfyk3rnpvozd1"
+      },
+      {
+        "id": 548042260,
+        "media_id": "whdwuqnpvozd1"
+      }
+    ]
+  },
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1gmjzjw",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_gallery": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": false,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#ff4500",
+  "link_flair_css_class": "",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Meme Therapy"
+    }
+  ],
+  "link_flair_template_id": "d661c672-23d8-11eb-8236-0edfc8e356c9",
+  "link_flair_text": "Meme Therapy",
+  "link_flair_text_color": "light",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_metadata": {
+    "tqrmxrnpvozd1": {
+      "e": "Image",
+      "id": "tqrmxrnpvozd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/tqrmxrnpvozd1.jpg?width=108&crop=smart&auto=webp&s=cb448509c975b374a432cf4e78d74c6f3db6a0ce",
+          "x": 108,
+          "y": 149
+        },
+        {
+          "u": "https://preview.redd.it/tqrmxrnpvozd1.jpg?width=216&crop=smart&auto=webp&s=6c005c014301d40c8df447970a771e8d00818671",
+          "x": 216,
+          "y": 298
+        },
+        {
+          "u": "https://preview.redd.it/tqrmxrnpvozd1.jpg?width=320&crop=smart&auto=webp&s=b5b3bf1f3381dd506be8cf25bfe208b06960e072",
+          "x": 320,
+          "y": 441
+        },
+        {
+          "u": "https://preview.redd.it/tqrmxrnpvozd1.jpg?width=640&crop=smart&auto=webp&s=ef0c1bd31fa55e9fef13eda0d7e0495b3d663cee",
+          "x": 640,
+          "y": 882
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/tqrmxrnpvozd1.jpg?width=856&format=pjpg&auto=webp&s=f8095f4dbaea1e642b1651b7f0d5691d680e824c",
+        "x": 856,
+        "y": 1181
+      },
+      "status": "valid"
+    },
+    "whdwuqnpvozd1": {
+      "e": "Image",
+      "id": "whdwuqnpvozd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/whdwuqnpvozd1.jpg?width=108&crop=smart&auto=webp&s=b32d309fdb2727351cf156ca5a477f3e965062c7",
+          "x": 108,
+          "y": 135
+        },
+        {
+          "u": "https://preview.redd.it/whdwuqnpvozd1.jpg?width=216&crop=smart&auto=webp&s=ca854b913702a56dee4dc9104754c1cf77774953",
+          "x": 216,
+          "y": 270
+        },
+        {
+          "u": "https://preview.redd.it/whdwuqnpvozd1.jpg?width=320&crop=smart&auto=webp&s=07a8fe5d49f784890bb9c7b32fc3bc3f6f440c57",
+          "x": 320,
+          "y": 401
+        },
+        {
+          "u": "https://preview.redd.it/whdwuqnpvozd1.jpg?width=640&crop=smart&auto=webp&s=6256e30d5499a3aba63e2c0a9d5263c074068022",
+          "x": 640,
+          "y": 802
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/whdwuqnpvozd1.jpg?width=884&format=pjpg&auto=webp&s=6a1a982df6af841f7381084bd84be3c37a039c01",
+        "x": 884,
+        "y": 1109
+      },
+      "status": "valid"
+    },
+    "xfyk3rnpvozd1": {
+      "e": "Image",
+      "id": "xfyk3rnpvozd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/xfyk3rnpvozd1.jpg?width=108&crop=smart&auto=webp&s=0c2a680c560b3d53591939b1bccd265aa8b7d0de",
+          "x": 108,
+          "y": 99
+        },
+        {
+          "u": "https://preview.redd.it/xfyk3rnpvozd1.jpg?width=216&crop=smart&auto=webp&s=bf6529f20628d50468c7ca29e4fdda4a8d3e5431",
+          "x": 216,
+          "y": 198
+        },
+        {
+          "u": "https://preview.redd.it/xfyk3rnpvozd1.jpg?width=320&crop=smart&auto=webp&s=44381d53e2cf482cabdcc9c88bdae7980c0d1a2e",
+          "x": 320,
+          "y": 293
+        },
+        {
+          "u": "https://preview.redd.it/xfyk3rnpvozd1.jpg?width=640&crop=smart&auto=webp&s=798ee4c45f97185e2bbce3b9f51ce506257698ef",
+          "x": 640,
+          "y": 587
+        },
+        {
+          "u": "https://preview.redd.it/xfyk3rnpvozd1.jpg?width=960&crop=smart&auto=webp&s=3f8101cd64af0b6c30caa4ed01ad9baa5290cf06",
+          "x": 960,
+          "y": 881
+        },
+        {
+          "u": "https://preview.redd.it/xfyk3rnpvozd1.jpg?width=1080&crop=smart&auto=webp&s=a2255b091ad3f17f16e504a9e26d461ccb7893a6",
+          "x": 1080,
+          "y": 991
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/xfyk3rnpvozd1.jpg?width=1284&format=pjpg&auto=webp&s=69c7cf7afc1400837f21d9760dba4b4b22476923",
+        "x": 1284,
+        "y": 1179
+      },
+      "status": "valid"
+    }
+  },
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1gmjzjw",
+  "no_follow": true,
+  "num_comments": 38,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/adhdwomen/comments/1gmjzjw/felt_every_single_one_of_these/",
+  "pinned": false,
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1731076691,
+  "saved": false,
+  "score": 1732,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "Except the gifted child one. I was never considered gifted cuz I’m AuDHD and I was incredibly inconsistent.",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "adhdwomen",
+  "subreddit_id": "t5_31aao",
+  "subreddit_name_prefixed": "r/adhdwomen",
+  "subreddit_subscribers": 375911,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "default",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "Felt every single one of these",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 1732,
+  "upvote_ratio": 1,
+  "url": "https://www.reddit.com/gallery/1gmjzjw",
+  "url_overridden_by_dest": "https://www.reddit.com/gallery/1gmjzjw",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

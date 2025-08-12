@@ -272,8 +272,19 @@ class CombinedBot:
         print(f"✅ Geladen: {len(self.posts)} Posts, {len(self.comments)} Kommentare")
     
     def _load_subreddits(self):
-        """Lädt alle Target-Subreddits aus den Dateien"""
+        """Lädt alle Target-Subreddits aus den Dateien und entfernt gebannte"""
         self.all_subreddits = []
+        self.blacklisted_subreddits = []
+        
+        # Lade Blacklist zuerst
+        blacklist_file = Path("/home/lucawahl/Reddit/blacklist_subreddits.txt")
+        if blacklist_file.exists():
+            with open(blacklist_file, 'r', encoding='utf-8') as f:
+                for line in f:
+                    sub = line.strip()
+                    if sub and not sub.startswith('#'):
+                        self.blacklisted_subreddits.append(sub.lower())
+            print(f"🚫 Blacklist geladen: {len(self.blacklisted_subreddits)} gesperrte Subreddits")
         
         # Lade aus target_subreddits.txt
         target_file = Path("/home/lucawahl/Reddit/target_subreddits.txt")
@@ -282,7 +293,9 @@ class CombinedBot:
                 for line in f:
                     sub = line.strip()
                     if sub and not sub.startswith('#'):
-                        self.all_subreddits.append(sub)
+                        # Prüfe ob Subreddit auf Blacklist
+                        if sub.lower() not in self.blacklisted_subreddits:
+                            self.all_subreddits.append(sub)
         
         # Lade aus target_subreddits_extended.txt (ohne Duplikate)
         extended_file = Path("/home/lucawahl/Reddit/target_subreddits_extended.txt")
@@ -291,11 +304,13 @@ class CombinedBot:
                 for line in f:
                     sub = line.strip()
                     if sub and not sub.startswith('#') and sub not in self.all_subreddits:
-                        self.all_subreddits.append(sub)
+                        # Prüfe ob Subreddit auf Blacklist
+                        if sub.lower() not in self.blacklisted_subreddits:
+                            self.all_subreddits.append(sub)
         
         # Entferne Duplikate und sortiere
         self.all_subreddits = sorted(list(set(self.all_subreddits)))
-        print(f"📋 Geladen: {len(self.all_subreddits)} Subreddits")
+        print(f"📋 Geladen: {len(self.all_subreddits)} Subreddits (nach Blacklist-Filter)")
     
     def _load_daily_stats(self):
         """Lädt tägliche Post-Statistiken"""
@@ -528,19 +543,7 @@ class CombinedBot:
         print(f"📈 Kommentar-Tagesfortschritt: {current}/{target} Kommentare")
     
     def get_random_post(self):
-        """Gibt einen zufälligen Post zurück (bevorzugt noch nicht gepostete)"""
-        # Subreddits die OC verlangen oder strenge Regeln haben
-        problematic_subs = ['pics', 'photography', 'itookapicture', 'art', 'drawing', 'painting']
-        
-        # Sichere alternative Subreddits
-        safe_alternatives = {
-            'pics': ['interestingasfuck', 'Damnthatsinteresting', 'BeAmazed'],
-            'photography': ['nocontextpics', 'pic', 'images'],
-            'art': ['somethingimade', 'crafts'],
-            'funny': ['humor', 'memes', 'dankmemes'],
-            'videos': ['mealtimevideos', 'curiousvideos']
-        }
-        
+        """Gibt einen zufälligen Post zurück und wählt ein ADHD-Subreddit als Ziel"""
         if self.posts:
             # Versuche einen noch nicht geposteten Post zu finden
             unposted = [p for p in self.posts if p.get('id') not in self.posted_posts]
@@ -550,18 +553,44 @@ class CombinedBot:
                 # Falls alle gepostet, nimm irgendeinen
                 post = random.choice(self.posts)
             
-            # Prüfe ob Subreddit problematisch ist
-            original_sub = post.get('subreddit', '').lower()
-            if original_sub in problematic_subs:
-                # Wähle sichere Alternative
-                if original_sub in safe_alternatives:
-                    new_sub = random.choice(safe_alternatives[original_sub])
-                else:
-                    # Generelle sichere Subreddits
-                    new_sub = random.choice(['interestingasfuck', 'Damnthatsinteresting', 'BeAmazed', 'nextfuckinglevel', 'MadeMeSmile'])
-                
-                print(f"   ⚠️ r/{original_sub} hat strenge Regeln - verwende r/{new_sub} stattdessen")
-                post['subreddit'] = new_sub
+            # IMMER ein ADHD-Subreddit als Ziel verwenden
+            # Wähle basierend auf Post-Typ ein passendes ADHD-Subreddit
+            title_lower = post.get('title', '').lower()
+            
+            # Kategorisiere ADHD-Subreddits für bessere Zuordnung (ohne gebannte)
+            blacklist = getattr(self, 'blacklisted_subreddits', ['adhdwomen'])
+            
+            # Filtere gebannte Subreddits aus den Listen
+            adhd_core = [s for s in ['ADHD', 'AdultADHD', 'ADHDUK', 'ADHDmemes', 'HowToADHD'] 
+                        if s.lower() not in blacklist]
+            adhd_productivity = [s for s in ['GetDisciplined', 'productivity', 'stopprocrastinating', 'bulletjournal', 'organization']
+                               if s.lower() not in blacklist]
+            adhd_mental = [s for s in ['mentalhealth', 'Anxiety', 'depression', 'therapy', 'selfcare']
+                          if s.lower() not in blacklist]
+            adhd_creative = [s for s in ['WritingPrompts', 'crafts', 'DIY', 'gardening', 'ArtTherapy']
+                            if s.lower() not in blacklist]
+            adhd_support = [s for s in ['KindVoice', 'needafriend', 'offmychest', 'CasualConversation']
+                           if s.lower() not in blacklist]
+            adhd_career = [s for s in ['ADHD_Programmers', 'ADHD_Entrepreneurs', 'adhd_college', 'careerguidance']
+                          if s.lower() not in blacklist]
+            
+            # Wähle passende Kategorie basierend auf Keywords
+            if any(word in title_lower for word in ['work', 'job', 'career', 'office', 'boss', 'colleague']):
+                target_sub = random.choice(adhd_career)
+            elif any(word in title_lower for word in ['sad', 'anxious', 'depressed', 'therapy', 'mental']):
+                target_sub = random.choice(adhd_mental)
+            elif any(word in title_lower for word in ['organize', 'plan', 'productive', 'focus', 'task']):
+                target_sub = random.choice(adhd_productivity)
+            elif any(word in title_lower for word in ['art', 'creative', 'made', 'built', 'drew']):
+                target_sub = random.choice(adhd_creative)
+            elif any(word in title_lower for word in ['help', 'support', 'need', 'advice', 'question']):
+                target_sub = random.choice(adhd_support)
+            else:
+                # Default: Core ADHD subreddits
+                target_sub = random.choice(adhd_core)
+            
+            print(f"   🎯 Post wird in r/{target_sub} gepostet (ADHD-fokussiert)")
+            post['subreddit'] = target_sub
             
             return post
         return None
@@ -640,6 +669,18 @@ class CombinedBot:
     def add_natural_variations(self, text):
         """Fügt natürliche Variationen zum Text hinzu für Kommentare"""
         
+        # Prüfe ob Text zu kurz ist
+        if not text or len(text.strip()) < 5:
+            # Generiere einen sicheren Fallback
+            fallbacks = [
+                "this is actually really interesting",
+                "i never thought about it this way",
+                "thanks for sharing this perspective",
+                "this makes so much sense now",
+                "wow i learned something new today"
+            ]
+            text = random.choice(fallbacks)
+        
         # IMMER Kleinschreibung am Anfang (außer "I")
         if len(text) > 0 and not text.startswith('I '):
             text = text[0].lower() + text[1:]
@@ -649,8 +690,9 @@ class CombinedBot:
             starter = random.choice(self.casual_starters)
             text = f"{starter} {text}"
         
-        # Entferne zu viele Satzzeichen am Ende
-        text = text.rstrip('.,!?') + text[-1] if text and text[-1] in '.,!?' else text
+        # Entferne zu viele Satzzeichen am Ende (aber nur wenn Text lang genug)
+        if len(text) > 1:
+            text = text.rstrip('.,!?') + text[-1] if text and text[-1] in '.,!?' else text
         
         # Punkte oft weglassen oder durch ... ersetzen (60% Chance)
         if random.random() < 0.6:
@@ -798,11 +840,11 @@ class CombinedBot:
         return None
     
     def generate_funny_contextual_comment(self, post_title, parent_comment, other_replies=[], subreddit_name=""):
-        """Generiert einen kontextbezogenen Kommentar mit AI - kann lustig sein, Fragen stellen oder helfen"""
+        """Generiert einen kontextbezogenen Kommentar mit AI - optimiert für virale Reichweite"""
         
         if not self.openrouter_api_key:
             print("⚠️ OpenRouter API Key nicht gesetzt - verwende Fallback")
-            return self.generate_fallback_comment(subreddit_name)
+            return self.generate_viral_fallback_comment(subreddit_name)
         
         # Sammle Kontext von anderen Replies für bessere Anpassung
         reply_context = "\n".join([f"- {r.body[:100]}" for r in other_replies[:3]])
@@ -838,6 +880,7 @@ Examples:
 - "this might be a dumb question but how do you keep it from [specific problem]?"
 - "your work is inspiring! did you learn from youtube or take classes?"
 
+VIRAL TIPS: Be relatable, show genuine excitement, add personal touch
 Your genuine question (lowercase, casual):"""
         
         elif is_help_sub or "help" in parent_comment.lower() or "how" in parent_comment.lower():
@@ -862,8 +905,9 @@ Examples:
 Your helpful response (lowercase, casual):"""
         
         else:
-            # Standard: Mix aus lustig, Fragen und normal
-            comment_types = random.choice(['funny', 'question', 'relate'])
+            # Standard: Mix mit 40% WERTVOLLE Kommentare
+            weights = [0.2, 0.2, 0.2, 0.4]  # funny, question, relate, VALUE
+            comment_types = random.choices(['funny', 'question', 'relate', 'value'], weights=weights)[0]
             
             if comment_types == 'question':
                 prompt = f"""You're asking a follow-up question on Reddit.
@@ -903,24 +947,51 @@ Examples:
 
 Your relatable response (lowercase, casual):"""
             
+            elif comment_types == 'value':
+                # WERTVOLLER KOMMENTAR mit echtem Mehrwert
+                prompt = f"""You're adding VALUE to a Reddit discussion.
+
+POST: "{post_title}"
+COMMENT: "{parent_comment[:200]}"
+
+Write a SHORT (2-3 sentences) comment that ADDS REAL VALUE:
+- Share specific tips, resources, or solutions
+- Add important context or corrections
+- Provide helpful links or references
+- Give actionable advice based on experience
+- Point out something others missed
+
+HIGH-VALUE Examples:
+- "pro tip: if you're dealing with this, try [specific solution] - saved me hours of frustration"
+- "for anyone interested, there's a free tool called [name] that does exactly this"
+- "important context: this only works if you [specific condition], learned that the hard way"
+- "adding to this - the documentation mentions [specific detail] that most people miss"
+- "quick heads up: this changed in the latest update, you now need to [specific action]"
+- "if you're struggling with this, r/[specific sub] has a great guide in their wiki"
+
+Your VALUE-ADDING response (be specific and helpful):"""
+            
             else:  # funny
                 prompt = f"""You're making a witty Reddit comment.
 
 POST: "{post_title}"
 COMMENT: "{parent_comment[:200]}"
 
-Write a SHORT (1-2 sentences) funny response that:
-- Makes a clever observation
-- Uses reddit-style humor
-- Sounds casual and natural
+Write a SHORT (1-2 sentences) VIRAL funny response that:
+- Makes a clever, unexpected observation
+- Uses peak reddit humor
+- Is highly relatable or absurd
+- Could get thousands of upvotes
 
-Examples:
-- "this is the way"
+VIRAL Examples:
+- "i also choose this guys dead wife"
 - "sir this is a wendys"
-- "username checks out"
-- "i also choose this guys [thing]"
+- "task failed successfully"
+- "instructions unclear, dick stuck in ceiling fan"
+- "this is the way"
+- "thanks i hate it"
 
-Your witty response (lowercase, casual):"""
+Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
 
         try:
             response = requests.post(
@@ -942,13 +1013,102 @@ Your witty response (lowercase, casual):"""
             if response.status_code == 200:
                 result = response.json()
                 comment = result['choices'][0]['message']['content'].strip()
+                # Stelle sicher dass Kommentar nicht zu kurz ist
+                if len(comment) < 10:
+                    print(f"   ⚠️ Kommentar zu kurz ({len(comment)} Zeichen), verwende Fallback")
+                    return self.generate_viral_fallback_comment(subreddit_name)
                 # Mache es noch natürlicher
                 return self.add_natural_variations(comment)
             
         except Exception as e:
             print(f"❌ AI-Generierung fehlgeschlagen: {e}")
         
-        return self.generate_fallback_comment()
+        return self.generate_fallback_comment(subreddit_name)
+    
+    def generate_viral_fallback_comment(self, subreddit_name=""):
+        """Generiert virale Kommentare basierend auf erfolgreichen Reddit-Mustern"""
+        
+        # VIRALE KOMMENTAR-MUSTER (aus Analyse von Top-Comments)
+        viral_patterns = {
+            'relatable_struggle': [
+                "i feel personally attacked by this accuracy",
+                "why would you expose me like this on a friday",
+                "this hit way too close to home and now i need therapy",
+                "sir how did you get access to my life story",
+                "i came here to have a good time and honestly im feeling so attacked right now",
+                "delete this before my wife sees it and realizes im not unique"
+            ],
+            
+            'unexpected_twist': [
+                "plot twist: the real treasure was the anxiety we developed along the way",
+                "instructions unclear, accidentally became successful",
+                "task failed successfully",
+                "this went from 0 to 100 real quick",
+                "they had us in the first half not gonna lie",
+                "well that escalated quickly"
+            ],
+            
+            'wholesome_support': [
+                "you dropped this 👑",
+                "this is the kind of content i signed up for",
+                "protect this human at all costs",
+                "faith in humanity restored",
+                "we dont deserve you but we need you",
+                "youre doing amazing sweetie"
+            ],
+            
+            'clever_observation': [
+                "the fact that we all collectively agreed on this without discussion is peak humanity",
+                "this is either genius or insane and honestly both work",
+                "tell me youre [thing] without telling me youre [thing]",
+                "this has the same energy as [relatable thing] and i love it",
+                "why is nobody talking about the real issue here",
+                "ok but can we appreciate the fact that [specific detail]"
+            ],
+            
+            'self_deprecating': [
+                "bold of you to assume i have my life together enough for this",
+                "cries in poor",
+                "laughs nervously in millennial",
+                "my therapist would like a word with you",
+                "i didnt come here to be called out but here we are",
+                "this is the most expensive free advice ive ever received"
+            ],
+            
+            'reddit_meta': [
+                "reddit moment",
+                "this guy reddits",
+                "username checks out",
+                "this is why i love reddit",
+                "peak reddit right here",
+                "the real LPT is always in the comments"
+            ]
+        }
+        
+        # Wähle Muster basierend auf Subreddit
+        if any(word in subreddit_name.lower() for word in ['wholesome', 'made', 'smile', 'aww', 'happy']):
+            pattern_type = 'wholesome_support'
+        elif any(word in subreddit_name.lower() for word in ['funny', 'meme', 'joke']):
+            pattern_type = random.choice(['relatable_struggle', 'unexpected_twist', 'self_deprecating'])
+        elif any(word in subreddit_name.lower() for word in ['ask', 'question']):
+            pattern_type = 'clever_observation'
+        else:
+            # Zufällige Auswahl für maximale Viralität
+            pattern_type = random.choice(list(viral_patterns.keys()))
+        
+        comment = random.choice(viral_patterns[pattern_type])
+        
+        # Füge manchmal Edit hinzu (10% Chance) - das macht es authentischer
+        if random.random() < 0.1:
+            edits = [
+                "\n\nedit: wow this blew up",
+                "\n\nedit: thanks for the gold kind stranger!",
+                "\n\nedit: rip my inbox",
+                "\n\nedit: my highest rated comment is about this... thanks reddit"
+            ]
+            comment += random.choice(edits)
+        
+        return comment
     
     def generate_fallback_comment(self, subreddit_name=""):
         """Fallback für Kommentare ohne AI - angepasst an Subreddit"""
@@ -1052,15 +1212,56 @@ Your witty response (lowercase, casual):"""
         
         return comments_made
     
+    def check_if_banned_from_subreddit(self, subreddit_name):
+        """Prüft ob der Bot aus einem Subreddit gebannt ist"""
+        try:
+            subreddit = self.reddit.subreddit(subreddit_name)
+            # Versuche auf banned status zuzugreifen
+            banned = subreddit.banned(redditor=self.reddit.user.me())
+            for ban in banned:
+                # Wenn wir in der Liste sind, sind wir gebannt
+                return True
+            return False
+        except Exception as e:
+            # Bei 403 Forbidden sind wir wahrscheinlich gebannt
+            if "403" in str(e) or "Forbidden" in str(e):
+                return True
+            return False
+    
+    def add_to_blacklist(self, subreddit_name):
+        """Fügt ein Subreddit zur Blacklist hinzu"""
+        blacklist_file = Path("/home/lucawahl/Reddit/blacklist_subreddits.txt")
+        
+        # Lese existierende Blacklist
+        existing = []
+        if blacklist_file.exists():
+            with open(blacklist_file, 'r', encoding='utf-8') as f:
+                existing = [line.strip() for line in f.readlines()]
+        
+        # Füge neues Subreddit hinzu wenn noch nicht vorhanden
+        if subreddit_name not in existing and not subreddit_name.startswith('#'):
+            with open(blacklist_file, 'a', encoding='utf-8') as f:
+                f.write(f"\n{subreddit_name}")
+            print(f"   🚫 r/{subreddit_name} zur Blacklist hinzugefügt")
+            
+            # Update die in-memory Blacklist
+            if hasattr(self, 'blacklisted_subreddits'):
+                self.blacklisted_subreddits.append(subreddit_name.lower())
+    
     def post_comment_to_reddit(self, parent, comment_text, dry_run=False):
         """Postet einen Kommentar auf Reddit"""
         if dry_run:
             print(f"   [DRY RUN] Würde kommentieren: {comment_text}")
             return True
         
+        # Prüfe ob Kommentar leer ist
+        if not comment_text or comment_text.strip() == "":
+            print(f"   ❌ Kommentar ist leer - generiere Fallback")
+            comment_text = "this is really interesting, thanks for sharing!"
+        
         try:
-            # Poste den Kommentar
-            comment = parent.reply(comment_text)
+            # Poste den Kommentar (mit keyword argument für PRAW 8)
+            comment = parent.reply(body=comment_text)
             print(f"   ✅ Kommentar erfolgreich gepostet!")
             
             # Speichere Kommentar-Info
@@ -1079,8 +1280,10 @@ Your witty response (lowercase, casual):"""
                 print(f"   ❌ Thread ist gesperrt")
             elif 'DELETED_COMMENT' in error_msg:
                 print(f"   ❌ Kommentar wurde gelöscht")
-            elif 'ratelimit' in error_msg.lower():
-                print(f"   ❌ Rate Limit erreicht - warte länger")
+            elif 'ratelimit' in error_msg.lower() or 'RATELIMIT' in error_msg:
+                print(f"   ⏰ Rate Limit erreicht - warte 10 Minuten...")
+                time.sleep(600)  # 10 Minuten warten bei Rate Limit
+                print(f"   🔄 Versuche erneut nach Wartezeit")
             else:
                 print(f"   ❌ Fehler beim Posten: {error_msg[:100]}")
             return False
@@ -1675,8 +1878,8 @@ Your witty response (lowercase, casual):"""
                             'comment': 'Kommentar erstellt'
                         })
                         
-                        # Warte 2-4 Minuten bis zum nächsten
-                        wait_time = random.randint(120, 240)
+                        # LÄNGERE Wartezeit: 5-10 Minuten zwischen Kommentaren
+                        wait_time = random.randint(300, 600)
                         print(f"\n⏳ Warte {wait_time//60} Minuten bis zum nächsten Kommentar...")
                         time.sleep(wait_time)
                     else:
@@ -1691,196 +1894,41 @@ Your witty response (lowercase, casual):"""
             print(f"📊 Heute erstellt: {self.get_today_comment_count()}/{self.daily_comment_target} Kommentare")
     
     def find_popular_post_to_comment(self):
-        """Findet einen beliebten Post zum Kommentieren"""
+        """Findet einen beliebten Post zum Kommentieren - NUR in ADHD-fokussierten Subreddits"""
         try:
-            # ALLE Communities gemischt - Freundliche, Memes, Nischen
-            popular_subs = [
-                # WHOLESOME & FREUNDLICHE
-                'MadeMeSmile', 'wholesomememes', 'HumansBeingBros', 'UpliftingNews',
-                'CongratsLikeImFive', 'toastme', 'RandomActsOfKindness', 'happy',
-                'CasualConversation', 'NewToReddit', 'findareddit', 'self',
-                
-                # Tiere (immer freundlich!)
-                'aww', 'Eyebleach', 'AnimalsBeingBros', 'AnimalsBeingDerps',
-                'rarepuppers', 'cats', 'dogs', 'puppies', 'kittens',
-                'tuckedinkitties', 'IllegallySmolCats', 'babyelephantgifs',
-                
-                # Entspannend & Beruhigend
-                'oddlysatisfying', 'CozyPlaces', 'RoomPorn', 'AmateurRoomPorn',
-                'cottagecore', 'fairycore', 'aestheticrain', 'raining',
-                
-                # Lernen & Helfen (sehr unterstützend)
-                'explainlikeimfive', 'NoStupidQuestions', 'TooAfraidToAsk',
-                'IWantToLearn', 'LearnUselessTalents', 'coolguides',
-                'YouShouldKnow', 'todayilearned', 'OutOfTheLoop',
-                
-                # Kreativ & Unterstützend
-                'crafts', 'somethingimade', 'DIY', 'ArtFundamentals',
-                'learnart', 'doodles', 'DigitalPainting', 'ArtProgressPics',
-                'writing', 'WritingPrompts', 'poetry', 'OCPoetry',
-                
-                # Hobbies (freundliche Communities)
-                'gardening', 'houseplants', 'IndoorGarden', 'succulents',
-                'Baking', 'Breadit', 'cooking', 'cookingforbeginners',
-                'tea', 'Coffee', 'slowcooking', 'MealPrepSunday',
-                
-                # Gaming (die netteren)
-                'AnimalCrossing', 'StardewValley', 'CozyGamers', 'GirlGamers',
-                'patientgamers', 'lowendgaming', 'casualnintendo', 'nintendo',
-                'MinecraftBuilds', 'Minecraft', 'wholesomegames',
-                
-                # Fitness & Wellness (unterstützend)
-                'flexibility', 'yoga', 'bodyweightfitness', 'C25K',
-                'getmotivated', 'DecidingToBeBetter', 'selfimprovement',
-                'meditation', 'Mindfulness', 'selfcare', '1200isplenty',
-                
-                # Bücher & Medien (freundlich)
-                'books', 'suggestmeabook', 'booksuggestions', 'Libraries',
-                'Fantasy', 'printSF', 'YAlit', 'comicbooks',
-                
-                # Support & Mental Health (sehr unterstützend)
-                'MomForAMinute', 'DadForAMinute', 'internetparents',
-                'KindVoice', 'MMFB', 'offmychest', 'congratslikeimfive',
-                
-                # Natur & Draußen
-                'NatureIsFuckingLit', 'EarthPorn', 'natureporn', 'hiking',
-                'camping', 'backpacking', 'WildernessBackpacking',
-                
-                # Essen (freundlich)
-                'food', 'FoodPorn', 'DessertPorn', 'veganrecipes',
-                'EatCheapAndHealthy', 'budgetfood', 'recipes',
-                
-                # Kleine nette Communities
-                'benignexistence', 'PointlessStories', 'self', 
-                'SimpleLiving', 'ZeroWaste', 'minimalism',
-                
-                # Musik (unterstützend)
-                'listentothis', 'ifyoulikeblank', 'makemeaplaylist',
-                'WeAreTheMusicMakers', 'musictheory', 'guitar', 'piano',
-                
-                # Lokale Communities (meist sehr freundlich)
-                'AskUK', 'CasualUK', 'AskAnAmerican', 'AskEurope',
-                
-                # Anfängerfreundlich
-                'beginnerfitness', 'beginnerrunning', 'learnprogramming',
-                'learntodraw', 'languagelearning', 'iwanttolearn',
-                
-                # SPEZIELLE NISCHEN-HOBBIES (sehr freundlich!)
-                'Bonsai', 'BonsaiPorn', 'IndoorBonsai', 'bonsaicommunity',
-                'Aquariums', 'PlantedTank', 'shrimptank', 'bettafish',
-                'terrariums', 'vivariums', 'orchids', 'carnivorrousplants',
-                'mushrooms', 'mycology', 'mushroomgrowers', 'unclebens',
-                
-                # Healthcare & Medizin (unterstützend)
-                'AskDocs', 'medical', 'nursing', 'medicine', 'healthcare',
-                'physicaltherapy', 'mentalhealth', 'chronicpain', 'migraine',
-                'Fibromyalgia', 'ChronicIllness', 'disability', 'invisible',
-                
-                # Handwerk & Spezialisiert
-                'Leathercraft', 'woodworking', 'BeginnerWoodWorking',
-                'metalworking', 'blacksmithing', 'jewelry', 'silversmithing',
-                'pottery', 'ceramics', 'glassblowing', 'stainedglass',
-                'quilting', 'sewing', 'knitting', 'crochet', 'CrossStitch',
-                'embroidery', 'weaving', 'spinning', 'yarnaddicts',
-                
-                # Sammler-Communities (super freundlich)
-                'coins', 'papermoney', 'stamps', 'philately',
-                'HotWheels', 'lego', 'ActionFigures', 'funkopop',
-                'vintageaudio', 'vinyl', 'cassetteculture', 'VHS',
-                'retrogaming', 'gamecollecting', 'comicbookcollecting',
-                
-                # Wissenschaft & Bildung (hilfsbereit)
-                'askscience', 'biology', 'chemistry', 'physics',
-                'astronomy', 'geology', 'meteorology', 'paleontology',
-                'archaeology', 'anthropology', 'linguistics', 'etymology',
-                
-                # Spezielle Tiere & Haustiere
-                'parrots', 'cockatiel', 'budgies', 'conures',
-                'reptiles', 'snakes', 'leopardgeckos', 'BeardedDragons',
-                'tarantulas', 'mantids', 'antkeeping', 'isopods',
-                'chickens', 'BackyardChickens', 'quails', 'ducks',
-                'goats', 'sheep', 'alpaca', 'rabbits', 'hedgehogs',
-                
-                # Vintage & Retro (nostalgisch freundlich)
-                'vintage', 'VintageApple', 'retrobattlestations',
-                'typewriters', 'fountainpens', 'mechanicalpencils',
-                'watches', 'Watchexchange', 'VintageWatches',
-                
-                # Essen-Spezialitäten (enthusiastisch)
-                'fermentation', 'kombucha', 'sourdough', 'cheesemaking',
-                'pickling', 'canning', 'foraging', 'mycology',
-                'spicy', 'hotsauce', 'HotPeppers', 'salsasnobs',
-                'bbq', 'smoking', 'grilling', 'sousvide',
-                
-                # Transport & Fahrzeuge (Enthusiasten)
-                'trains', 'modeltrains', 'aviation', 'flying',
-                'sailing', 'boating', 'kayaking', 'canoeing',
-                'electricvehicles', 'ebikes', 'onewheel', 'ElectricSkateboarding',
-                
-                # Kunst & Handarbeit Nischen
-                'minipainting', 'terrainbuilding', 'modelmakers',
-                'gunpla', 'scalemodels', 'dioramas', 'dollhouses',
-                'origami', 'papercraft', 'cardmaking', 'scrapbooking',
-                'calligraphy', 'penmanshipporn', 'handwriting',
-                
-                # Repair & DIY Communities
-                'fixit', 'AskElectronics', 'diyelectronics', 'arduino',
-                'raspberry_pi', '3Dprinting', 'functionalprint',
-                'homeimprovement', 'HomeRepair', 'appliancerepair',
-                
-                # MEMES & HUMOR
-                'memes', 'dankmemes', 'me_irl', 'meirl', 'funny',
-                'meme', 'AdviceAnimals', 'terriblefacebookmemes',
-                'comedyheaven', 'okbuddyretard', 'shitposting',
-                
-                # INTERESSANT & VIRAL
-                'interestingasfuck', 'Damnthatsinteresting', 'nextfuckinglevel',
-                'BeAmazed', 'blackmagicfuckery', 'unexpected', 'maybemaybemaybe',
-                'youseeingthisshit', 'toptalent', 'beamazed',
-                
-                # FRAGEN & DISKUSSION
-                'AskReddit', 'askmen', 'askwomen', 'askscience',
-                'nostupidquestions', 'tooafraidtoask', 'doesanybodyelse',
-                'showerthoughts', 'unpopularopinion', 'changemyview',
-                
-                # FAILS & HUMOR
-                'facepalm', 'therewasanattempt', 'instant_regret', 
-                'whatcouldgowrong', 'wellthatsucks', 'mildlyinfuriating',
-                'crappydesign', 'assholedesign', 'notmyjob',
-                
-                # GAMING MAINSTREAM
-                'gaming', 'pcgaming', 'ps5', 'xbox', 'nintendoswitch',
-                'steam', 'minecraft', 'fortnite', 'apexlegends',
-                
-                # TECH & INTERNET
-                'technology', 'gadgets', 'android', 'apple', 'iphone',
-                'buildapc', 'pcmasterrace', 'battlestations',
-                
-                # LIFESTYLE MAINSTREAM
-                'lifeprotips', 'youshouldknow', 'todayilearned',
-                'getmotivated', 'quotesporn', 'motivation',
-                
-                # ENTERTAINMENT
-                'movies', 'television', 'netflix', 'marvelstudios',
-                'starwars', 'gameofthrones', 'anime', 'manga'
-            ]
-            
-            # Mische alle Subreddits zufällig
-            import random
-            random.shuffle(popular_subs)
-            
-            # Mische unsere Subreddits mit populären
+            # NUR ADHD-fokussierte Subreddits aus target_subreddits Dateien
+            # Diese sind bereits in self.all_subreddits geladen
             if self.all_subreddits:
-                mixed_subs = list(set(self.all_subreddits + popular_subs))
+                # Verwende NUR die geladenen ADHD-Subreddits
+                adhd_subs = self.all_subreddits
             else:
-                mixed_subs = popular_subs
-                
+                # Fallback auf Core ADHD Subreddits
+                adhd_subs = [
+                    'ADHD', 'ADHDwomen', 'AdultADHD', 'ADHDUK', 'ADHDmemes',
+                    'ADHD_Parenting', 'HowToADHD', 'AuDHD', 'adhdmeme', 'adhd_anxiety',
+                    'GetDisciplined', 'productivity', 'bulletjournal', 'organization',
+                    'mentalhealth', 'anxiety', 'therapy', 'selfcare', 'meditation',
+                    'decidingtobebetter', 'selfimprovement', 'GetMotivated'
+                ]
+            
+            # Verwende die ADHD-fokussierten Subreddits
+            target_subs = adhd_subs
+            
             # Versuche mehrere Subreddits
             for attempt in range(3):
-                target_sub = random.choice(mixed_subs)
+                if not target_subs:
+                    break
+                    
+                target_sub = random.choice(target_subs)
                 print(f"   🔎 Prüfe r/{target_sub}...")
                 
                 try:
+                    # Prüfe zuerst ob wir gebannt sind
+                    if self.check_if_banned_from_subreddit(target_sub):
+                        print(f"   🚫 Gebannt in r/{target_sub} - überspringe")
+                        self.add_to_blacklist(target_sub)
+                        continue
+                    
                     subreddit = self.reddit.subreddit(target_sub)
                     # Hole Hot Posts
                     posts = list(subreddit.hot(limit=25))
@@ -1892,11 +1940,12 @@ Your witty response (lowercase, casual):"""
                         if post.id in self.commented_posts:
                             continue
                             
-                        # Gelockerte Kriterien: 20+ Score, 5+ Kommentare, bis zu 24h alt
+                        # HÖHERE Standards: 100+ Score, 10+ Kommentare, 2-12h alt (perfektes Timing)
                         post_age_hours = (time.time() - post.created_utc) / 3600
-                        if (post.score > 20 and 
-                            post.num_comments > 5 and 
-                            post_age_hours < 24 and 
+                        if (post.score > 100 and 
+                            post.num_comments > 10 and 
+                            post_age_hours > 2 and  # Nicht zu früh
+                            post_age_hours < 12 and  # Noch im Aufwärtstrend
                             not post.locked and
                             not post.archived):
                             
@@ -1925,9 +1974,31 @@ Your witty response (lowercase, casual):"""
         return None
     
     def create_smart_comment(self, post_data):
-        """Erstellt einen intelligenten Kommentar auf einem Post"""
+        """Erstellt einen intelligenten Kommentar auf einem Post mit perfektem Timing"""
         try:
             submission = post_data['submission']
+            
+            # Prüfe auf Event-bezogene Keywords für perfektes Timing
+            title_lower = post_data['title'].lower()
+            event_keywords = {
+                'update': "thanks for the update! ",
+                'follow up': "glad you followed up on this! ",
+                'happened': "wow, hope you're okay now! ",
+                'just': "perfect timing seeing this! ",
+                'today': "what a coincidence, ",
+                'yesterday': "i saw something similar yesterday! ",
+                'breaking': "this is huge if true! ",
+                'finally': "about time! been waiting for this ",
+                'announced': "this changes everything! ",
+                'released': "can't wait to try this! "
+            }
+            
+            # Füge Event-Kontext hinzu wenn relevant
+            event_prefix = ""
+            for keyword, prefix in event_keywords.items():
+                if keyword in title_lower:
+                    event_prefix = prefix
+                    break
             
             # Hole Top-Kommentare für Kontext
             submission.comments.replace_more(limit=0)
@@ -1948,6 +2019,10 @@ Your witty response (lowercase, casual):"""
                     [],
                     post_data.get('subreddit', '')
                 )
+                
+                # Füge Event-Prefix hinzu wenn vorhanden
+                if event_prefix and random.random() < 0.5:  # 50% Chance für Event-Bezug
+                    comment_text = event_prefix + comment_text
                 
                 print(f"\n💬 Kommentar: {comment_text}")
                 

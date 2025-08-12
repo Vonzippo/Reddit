@@ -1,0 +1,464 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1733962233
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "chekhovsdickpic",
+  "author_flair_background_color": null,
+  "author_flair_css_class": null,
+  "author_flair_richtext": [],
+  "author_flair_template_id": null,
+  "author_flair_text": null,
+  "author_flair_text_color": null,
+  "author_flair_type": "text",
+  "author_fullname": "t2_139qlf",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1733832621,
+  "created_utc": 1733832621,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "reddit.com",
+  "downs": 0,
+  "edited": false,
+  "gallery_data": {
+    "items": [
+      {
+        "id": 565490401,
+        "media_id": "38dmvfshi06e1"
+      },
+      {
+        "id": 565490402,
+        "media_id": "eb439ashi06e1"
+      },
+      {
+        "id": 565490403,
+        "media_id": "ifwczashi06e1"
+      },
+      {
+        "id": 565490404,
+        "media_id": "bgnfuashi06e1"
+      },
+      {
+        "id": 565490405,
+        "media_id": "31stebshi06e1"
+      },
+      {
+        "id": 565490406,
+        "media_id": "awbndbshi06e1"
+      },
+      {
+        "id": 565490407,
+        "media_id": "7doexbshi06e1"
+      }
+    ]
+  },
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1hb0ci3",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_gallery": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": false,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#7193ff",
+  "link_flair_css_class": "",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Hobby & Hyperfixation Sharing"
+    }
+  ],
+  "link_flair_template_id": "95da2abc-eb8c-11ed-bf0f-464bf52c69a5",
+  "link_flair_text": "Hobby & Hyperfixation Sharing",
+  "link_flair_text_color": "light",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_metadata": {
+    "31stebshi06e1": {
+      "e": "Image",
+      "id": "31stebshi06e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/31stebshi06e1.jpg?width=108&crop=smart&auto=webp&s=6e26b7f5ccf8358b820e949b5a1d0f3756dc95f5",
+          "x": 108,
+          "y": 54
+        },
+        {
+          "u": "https://preview.redd.it/31stebshi06e1.jpg?width=216&crop=smart&auto=webp&s=f9ee5958c03038a28ce7fe6bdc527b3e4059dae6",
+          "x": 216,
+          "y": 108
+        },
+        {
+          "u": "https://preview.redd.it/31stebshi06e1.jpg?width=320&crop=smart&auto=webp&s=43641f3ee492275f6b4cf8b148e37e1825532103",
+          "x": 320,
+          "y": 161
+        },
+        {
+          "u": "https://preview.redd.it/31stebshi06e1.jpg?width=640&crop=smart&auto=webp&s=1a605111753d2b9d978fd594de5a5af823ae7f80",
+          "x": 640,
+          "y": 322
+        },
+        {
+          "u": "https://preview.redd.it/31stebshi06e1.jpg?width=960&crop=smart&auto=webp&s=697567313abbe1b2f5206e2d66edbfefd9484d26",
+          "x": 960,
+          "y": 483
+        },
+        {
+          "u": "https://preview.redd.it/31stebshi06e1.jpg?width=1080&crop=smart&auto=webp&s=1b93ea2d104aa4bc8bde8343291e449504487b7f",
+          "x": 1080,
+          "y": 543
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/31stebshi06e1.jpg?width=3772&format=pjpg&auto=webp&s=b6723f31350850f6205b4e375c275bf23b30b7bf",
+        "x": 3772,
+        "y": 1898
+      },
+      "status": "valid"
+    },
+    "38dmvfshi06e1": {
+      "e": "Image",
+      "id": "38dmvfshi06e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/38dmvfshi06e1.jpg?width=108&crop=smart&auto=webp&s=17ea46e48b8123489e3b2202371f17b9cabcd042",
+          "x": 108,
+          "y": 144
+        },
+        {
+          "u": "https://preview.redd.it/38dmvfshi06e1.jpg?width=216&crop=smart&auto=webp&s=5b783b5844372569e576125e067717604e7df97b",
+          "x": 216,
+          "y": 288
+        },
+        {
+          "u": "https://preview.redd.it/38dmvfshi06e1.jpg?width=320&crop=smart&auto=webp&s=faa27d0f26213880ba737a6b3c466ef681741075",
+          "x": 320,
+          "y": 426
+        },
+        {
+          "u": "https://preview.redd.it/38dmvfshi06e1.jpg?width=640&crop=smart&auto=webp&s=447ba29698ece7807a487a4033e03711eef51d64",
+          "x": 640,
+          "y": 853
+        },
+        {
+          "u": "https://preview.redd.it/38dmvfshi06e1.jpg?width=960&crop=smart&auto=webp&s=896936bd39bfe17097dd4ca3542f4e778a108c55",
+          "x": 960,
+          "y": 1280
+        },
+        {
+          "u": "https://preview.redd.it/38dmvfshi06e1.jpg?width=1080&crop=smart&auto=webp&s=79e1862a5811295bae5a23dba8a52d5706dc165b",
+          "x": 1080,
+          "y": 1440
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/38dmvfshi06e1.jpg?width=4284&format=pjpg&auto=webp&s=8951d8f63532cb1a5560cb9b4c6057d3c6764b84",
+        "x": 4284,
+        "y": 5712
+      },
+      "status": "valid"
+    },
+    "7doexbshi06e1": {
+      "e": "Image",
+      "id": "7doexbshi06e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/7doexbshi06e1.jpg?width=108&crop=smart&auto=webp&s=3092ff8e16dafe1818746870ada91929a9a4e071",
+          "x": 108,
+          "y": 91
+        },
+        {
+          "u": "https://preview.redd.it/7doexbshi06e1.jpg?width=216&crop=smart&auto=webp&s=8a45126d4c33cfdb7de859766fbb78a313b6194d",
+          "x": 216,
+          "y": 182
+        },
+        {
+          "u": "https://preview.redd.it/7doexbshi06e1.jpg?width=320&crop=smart&auto=webp&s=1caebd98bb333714f218e1e45c6ade96b67a8734",
+          "x": 320,
+          "y": 269
+        },
+        {
+          "u": "https://preview.redd.it/7doexbshi06e1.jpg?width=640&crop=smart&auto=webp&s=834be06194fad38b11381256b3003d979230f1ea",
+          "x": 640,
+          "y": 539
+        },
+        {
+          "u": "https://preview.redd.it/7doexbshi06e1.jpg?width=960&crop=smart&auto=webp&s=4f1b5b7068ad8aabd76cfa288e0facd60d71f0d3",
+          "x": 960,
+          "y": 809
+        },
+        {
+          "u": "https://preview.redd.it/7doexbshi06e1.jpg?width=1080&crop=smart&auto=webp&s=09360ed036403d6cabf2afce3e20ffd8608d5689",
+          "x": 1080,
+          "y": 910
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/7doexbshi06e1.jpg?width=2778&format=pjpg&auto=webp&s=9716ef8090a0ec4a66f1d89d81aa832e7e62456d",
+        "x": 2778,
+        "y": 2343
+      },
+      "status": "valid"
+    },
+    "awbndbshi06e1": {
+      "e": "Image",
+      "id": "awbndbshi06e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/awbndbshi06e1.jpg?width=108&crop=smart&auto=webp&s=a1ca9fab208670101133fb0df2d7b71b3746f94a",
+          "x": 108,
+          "y": 53
+        },
+        {
+          "u": "https://preview.redd.it/awbndbshi06e1.jpg?width=216&crop=smart&auto=webp&s=b5393c55c25252644d7166bfc8ae687646fc9983",
+          "x": 216,
+          "y": 106
+        },
+        {
+          "u": "https://preview.redd.it/awbndbshi06e1.jpg?width=320&crop=smart&auto=webp&s=f6668f54f830a636b58c42bf688a1faada24b9da",
+          "x": 320,
+          "y": 157
+        },
+        {
+          "u": "https://preview.redd.it/awbndbshi06e1.jpg?width=640&crop=smart&auto=webp&s=1a34960b790c4cbf2418d78c163c8d269ab0e39c",
+          "x": 640,
+          "y": 315
+        },
+        {
+          "u": "https://preview.redd.it/awbndbshi06e1.jpg?width=960&crop=smart&auto=webp&s=be72b92d5e1602f75fb171871bb37326a9522bac",
+          "x": 960,
+          "y": 473
+        },
+        {
+          "u": "https://preview.redd.it/awbndbshi06e1.jpg?width=1080&crop=smart&auto=webp&s=14310acf07fcb958b5de9b1ac262dc31607ef6b8",
+          "x": 1080,
+          "y": 532
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/awbndbshi06e1.jpg?width=2637&format=pjpg&auto=webp&s=6d511922c3ba8c9537187a231f76fa3de8dd665b",
+        "x": 2637,
+        "y": 1300
+      },
+      "status": "valid"
+    },
+    "bgnfuashi06e1": {
+      "e": "Image",
+      "id": "bgnfuashi06e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/bgnfuashi06e1.jpg?width=108&crop=smart&auto=webp&s=4bc92d4fad896cbd5c23885e44189771aaddb753",
+          "x": 108,
+          "y": 155
+        },
+        {
+          "u": "https://preview.redd.it/bgnfuashi06e1.jpg?width=216&crop=smart&auto=webp&s=020faf415d8c652f0822daaaa615cf38a3707328",
+          "x": 216,
+          "y": 311
+        },
+        {
+          "u": "https://preview.redd.it/bgnfuashi06e1.jpg?width=320&crop=smart&auto=webp&s=eff2f4f4266126e8b1a16206074898a743ef6e74",
+          "x": 320,
+          "y": 461
+        },
+        {
+          "u": "https://preview.redd.it/bgnfuashi06e1.jpg?width=640&crop=smart&auto=webp&s=2fc5367d7fd7ff74d7b7405c20f12df6aca91012",
+          "x": 640,
+          "y": 922
+        },
+        {
+          "u": "https://preview.redd.it/bgnfuashi06e1.jpg?width=960&crop=smart&auto=webp&s=9a1e8bce570149adcfb8f93c5119fd02f8b4b8b0",
+          "x": 960,
+          "y": 1383
+        },
+        {
+          "u": "https://preview.redd.it/bgnfuashi06e1.jpg?width=1080&crop=smart&auto=webp&s=666b3a925a8c918b01975167ddd552a2e3e50d88",
+          "x": 1080,
+          "y": 1556
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/bgnfuashi06e1.jpg?width=2453&format=pjpg&auto=webp&s=01597e27d10f6a7751a1794292f3a7391ff48f10",
+        "x": 2453,
+        "y": 3535
+      },
+      "status": "valid"
+    },
+    "eb439ashi06e1": {
+      "e": "Image",
+      "id": "eb439ashi06e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/eb439ashi06e1.jpg?width=108&crop=smart&auto=webp&s=5c7a74d2bb71163eb2cdec39226c820a241c47a0",
+          "x": 108,
+          "y": 103
+        },
+        {
+          "u": "https://preview.redd.it/eb439ashi06e1.jpg?width=216&crop=smart&auto=webp&s=ed45c4519ffd176c81876279f4ffdaee393a1c5b",
+          "x": 216,
+          "y": 206
+        },
+        {
+          "u": "https://preview.redd.it/eb439ashi06e1.jpg?width=320&crop=smart&auto=webp&s=3a4249d45b423bfe4d4ba89557e6aaa95c025501",
+          "x": 320,
+          "y": 305
+        },
+        {
+          "u": "https://preview.redd.it/eb439ashi06e1.jpg?width=640&crop=smart&auto=webp&s=76351f181b729612a8e22f96f221f2c4c15d4607",
+          "x": 640,
+          "y": 610
+        },
+        {
+          "u": "https://preview.redd.it/eb439ashi06e1.jpg?width=960&crop=smart&auto=webp&s=ee4f28a7b8757a2a176fb6bdb74ce9b2c564b7d3",
+          "x": 960,
+          "y": 915
+        },
+        {
+          "u": "https://preview.redd.it/eb439ashi06e1.jpg?width=1080&crop=smart&auto=webp&s=8150eaa7ccb7b2eb160729c27a07b54b20405e28",
+          "x": 1080,
+          "y": 1030
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/eb439ashi06e1.jpg?width=2359&format=pjpg&auto=webp&s=87c2a6581310411d1303370a74759e4b677fe079",
+        "x": 2359,
+        "y": 2250
+      },
+      "status": "valid"
+    },
+    "ifwczashi06e1": {
+      "e": "Image",
+      "id": "ifwczashi06e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/ifwczashi06e1.jpg?width=108&crop=smart&auto=webp&s=f17222835bc2c2e3b482b28dbdd938fc3473819b",
+          "x": 108,
+          "y": 36
+        },
+        {
+          "u": "https://preview.redd.it/ifwczashi06e1.jpg?width=216&crop=smart&auto=webp&s=6ef67511a7825474336b04a91cb6891fe85d1282",
+          "x": 216,
+          "y": 72
+        },
+        {
+          "u": "https://preview.redd.it/ifwczashi06e1.jpg?width=320&crop=smart&auto=webp&s=1de888c5e3b8de44f3ebdd8f3260fee39bafd927",
+          "x": 320,
+          "y": 107
+        },
+        {
+          "u": "https://preview.redd.it/ifwczashi06e1.jpg?width=640&crop=smart&auto=webp&s=89243636e34f45b9d568af00e20dbad825bbef1d",
+          "x": 640,
+          "y": 214
+        },
+        {
+          "u": "https://preview.redd.it/ifwczashi06e1.jpg?width=960&crop=smart&auto=webp&s=9ecc1ad44da57ca78381bbd2e4bad82de6f86c1f",
+          "x": 960,
+          "y": 322
+        },
+        {
+          "u": "https://preview.redd.it/ifwczashi06e1.jpg?width=1080&crop=smart&auto=webp&s=6112600553096e8cff943b364c96d091326906d1",
+          "x": 1080,
+          "y": 362
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/ifwczashi06e1.jpg?width=3682&format=pjpg&auto=webp&s=9e48fb56dd661c38b437582d4cf0af46c5d375a1",
+        "x": 3682,
+        "y": 1236
+      },
+      "status": "valid"
+    }
+  },
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1hb0ci3",
+  "no_follow": true,
+  "num_comments": 135,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/adhdwomen/comments/1hb0ci3/that_time_i_got_ovariesdeep_into_doodling_for/",
+  "pinned": false,
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1733832637,
+  "saved": false,
+  "score": 4437,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "Included close ups of some of my favorites. This was the result of a self-imposed Vyvanse break earlier this year. Let’s not discuss the amount of money I spent on Micron pens or the fact that I still haul a whole bag of them around with me along with a sketchbook that has FOUR whole pages doodled in it!\n\nLast pic is a bonus photo of the first page of said sketchbook, and is the sole result the last time the ✨creative spirit✨ overtook me (well, that and the purchase of a $200 set of Tombow markers). 🤦🏻‍♀️\n\nThe good news is I can technically use all this shit at my job - the bad news is I can’t get them reimbursed bc I took them home and played with them first lol.\n\n(Note that most of those doodles are *not* my invention - they’re mostly copied or closely inspired from various YouTube doodling videos.)",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "adhdwomen",
+  "subreddit_id": "t5_31aao",
+  "subreddit_name_prefixed": "r/adhdwomen",
+  "subreddit_subscribers": 386610,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "https://b.thumbs.redditmedia.com/4A3K4_npdrNzoYRO-NdYA24h-ubV2vEKwrEw2ZrXQAI.jpg",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "That time I got ovaries-deep into doodling for like 3 days and then never did it again",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 4437,
+  "upvote_ratio": 1,
+  "url": "https://www.reddit.com/gallery/1hb0ci3",
+  "url_overridden_by_dest": "https://www.reddit.com/gallery/1hb0ci3",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

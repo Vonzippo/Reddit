@@ -1,0 +1,408 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1730636743
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "Decent-Respect-3281",
+  "author_flair_background_color": null,
+  "author_flair_css_class": null,
+  "author_flair_richtext": [],
+  "author_flair_template_id": null,
+  "author_flair_text": null,
+  "author_flair_text_color": null,
+  "author_flair_type": "text",
+  "author_fullname": "t2_mzt6wqucq",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1730507136,
+  "created_utc": 1730507136,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "reddit.com",
+  "downs": 0,
+  "edited": false,
+  "gallery_data": {
+    "items": [
+      {
+        "caption": "",
+        "id": 544530444,
+        "media_id": "he3wokt5udyd1"
+      },
+      {
+        "caption": "",
+        "id": 544530445,
+        "media_id": "pt6sf926udyd1"
+      },
+      {
+        "caption": "",
+        "id": 544530446,
+        "media_id": "aa2j7176udyd1"
+      },
+      {
+        "caption": "",
+        "id": 544530447,
+        "media_id": "j06k5kb6udyd1"
+      },
+      {
+        "caption": "",
+        "id": 544530448,
+        "media_id": "qumugke6udyd1"
+      },
+      {
+        "caption": "",
+        "id": 544530449,
+        "media_id": "cbpk4kp6udyd1"
+      }
+    ]
+  },
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1ghk7xd",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_gallery": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": false,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#dadada",
+  "link_flair_css_class": "ad",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Advice needed"
+    }
+  ],
+  "link_flair_template_id": "2cf5ac18-d67b-11e3-bdfb-12313b0d5a0a",
+  "link_flair_text": "Advice needed",
+  "link_flair_text_color": "dark",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_metadata": {
+    "aa2j7176udyd1": {
+      "e": "Image",
+      "id": "aa2j7176udyd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/aa2j7176udyd1.jpg?width=108&crop=smart&auto=webp&s=41a76af2afe09a6e0cac547c9a247b6e24cb4b02",
+          "x": 108,
+          "y": 81
+        },
+        {
+          "u": "https://preview.redd.it/aa2j7176udyd1.jpg?width=216&crop=smart&auto=webp&s=7384e25d684077f5ce914d63166d55f4363f3912",
+          "x": 216,
+          "y": 162
+        },
+        {
+          "u": "https://preview.redd.it/aa2j7176udyd1.jpg?width=320&crop=smart&auto=webp&s=0aba952e8a6c96cb2992812ea751e4c796bcfcaf",
+          "x": 320,
+          "y": 240
+        },
+        {
+          "u": "https://preview.redd.it/aa2j7176udyd1.jpg?width=640&crop=smart&auto=webp&s=9af7e25a1c155d68c408212b47483f124cea61cf",
+          "x": 640,
+          "y": 480
+        },
+        {
+          "u": "https://preview.redd.it/aa2j7176udyd1.jpg?width=960&crop=smart&auto=webp&s=b8d453008b1fc26b295c33a0ef44259af81d76c5",
+          "x": 960,
+          "y": 720
+        },
+        {
+          "u": "https://preview.redd.it/aa2j7176udyd1.jpg?width=1080&crop=smart&auto=webp&s=51dcaf2eed15ce11dfe0ac95a3b4bf5167cc76b0",
+          "x": 1080,
+          "y": 810
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/aa2j7176udyd1.jpg?width=1600&format=pjpg&auto=webp&s=ef4ed347aae7f1749b9bf0787ce29181a21dd1aa",
+        "x": 1600,
+        "y": 1200
+      },
+      "status": "valid"
+    },
+    "cbpk4kp6udyd1": {
+      "e": "Image",
+      "id": "cbpk4kp6udyd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/cbpk4kp6udyd1.jpg?width=108&crop=smart&auto=webp&s=36fe9ca9eb32a02b24ecee23834422f3facf251e",
+          "x": 108,
+          "y": 81
+        },
+        {
+          "u": "https://preview.redd.it/cbpk4kp6udyd1.jpg?width=216&crop=smart&auto=webp&s=3204b1a04151a361b086f4198fabac18e807c129",
+          "x": 216,
+          "y": 162
+        },
+        {
+          "u": "https://preview.redd.it/cbpk4kp6udyd1.jpg?width=320&crop=smart&auto=webp&s=616b433d17abe4f6255855b426ec6cbfebf86f16",
+          "x": 320,
+          "y": 240
+        },
+        {
+          "u": "https://preview.redd.it/cbpk4kp6udyd1.jpg?width=640&crop=smart&auto=webp&s=09b7638c494c6493665d80b6c1691424bc66cafe",
+          "x": 640,
+          "y": 480
+        },
+        {
+          "u": "https://preview.redd.it/cbpk4kp6udyd1.jpg?width=960&crop=smart&auto=webp&s=81725f7db42c8f135a4b982ca5eab07a5b3fa80c",
+          "x": 960,
+          "y": 720
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/cbpk4kp6udyd1.jpg?width=1032&format=pjpg&auto=webp&s=2b9f9de10c6a3458d44a159a2b32ca32b65f3473",
+        "x": 1032,
+        "y": 774
+      },
+      "status": "valid"
+    },
+    "he3wokt5udyd1": {
+      "e": "Image",
+      "id": "he3wokt5udyd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/he3wokt5udyd1.jpg?width=108&crop=smart&auto=webp&s=8993afff4426a008389b9df5350c14cceb8f3096",
+          "x": 108,
+          "y": 192
+        },
+        {
+          "u": "https://preview.redd.it/he3wokt5udyd1.jpg?width=216&crop=smart&auto=webp&s=ea66a5ab22a7e30fec98c908753caf2ce276c36c",
+          "x": 216,
+          "y": 384
+        },
+        {
+          "u": "https://preview.redd.it/he3wokt5udyd1.jpg?width=320&crop=smart&auto=webp&s=65d8e5428a84324084aa7b302ec9dcca6050de09",
+          "x": 320,
+          "y": 568
+        },
+        {
+          "u": "https://preview.redd.it/he3wokt5udyd1.jpg?width=640&crop=smart&auto=webp&s=ad07de766b4c7d715532fd9befb8ce524f7f2a35",
+          "x": 640,
+          "y": 1137
+        },
+        {
+          "u": "https://preview.redd.it/he3wokt5udyd1.jpg?width=960&crop=smart&auto=webp&s=d4f44736014b5b849e9b6acd30df431f8d499841",
+          "x": 960,
+          "y": 1706
+        },
+        {
+          "u": "https://preview.redd.it/he3wokt5udyd1.jpg?width=1080&crop=smart&auto=webp&s=fdbbcb9fce289ed03e5de5241256e919fa3a4c6a",
+          "x": 1080,
+          "y": 1920
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/he3wokt5udyd1.jpg?width=2160&format=pjpg&auto=webp&s=515b2d3c91caf08ffb405871b47f1a210c26faa8",
+        "x": 2160,
+        "y": 3840
+      },
+      "status": "valid"
+    },
+    "j06k5kb6udyd1": {
+      "e": "Image",
+      "id": "j06k5kb6udyd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/j06k5kb6udyd1.jpg?width=108&crop=smart&auto=webp&s=2a5ac3c0346a2abdf6e4c6170c062b16f2eeb823",
+          "x": 108,
+          "y": 192
+        },
+        {
+          "u": "https://preview.redd.it/j06k5kb6udyd1.jpg?width=216&crop=smart&auto=webp&s=f0876d9a3372be7c9c4d85c2efaab546c161134c",
+          "x": 216,
+          "y": 384
+        },
+        {
+          "u": "https://preview.redd.it/j06k5kb6udyd1.jpg?width=320&crop=smart&auto=webp&s=e158a5f12dbb14adc14ee59dfdf73f3ef08565d6",
+          "x": 320,
+          "y": 568
+        },
+        {
+          "u": "https://preview.redd.it/j06k5kb6udyd1.jpg?width=640&crop=smart&auto=webp&s=074105a0edf253e1918c9d6436018dfe32d745d2",
+          "x": 640,
+          "y": 1137
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/j06k5kb6udyd1.jpg?width=792&format=pjpg&auto=webp&s=ae6021ea2c74c98a2d4e6970706e5b7e210c7bfb",
+        "x": 792,
+        "y": 1408
+      },
+      "status": "valid"
+    },
+    "pt6sf926udyd1": {
+      "e": "Image",
+      "id": "pt6sf926udyd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/pt6sf926udyd1.jpg?width=108&crop=smart&auto=webp&s=793f31cf3f7b413ca52949f5cccec748b5e2428f",
+          "x": 108,
+          "y": 89
+        },
+        {
+          "u": "https://preview.redd.it/pt6sf926udyd1.jpg?width=216&crop=smart&auto=webp&s=46880a1e05b83dc6680bb92af3300079366b58d3",
+          "x": 216,
+          "y": 179
+        },
+        {
+          "u": "https://preview.redd.it/pt6sf926udyd1.jpg?width=320&crop=smart&auto=webp&s=61a93dc8b00f09b42a80cc4987cab4b83640f773",
+          "x": 320,
+          "y": 265
+        },
+        {
+          "u": "https://preview.redd.it/pt6sf926udyd1.jpg?width=640&crop=smart&auto=webp&s=13e16cc57e7e4a1a562e09d9307a83efd266388d",
+          "x": 640,
+          "y": 531
+        },
+        {
+          "u": "https://preview.redd.it/pt6sf926udyd1.jpg?width=960&crop=smart&auto=webp&s=b7250bb1caa5a33bba8abfbf5a9eb7a6d3afe965",
+          "x": 960,
+          "y": 797
+        },
+        {
+          "u": "https://preview.redd.it/pt6sf926udyd1.jpg?width=1080&crop=smart&auto=webp&s=2826b7aa22dca296d9401c4aaa127f7662f25704",
+          "x": 1080,
+          "y": 896
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/pt6sf926udyd1.jpg?width=1280&format=pjpg&auto=webp&s=60eb83e860d8de1bfd536ccbe70a9d759002b0d8",
+        "x": 1280,
+        "y": 1063
+      },
+      "status": "valid"
+    },
+    "qumugke6udyd1": {
+      "e": "Image",
+      "id": "qumugke6udyd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/qumugke6udyd1.jpg?width=108&crop=smart&auto=webp&s=5a45057e2dcab1f4acdb961f703410bae3a61e66",
+          "x": 108,
+          "y": 81
+        },
+        {
+          "u": "https://preview.redd.it/qumugke6udyd1.jpg?width=216&crop=smart&auto=webp&s=31a532ac34a389e4be119270d287cd3e4f17057a",
+          "x": 216,
+          "y": 162
+        },
+        {
+          "u": "https://preview.redd.it/qumugke6udyd1.jpg?width=320&crop=smart&auto=webp&s=79de8bd5aa464fc82f873e03d6fde9497d18b184",
+          "x": 320,
+          "y": 240
+        },
+        {
+          "u": "https://preview.redd.it/qumugke6udyd1.jpg?width=640&crop=smart&auto=webp&s=bee3cd1360118acff7358bce64b4b942efa7c26b",
+          "x": 640,
+          "y": 480
+        },
+        {
+          "u": "https://preview.redd.it/qumugke6udyd1.jpg?width=960&crop=smart&auto=webp&s=d1460296ecbb89148115656667e5fdfd7a1e303c",
+          "x": 960,
+          "y": 720
+        },
+        {
+          "u": "https://preview.redd.it/qumugke6udyd1.jpg?width=1080&crop=smart&auto=webp&s=697d48fa6c40a234d56aaaae84a688665e5e2cb2",
+          "x": 1080,
+          "y": 810
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/qumugke6udyd1.jpg?width=4128&format=pjpg&auto=webp&s=4645dcadbf848958a133d8e5524f816e8e4be966",
+        "x": 4128,
+        "y": 3096
+      },
+      "status": "valid"
+    }
+  },
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1ghk7xd",
+  "no_follow": false,
+  "num_comments": 71,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/autism/comments/1ghk7xd/i_lost_my_cat_my_baby_boy/",
+  "pinned": false,
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1730507153,
+  "saved": false,
+  "score": 1510,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "I am devastated. I feel that I have no reason to live anymore. He was the reason to achieve every thing in my live. The motivation to keep going and none understand this. \nI found him, his eyes doesn't show pain but he died alone, and I would can change that but I cowardly procrastinate in my bedroom. And then I came down to make a coffee and there he was, in the grass, with a expression of slowly struggling to breath.... oh God, I want to die. I do. Please some one come make me sleep forever. ",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "autism",
+  "subreddit_id": "t5_2qhs6",
+  "subreddit_name_prefixed": "r/autism",
+  "subreddit_subscribers": 405950,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "https://b.thumbs.redditmedia.com/den5_bEQcnjCZGVpxU2G1cIDWuP59JrjT_6vS1eF0QU.jpg",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "I lost my cat. My baby boy. ",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 1510,
+  "upvote_ratio": 0.9900000095367432,
+  "url": "https://www.reddit.com/gallery/1ghk7xd",
+  "url_overridden_by_dest": "https://www.reddit.com/gallery/1ghk7xd",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1733041464
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "carlxbarker",
+  "author_flair_background_color": null,
+  "author_flair_css_class": null,
+  "author_flair_richtext": [],
+  "author_flair_template_id": null,
+  "author_flair_text": null,
+  "author_flair_text_color": null,
+  "author_flair_type": "text",
+  "author_fullname": "t2_17fn2g",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1732911854,
+  "created_utc": 1732911854,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "reddit.com",
+  "downs": 0,
+  "edited": false,
+  "gallery_data": {
+    "items": [
+      {
+        "id": 559574831,
+        "media_id": "rxtciibngw3e1"
+      },
+      {
+        "id": 559574832,
+        "media_id": "n7qhuvbngw3e1"
+      }
+    ]
+  },
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1h2uxvg",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_gallery": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": false,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#7193ff",
+  "link_flair_css_class": "",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Hobby & Hyperfixation Sharing"
+    }
+  ],
+  "link_flair_template_id": "95da2abc-eb8c-11ed-bf0f-464bf52c69a5",
+  "link_flair_text": "Hobby & Hyperfixation Sharing",
+  "link_flair_text_color": "light",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_metadata": {
+    "n7qhuvbngw3e1": {
+      "e": "Image",
+      "id": "n7qhuvbngw3e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/n7qhuvbngw3e1.jpg?width=108&crop=smart&auto=webp&s=2005b86e1a39006c02c66a9e580ac37998aaadd7",
+          "x": 108,
+          "y": 216
+        },
+        {
+          "u": "https://preview.redd.it/n7qhuvbngw3e1.jpg?width=216&crop=smart&auto=webp&s=39749d5a231a1e6798ae2d0affa9006e4294a3ed",
+          "x": 216,
+          "y": 432
+        },
+        {
+          "u": "https://preview.redd.it/n7qhuvbngw3e1.jpg?width=320&crop=smart&auto=webp&s=9c3b24a10c48c868b0e7824a588d3c5a07ea54e3",
+          "x": 320,
+          "y": 640
+        },
+        {
+          "u": "https://preview.redd.it/n7qhuvbngw3e1.jpg?width=640&crop=smart&auto=webp&s=3465029813a357baf75eecacd2589752114a012b",
+          "x": 640,
+          "y": 1280
+        },
+        {
+          "u": "https://preview.redd.it/n7qhuvbngw3e1.jpg?width=960&crop=smart&auto=webp&s=e96e581b694eb20569522cf1657dbaeefd7a10b2",
+          "x": 960,
+          "y": 1920
+        },
+        {
+          "u": "https://preview.redd.it/n7qhuvbngw3e1.jpg?width=1080&crop=smart&auto=webp&s=3b3b01be984ec6ea243ba7a4e5d8395bb568c74f",
+          "x": 1080,
+          "y": 2160
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/n7qhuvbngw3e1.jpg?width=1179&format=pjpg&auto=webp&s=03dd5500f9791ce5c87459232746bb4484e83b32",
+        "x": 1179,
+        "y": 2556
+      },
+      "status": "valid"
+    },
+    "rxtciibngw3e1": {
+      "e": "Image",
+      "id": "rxtciibngw3e1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/rxtciibngw3e1.jpg?width=108&crop=smart&auto=webp&s=3ff7b0bade4aec8092cfceef992a085f1c538856",
+          "x": 108,
+          "y": 216
+        },
+        {
+          "u": "https://preview.redd.it/rxtciibngw3e1.jpg?width=216&crop=smart&auto=webp&s=efedec9e0f83d4433423eb5009a3ce75e52e8c13",
+          "x": 216,
+          "y": 432
+        },
+        {
+          "u": "https://preview.redd.it/rxtciibngw3e1.jpg?width=320&crop=smart&auto=webp&s=d49338e6272fa4ed27732428bc9f4e89b0612f8c",
+          "x": 320,
+          "y": 640
+        },
+        {
+          "u": "https://preview.redd.it/rxtciibngw3e1.jpg?width=640&crop=smart&auto=webp&s=1c3e08b96d2e47ef9f29f067ba7fccb5a3eb3669",
+          "x": 640,
+          "y": 1280
+        },
+        {
+          "u": "https://preview.redd.it/rxtciibngw3e1.jpg?width=960&crop=smart&auto=webp&s=e363f38cb050561c61ddda03cf01780979953cbf",
+          "x": 960,
+          "y": 1920
+        },
+        {
+          "u": "https://preview.redd.it/rxtciibngw3e1.jpg?width=1080&crop=smart&auto=webp&s=35e3f6e7b35faa24a35868ab3fd60b2a60189c3f",
+          "x": 1080,
+          "y": 2160
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/rxtciibngw3e1.jpg?width=1179&format=pjpg&auto=webp&s=1c7fb3ed994efd9b8677e157d3afecfbd95fbf16",
+        "x": 1179,
+        "y": 2556
+      },
+      "status": "valid"
+    }
+  },
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1h2uxvg",
+  "no_follow": true,
+  "num_comments": 97,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/adhdwomen/comments/1h2uxvg/we_have_all_been_her_before/",
+  "pinned": false,
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1732911870,
+  "saved": false,
+  "score": 1965,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "One of my fave things to do is scout FB marketplace for deals or just to window shop and I stumbled across this listing. I felt called out by her title and description. We have all been her before (I say as I stare at my journaling supplies i’ve accumulated these past couple of weeks) ",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "adhdwomen",
+  "subreddit_id": "t5_31aao",
+  "subreddit_name_prefixed": "r/adhdwomen",
+  "subreddit_subscribers": 383201,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "default",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "We have all been her before ",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 1965,
+  "upvote_ratio": 1,
+  "url": "https://www.reddit.com/gallery/1h2uxvg",
+  "url_overridden_by_dest": "https://www.reddit.com/gallery/1h2uxvg",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

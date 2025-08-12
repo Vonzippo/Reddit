@@ -1,0 +1,170 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1734917938
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "TheRandomDreamer",
+  "author_flair_background_color": "#ea0027",
+  "author_flair_css_class": null,
+  "author_flair_richtext": [
+    {
+      "e": "text",
+      "t": "25F Diagnosed w/ Level 1"
+    }
+  ],
+  "author_flair_template_id": "a307c30a-259b-11ed-b9dd-9e6cc39478b4",
+  "author_flair_text": "25F Diagnosed w/ Level 1",
+  "author_flair_text_color": "dark",
+  "author_flair_type": "richtext",
+  "author_fullname": "t2_12wyuz",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1734788323,
+  "created_utc": 1734788323,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "i.redd.it",
+  "downs": 0,
+  "edited": false,
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1hja0bh",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": true,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "",
+  "link_flair_css_class": "ds",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Discussion"
+    }
+  ],
+  "link_flair_template_id": "9f7ebe5c-d59d-11e3-bc67-12313d056e4a",
+  "link_flair_text": "Discussion",
+  "link_flair_text_color": "dark",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1hja0bh",
+  "no_follow": true,
+  "num_comments": 892,
+  "num_crossposts": 3,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/autism/comments/1hja0bh/would_you_sleep_in_this/",
+  "pinned": false,
+  "post_hint": "image",
+  "preview": {
+    "enabled": true,
+    "images": [
+      {
+        "id": "V9phnPcBjithvb0tZdIIzQeoC2lTfvBJy_XrKF2GuS0",
+        "resolutions": [
+          {
+            "height": 135,
+            "url": "https://preview.redd.it/6sm21yncg78e1.jpeg?width=108&crop=smart&auto=webp&s=26534a0a05661f77a8ca98b861c958101c580608",
+            "width": 108
+          },
+          {
+            "height": 270,
+            "url": "https://preview.redd.it/6sm21yncg78e1.jpeg?width=216&crop=smart&auto=webp&s=7c29f2598924b67ca2375018a25a7c8b2141dcd9",
+            "width": 216
+          },
+          {
+            "height": 400,
+            "url": "https://preview.redd.it/6sm21yncg78e1.jpeg?width=320&crop=smart&auto=webp&s=8d9d6b1a62aab59f6a14b30992c522b6e170d859",
+            "width": 320
+          },
+          {
+            "height": 800,
+            "url": "https://preview.redd.it/6sm21yncg78e1.jpeg?width=640&crop=smart&auto=webp&s=d035457cd2cc1f59aa3990a12a4161c0cb35680d",
+            "width": 640
+          }
+        ],
+        "source": {
+          "height": 900,
+          "url": "https://preview.redd.it/6sm21yncg78e1.jpeg?auto=webp&s=0d5ce5a499034d2b3e41c27d166c56ff2645c9f2",
+          "width": 720
+        },
+        "variants": {}
+      }
+    ]
+  },
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1734788338,
+  "saved": false,
+  "score": 5916,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "Sometimes I wished I had something like this to just sleep in tbh\n\nMedieval box beds were once cosy places to sleep, and they were extremely popular 600 years ago.\n\nIt trapped the sleeper's body heat, creating a cocoon of comfort and also provided privacy. ",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "autism",
+  "subreddit_id": "t5_2qhs6",
+  "subreddit_name_prefixed": "r/autism",
+  "subreddit_subscribers": 418401,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "https://b.thumbs.redditmedia.com/bNMRcPejy6SPh_oBg7WwQMqQYmqEm3ShUTAJPAzK7RU.jpg",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "Would you sleep in this? ",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 5916,
+  "upvote_ratio": 0.9599999785423279,
+  "url": "https://i.redd.it/6sm21yncg78e1.jpeg",
+  "url_overridden_by_dest": "https://i.redd.it/6sm21yncg78e1.jpeg",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

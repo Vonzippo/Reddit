@@ -1,0 +1,229 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1730816037
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "danskiez",
+  "author_flair_background_color": null,
+  "author_flair_css_class": null,
+  "author_flair_richtext": [],
+  "author_flair_template_id": null,
+  "author_flair_text": null,
+  "author_flair_text_color": null,
+  "author_flair_type": "text",
+  "author_fullname": "t2_467zaycu",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1730686428,
+  "created_utc": 1730686428,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "reddit.com",
+  "downs": 0,
+  "edited": false,
+  "gallery_data": {
+    "items": [
+      {
+        "id": 545686322,
+        "media_id": "dopdgbxansyd1"
+      },
+      {
+        "id": 545686323,
+        "media_id": "z41o3bxansyd1"
+      }
+    ]
+  },
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1gj3slr",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_gallery": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": false,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#ffb000",
+  "link_flair_css_class": "",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Celebrating Success"
+    }
+  ],
+  "link_flair_template_id": "65d8f08c-23d9-11eb-93da-0e9da6ce9661",
+  "link_flair_text": "Celebrating Success",
+  "link_flair_text_color": "light",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_metadata": {
+    "dopdgbxansyd1": {
+      "e": "Image",
+      "id": "dopdgbxansyd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/dopdgbxansyd1.jpg?width=108&crop=smart&auto=webp&s=22109d28dde645e39a9d08304e5389eaa2b0c945",
+          "x": 108,
+          "y": 144
+        },
+        {
+          "u": "https://preview.redd.it/dopdgbxansyd1.jpg?width=216&crop=smart&auto=webp&s=680e48f456ab1a0123d34d017d085370c2f3faa6",
+          "x": 216,
+          "y": 288
+        },
+        {
+          "u": "https://preview.redd.it/dopdgbxansyd1.jpg?width=320&crop=smart&auto=webp&s=7429fb4548db44481e1a1359883e95cd9079168c",
+          "x": 320,
+          "y": 426
+        },
+        {
+          "u": "https://preview.redd.it/dopdgbxansyd1.jpg?width=640&crop=smart&auto=webp&s=0b247ec55e8b85ce63e5f25bcd85e986ae2d2090",
+          "x": 640,
+          "y": 853
+        },
+        {
+          "u": "https://preview.redd.it/dopdgbxansyd1.jpg?width=960&crop=smart&auto=webp&s=7648c97a17c3163a688d8033262817b1ee0b731f",
+          "x": 960,
+          "y": 1280
+        },
+        {
+          "u": "https://preview.redd.it/dopdgbxansyd1.jpg?width=1080&crop=smart&auto=webp&s=13adbb82ef4c28303b41cf311a545c9fcaf3f956",
+          "x": 1080,
+          "y": 1440
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/dopdgbxansyd1.jpg?width=3024&format=pjpg&auto=webp&s=2551da9e69f8f056b6c27ad8b26d45a85314bf40",
+        "x": 3024,
+        "y": 4032
+      },
+      "status": "valid"
+    },
+    "z41o3bxansyd1": {
+      "e": "Image",
+      "id": "z41o3bxansyd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/z41o3bxansyd1.jpg?width=108&crop=smart&auto=webp&s=c515155332131013352a69a9760b433029c1f35e",
+          "x": 108,
+          "y": 144
+        },
+        {
+          "u": "https://preview.redd.it/z41o3bxansyd1.jpg?width=216&crop=smart&auto=webp&s=0bdad40d3c01cfe98ef984bdd28f209c93f18471",
+          "x": 216,
+          "y": 288
+        },
+        {
+          "u": "https://preview.redd.it/z41o3bxansyd1.jpg?width=320&crop=smart&auto=webp&s=7f5e7144003702caf8963c923944757c0eaf0ea7",
+          "x": 320,
+          "y": 426
+        },
+        {
+          "u": "https://preview.redd.it/z41o3bxansyd1.jpg?width=640&crop=smart&auto=webp&s=4f2015fbdd804ec518f4ab41dec5aec85305a7da",
+          "x": 640,
+          "y": 853
+        },
+        {
+          "u": "https://preview.redd.it/z41o3bxansyd1.jpg?width=960&crop=smart&auto=webp&s=02eacb38e169b8160ede85eacd88700c9098e593",
+          "x": 960,
+          "y": 1280
+        },
+        {
+          "u": "https://preview.redd.it/z41o3bxansyd1.jpg?width=1080&crop=smart&auto=webp&s=9c4ebffbe91923a2686b97a471ede5958fde0739",
+          "x": 1080,
+          "y": 1440
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/z41o3bxansyd1.jpg?width=3024&format=pjpg&auto=webp&s=8c677e7034a78356b2edfd44e2577715f2d08bc9",
+        "x": 3024,
+        "y": 4032
+      },
+      "status": "valid"
+    }
+  },
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1gj3slr",
+  "no_follow": true,
+  "num_comments": 76,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/adhdwomen/comments/1gj3slr/i_too_did_the_thing/",
+  "pinned": false,
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1730686445,
+  "saved": false,
+  "score": 1456,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "Sometimes (like this time) I go months without fully putting my laundry away until I get so annoyed with trying to find anything that I am forced to put everything away. Today was that day. I also did some other procrastinated cleaning tasks, but this was the biggest one. The hanging clothes in the top left are air drying in the second picture after washing as I don’t put everything in the dryer. In the first they had originally been placed there to dry and then just left to wait. ",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "adhdwomen",
+  "subreddit_id": "t5_31aao",
+  "subreddit_name_prefixed": "r/adhdwomen",
+  "subreddit_subscribers": 374506,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "default",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "I, too, did the thing!",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 1456,
+  "upvote_ratio": 1,
+  "url": "https://www.reddit.com/gallery/1gj3slr",
+  "url_overridden_by_dest": "https://www.reddit.com/gallery/1gj3slr",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

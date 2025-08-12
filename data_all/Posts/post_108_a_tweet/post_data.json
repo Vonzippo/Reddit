@@ -1,0 +1,231 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1730845921
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "forg__tful",
+  "author_flair_background_color": null,
+  "author_flair_css_class": null,
+  "author_flair_richtext": [],
+  "author_flair_template_id": null,
+  "author_flair_text": null,
+  "author_flair_text_color": null,
+  "author_flair_type": "text",
+  "author_fullname": "t2_br02csf9s",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1730716311,
+  "created_utc": 1730716311,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "reddit.com",
+  "downs": 0,
+  "edited": false,
+  "gallery_data": {
+    "items": [
+      {
+        "caption": "",
+        "id": 545828781,
+        "media_id": "dnss50t54vyd1"
+      },
+      {
+        "caption": "",
+        "id": 545828782,
+        "media_id": "n98pxqx54vyd1"
+      }
+    ]
+  },
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1gjb72m",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_gallery": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": false,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": null,
+  "link_flair_css_class": "ds",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Discussion"
+    }
+  ],
+  "link_flair_template_id": "9f7ebe5c-d59d-11e3-bc67-12313d056e4a",
+  "link_flair_text": "Discussion",
+  "link_flair_text_color": "dark",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_metadata": {
+    "dnss50t54vyd1": {
+      "e": "Image",
+      "id": "dnss50t54vyd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/dnss50t54vyd1.jpg?width=108&crop=smart&auto=webp&s=40e335a4d4a2853f2f6980bf50c3ef39887b415b",
+          "x": 108,
+          "y": 153
+        },
+        {
+          "u": "https://preview.redd.it/dnss50t54vyd1.jpg?width=216&crop=smart&auto=webp&s=8b7a291ceaacd4c0f8f5bc445d9a1f49fe91309d",
+          "x": 216,
+          "y": 307
+        },
+        {
+          "u": "https://preview.redd.it/dnss50t54vyd1.jpg?width=320&crop=smart&auto=webp&s=84d75c56bd40ce42861d2ecf15581b24ed6fa08b",
+          "x": 320,
+          "y": 455
+        },
+        {
+          "u": "https://preview.redd.it/dnss50t54vyd1.jpg?width=640&crop=smart&auto=webp&s=800d18a1e118242ad6c666066039ecdc414399ab",
+          "x": 640,
+          "y": 910
+        },
+        {
+          "u": "https://preview.redd.it/dnss50t54vyd1.jpg?width=960&crop=smart&auto=webp&s=7cba4495e177e3a12da2ad111e1a54a29ff61e5d",
+          "x": 960,
+          "y": 1366
+        },
+        {
+          "u": "https://preview.redd.it/dnss50t54vyd1.jpg?width=1080&crop=smart&auto=webp&s=1e8df3f24bef8b0b450b4d808a4313a267dba459",
+          "x": 1080,
+          "y": 1536
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/dnss50t54vyd1.jpg?width=1170&format=pjpg&auto=webp&s=957a964a530452408f17a381105bfd7e680a8805",
+        "x": 1170,
+        "y": 1665
+      },
+      "status": "valid"
+    },
+    "n98pxqx54vyd1": {
+      "e": "Image",
+      "id": "n98pxqx54vyd1",
+      "m": "image/jpg",
+      "p": [
+        {
+          "u": "https://preview.redd.it/n98pxqx54vyd1.jpg?width=108&crop=smart&auto=webp&s=6d09d1d844506e58fc0406f5151eea924fda70ef",
+          "x": 108,
+          "y": 216
+        },
+        {
+          "u": "https://preview.redd.it/n98pxqx54vyd1.jpg?width=216&crop=smart&auto=webp&s=58adc15dc95e7487e816d92b9ec701a277ec9f83",
+          "x": 216,
+          "y": 432
+        },
+        {
+          "u": "https://preview.redd.it/n98pxqx54vyd1.jpg?width=320&crop=smart&auto=webp&s=bac4e13f94bbbe12699b59d3845db1123992ec5e",
+          "x": 320,
+          "y": 640
+        },
+        {
+          "u": "https://preview.redd.it/n98pxqx54vyd1.jpg?width=640&crop=smart&auto=webp&s=4d21f7fa93ad1e5b425c251e747323cc224fef9c",
+          "x": 640,
+          "y": 1280
+        },
+        {
+          "u": "https://preview.redd.it/n98pxqx54vyd1.jpg?width=960&crop=smart&auto=webp&s=2d0ec480c5c387707fb92172bd0b282f512b1b3f",
+          "x": 960,
+          "y": 1920
+        },
+        {
+          "u": "https://preview.redd.it/n98pxqx54vyd1.jpg?width=1080&crop=smart&auto=webp&s=8212c4754adf9a5d65f14feddc6d7bf4476ed2a1",
+          "x": 1080,
+          "y": 2160
+        }
+      ],
+      "s": {
+        "u": "https://preview.redd.it/n98pxqx54vyd1.jpg?width=1080&format=pjpg&auto=webp&s=c04c18ca6c1165fcad8d5e23c97884f9a3b56645",
+        "x": 1080,
+        "y": 2640
+      },
+      "status": "valid"
+    }
+  },
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1gjb72m",
+  "no_follow": true,
+  "num_comments": 275,
+  "num_crossposts": 0,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/autism/comments/1gjb72m/a_tweet_making_fun_of_one_of_my_tik_toks_got_100k/",
+  "pinned": false,
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1730716328,
+  "saved": false,
+  "score": 1781,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "This happened around a month ago but I decided to post about it anyways:)) I made a tik tok as a joke sharing something I did that was a bit embarrassing. I knew it was embarrassing and shared it thinking it would make people laugh, instead there were hundreds of people being mean and saying i deserved to be bullied, calling me names like stupid weird bitch, wishing me harm, saying I was a koreaboo etc. And people started harrassing me in dms. I thought that was so weird? It was embarrassing and cringe, yes, but it was harmless? I don't know why it pissed off so many people when my classmates were nice about it and even asked me about bts every now and then 😭 luckily OP was kind about it and deleted it when I asked them to, which not many people would have done and especially not with a tweet that has that many likes. I just wanted to share this because I wanted to talk about it idk? I was very stressed and panicked for a while but I'm mostly over it now! Has anyone else had something similar happen to them? I did find it funny how other autistic people on Twitter immediately noticed I was autistic based off that tik tok! ",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "autism",
+  "subreddit_id": "t5_2qhs6",
+  "subreddit_name_prefixed": "r/autism",
+  "subreddit_subscribers": 406539,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "https://b.thumbs.redditmedia.com/X-DHO_fJPHD2L6vfV2WPqsMZzxVswaLF7-gCvqF4y6c.jpg",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "A tweet making fun of one of my tik toks got 100k likes",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 1781,
+  "upvote_ratio": 0.949999988079071,
+  "url": "https://www.reddit.com/gallery/1gjb72m",
+  "url_overridden_by_dest": "https://www.reddit.com/gallery/1gjb72m",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}

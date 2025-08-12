@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "retrieved_2nd_on": 1734680979
+  },
+  "all_awardings": [],
+  "allow_live_comments": false,
+  "approved_at_utc": null,
+  "approved_by": null,
+  "archived": false,
+  "author": "runnershigh007",
+  "author_flair_background_color": "transparent",
+  "author_flair_css_class": null,
+  "author_flair_richtext": [
+    {
+      "e": "text",
+      "t": "ADHD-PI"
+    }
+  ],
+  "author_flair_template_id": "a3b297ba-e784-11ee-b64d-4ad2d946bc7a",
+  "author_flair_text": "ADHD-PI",
+  "author_flair_text_color": "dark",
+  "author_flair_type": "richtext",
+  "author_fullname": "t2_11b7gunio1",
+  "author_is_blocked": false,
+  "author_patreon_flair": false,
+  "author_premium": false,
+  "awarders": [],
+  "banned_at_utc": null,
+  "banned_by": null,
+  "can_gild": false,
+  "can_mod_post": false,
+  "category": null,
+  "clicked": false,
+  "content_categories": null,
+  "contest_mode": false,
+  "created": 1734551372,
+  "created_utc": 1734551372,
+  "discussion_type": null,
+  "distinguished": null,
+  "domain": "i.redd.it",
+  "downs": 0,
+  "edited": false,
+  "gilded": 0,
+  "gildings": {},
+  "hidden": false,
+  "hide_score": false,
+  "id": "1hha0dc",
+  "is_created_from_ads_ui": false,
+  "is_crosspostable": true,
+  "is_meta": false,
+  "is_original_content": false,
+  "is_reddit_media_domain": true,
+  "is_robot_indexable": true,
+  "is_self": false,
+  "is_video": false,
+  "likes": null,
+  "link_flair_background_color": "#ff4500",
+  "link_flair_css_class": "",
+  "link_flair_richtext": [
+    {
+      "e": "text",
+      "t": "Meme Therapy"
+    }
+  ],
+  "link_flair_template_id": "d661c672-23d8-11eb-8236-0edfc8e356c9",
+  "link_flair_text": "Meme Therapy",
+  "link_flair_text_color": "light",
+  "link_flair_type": "richtext",
+  "locked": false,
+  "media": null,
+  "media_embed": {},
+  "media_only": false,
+  "mod_note": null,
+  "mod_reason_by": null,
+  "mod_reason_title": null,
+  "mod_reports": [],
+  "name": "t3_1hha0dc",
+  "no_follow": true,
+  "num_comments": 106,
+  "num_crossposts": 1,
+  "num_reports": null,
+  "over_18": false,
+  "permalink": "/r/adhdwomen/comments/1hha0dc/oh/",
+  "pinned": false,
+  "post_hint": "image",
+  "preview": {
+    "enabled": true,
+    "images": [
+      {
+        "id": "hIsdKZjD9ot8Aq0uiQapO7FthCOEuw5tXD78JwEuW5k",
+        "resolutions": [
+          {
+            "height": 117,
+            "url": "https://preview.redd.it/vffj2nzrvn7e1.jpeg?width=108&crop=smart&auto=webp&s=d8e75b715885db3f2d14ac750dce5182c47f9e10",
+            "width": 108
+          },
+          {
+            "height": 235,
+            "url": "https://preview.redd.it/vffj2nzrvn7e1.jpeg?width=216&crop=smart&auto=webp&s=501a27a1c1a799d956f9348ec5f570637a3931c1",
+            "width": 216
+          },
+          {
+            "height": 348,
+            "url": "https://preview.redd.it/vffj2nzrvn7e1.jpeg?width=320&crop=smart&auto=webp&s=0b3b27ed62e4df4ef40bbc5602546ef89e0c1540",
+            "width": 320
+          },
+          {
+            "height": 696,
+            "url": "https://preview.redd.it/vffj2nzrvn7e1.jpeg?width=640&crop=smart&auto=webp&s=6adf462a3f5a9c1080fc7605d5d7e00d7f487f04",
+            "width": 640
+          },
+          {
+            "height": 1045,
+            "url": "https://preview.redd.it/vffj2nzrvn7e1.jpeg?width=960&crop=smart&auto=webp&s=73acf95e008557bc96dc28d49f0cdbcc8156c070",
+            "width": 960
+          },
+          {
+            "height": 1176,
+            "url": "https://preview.redd.it/vffj2nzrvn7e1.jpeg?width=1080&crop=smart&auto=webp&s=98684f4a19f412d9783903a5915dd55c87ad8200",
+            "width": 1080
+          }
+        ],
+        "source": {
+          "height": 1176,
+          "url": "https://preview.redd.it/vffj2nzrvn7e1.jpeg?auto=webp&s=b45492d34186dbd8e016801c1984c1a3ba156f57",
+          "width": 1080
+        },
+        "variants": {}
+      }
+    ]
+  },
+  "pwls": null,
+  "quarantine": false,
+  "removal_reason": null,
+  "removed_by": null,
+  "removed_by_category": null,
+  "report_reasons": null,
+  "retrieved_on": 1734551389,
+  "saved": false,
+  "score": 3709,
+  "secure_media": null,
+  "secure_media_embed": {},
+  "selftext": "",
+  "send_replies": true,
+  "spoiler": false,
+  "stickied": false,
+  "subreddit": "adhdwomen",
+  "subreddit_id": "t5_31aao",
+  "subreddit_name_prefixed": "r/adhdwomen",
+  "subreddit_subscribers": 389568,
+  "subreddit_type": "public",
+  "suggested_sort": null,
+  "thumbnail": "image",
+  "thumbnail_height": 140,
+  "thumbnail_width": 140,
+  "title": "OH",
+  "top_awarded_type": null,
+  "total_awards_received": 0,
+  "treatment_tags": [],
+  "ups": 3709,
+  "upvote_ratio": 1,
+  "url": "https://i.redd.it/vffj2nzrvn7e1.jpeg",
+  "url_overridden_by_dest": "https://i.redd.it/vffj2nzrvn7e1.jpeg",
+  "user_reports": [],
+  "view_count": null,
+  "visited": false,
+  "wls": null,
+  "alternative_subreddits": [
+    "stopprocrastinating",
+    "bulletjournal",
+    "declutter",
+    "minimalism",
+    "selfimprovement",
+    "college",
+    "bipolar",
+    "schizophrenia",
+    "selfcare",
+    "Meditation"
+  ]
+}
