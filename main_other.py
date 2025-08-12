@@ -2198,7 +2198,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
             # Setze zurück
             self.daily_comments[today]['count'] = 0
             self.daily_comments[today]['comments'] = []
-            self._save_comment_stats()
+            self._save_comment_daily_stats()
             print(f"   ✅ Kommentar-Counter zurückgesetzt auf 0/{old_target}")
         else:
             print(f"   ℹ️ Noch keine Kommentare heute")
