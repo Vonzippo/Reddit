@@ -133,7 +133,7 @@
   "thumbnail": "image",
   "thumbnail_height": 140,
   "thumbnail_width": 140,
-  "title": "This. Is. How. We. Do. ",
+  "title": "This. Is. How. We. Do. (4am)",
   "top_awarded_type": null,
   "total_awards_received": 0,
   "treatment_tags": [],
@@ -156,5 +156,8 @@
     "schizophrenia",
     "selfcare",
     "Meditation"
-  ]
+  ],
+  "original_title": "This. Is. How. We. Do. ",
+  "minimally_varied": true,
+  "variation_date": "2025-08-12"
 }

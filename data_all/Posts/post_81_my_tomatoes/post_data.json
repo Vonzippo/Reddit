@@ -305,7 +305,7 @@
   "thumbnail": "https://b.thumbs.redditmedia.com/sBzcJXGa1qqc3XX3qVkDv_wWK2A7J1g6AN6ri5MkkRc.jpg",
   "thumbnail_height": 105,
   "thumbnail_width": 140,
-  "title": "My tomatoes are autistic",
+  "title": "My large tomatoes are autistic",
   "top_awarded_type": null,
   "total_awards_received": 0,
   "treatment_tags": [],
@@ -328,5 +328,8 @@
     "schizophrenia",
     "selfcare",
     "Meditation"
-  ]
+  ],
+  "original_title": "My tomatoes are autistic",
+  "minimally_varied": true,
+  "variation_date": "2025-08-12 11:59:01"
 }

@@ -281,7 +281,7 @@
   "thumbnail": "https://b.thumbs.redditmedia.com/Sr41s1JiXarSGIqIfj8xEomsCWTB_5j7faEFUpZ63AY.jpg",
   "thumbnail_height": 118,
   "thumbnail_width": 140,
-  "title": "Even if you tell me otherwise",
+  "title": "Even if you tell me otherwise, sometimes",
   "top_awarded_type": null,
   "total_awards_received": 0,
   "treatment_tags": [],
@@ -304,5 +304,8 @@
     "schizophrenia",
     "selfcare",
     "Meditation"
-  ]
+  ],
+  "original_title": "Even if you tell me otherwise",
+  "minimally_varied": true,
+  "variation_date": "2025-08-12 11:56:06"
 }

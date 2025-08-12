@@ -138,7 +138,7 @@
   "thumbnail": "image",
   "thumbnail_height": 140,
   "thumbnail_width": 140,
-  "title": "Today I will be disciplined! 😤**rots the whole day 😴😴",
+  "title": "I will be disciplined! 😤**rots the whole day 😴😴",
   "top_awarded_type": null,
   "total_awards_received": 0,
   "treatment_tags": [],
@@ -161,5 +161,8 @@
     "schizophrenia",
     "selfcare",
     "Meditation"
-  ]
+  ],
+  "original_title": "Today I will be disciplined! 😤**rots the whole day 😴😴",
+  "minimally_varied": true,
+  "variation_date": "2025-08-12 11:42:11"
 }

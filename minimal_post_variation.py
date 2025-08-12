@@ -192,8 +192,8 @@ Return ONLY the modified title, nothing else. Make the SMALLEST possible change.
                 print(f"⏭️ Übersprungen: {self.stats['skipped']}")
                 print(f"❌ Fehlgeschlagen: {self.stats['failed']}")
             
-            # Kleine Pause für API
-            time.sleep(random.uniform(0.5, 1.5))
+            # Längere Pause für API (wegen Rate Limits)
+            time.sleep(random.uniform(2, 3))
         
         # Finale Statistiken
         self.print_stats()

@@ -129,7 +129,7 @@
   "thumbnail": "https://b.thumbs.redditmedia.com/24zV0huXUy3ecO_ZqN5EPRWKspUqEsruGQKu758IKRg.jpg",
   "thumbnail_height": 132,
   "thumbnail_width": 140,
-  "title": "Absence makes the heart go wander",
+  "title": "Original Title: Absence makes the heart go wander\n\nModified Title: Absence makes the heart go large",
   "top_awarded_type": null,
   "total_awards_received": 0,
   "treatment_tags": [],
@@ -152,5 +152,8 @@
     "schizophrenia",
     "selfcare",
     "Meditation"
-  ]
+  ],
+  "original_title": "Absence makes the heart go wander",
+  "minimally_varied": true,
+  "variation_date": "2025-08-12 11:41:08"
 }

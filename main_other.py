@@ -1753,8 +1753,40 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
             saved_path = self.save_generated_post(post_data)
             print(f"   💾 Gespeichert: {saved_path.name}")
             
-            # Update Tracking
-            self.posted_posts.add(post_data.get('id', ''))
+            # Update Tracking mit mehr Details für Status-Check
+            post_id = post_data.get('id', '')
+            self.posted_posts.add(post_id)
+            
+            # Speichere detaillierte Info für Status-Checks
+            from datetime import datetime
+            post_record = {
+                'id': post_id,
+                'title': post_data.get('title', ''),
+                'subreddit': post_data.get('subreddit', ''),
+                'posted_at': datetime.now().isoformat(),
+                'reddit_id': submission.id if submission else None
+            }
+            
+            # Lade existing history
+            history_file = Path("/home/lucawahl/Reddit/posted_posts.json")
+            if history_file.exists():
+                with open(history_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+            else:
+                data = {'posts': [], 'recent_posts': []}
+            
+            # Füge neuen Post hinzu
+            if 'recent_posts' not in data:
+                data['recent_posts'] = []
+            data['recent_posts'].append(post_record)
+            
+            # Behalte nur die letzten 50 Posts
+            data['recent_posts'] = data['recent_posts'][-50:]
+            
+            # Speichere aktualisierte History
+            with open(history_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2)
+            
             self._save_posted_history()
             
             # Nur Daily Count erhöhen wenn nicht ignore_limit
@@ -2058,7 +2090,14 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
                         return random.choice(suitable_posts)
                         
                 except Exception as e:
-                    print(f"   ⚠️ Fehler bei r/{target_sub}: {str(e)[:50]}")
+                    error_msg = str(e)
+                    print(f"   ⚠️ Fehler bei r/{target_sub}: {error_msg[:50]}")
+                    
+                    # Auto-Blacklist bei bestimmten Fehlern
+                    if "403" in error_msg or "Redirect" in error_msg or "not found" in error_msg.lower():
+                        print(f"   🚫 r/{target_sub} wird zur Blacklist hinzugefügt")
+                        self.add_to_blacklist(target_sub)
+                    
                     continue
             
             print("   ❌ Keine Posts nach 3 Versuchen gefunden")
@@ -2206,6 +2245,135 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
         print("\n✅ Alle Tageslimits wurden zurückgesetzt!")
         print("   Du kannst jetzt wieder posten und kommentieren.")
     
+    def check_posted_status(self):
+        """Überprüft ob gepostete Beiträge noch online sind oder von Mods entfernt wurden"""
+        print("\n🔍 ÜBERPRÜFE STATUS DER LETZTEN POSTS")
+        print("="*60)
+        
+        from datetime import datetime, timedelta
+        
+        # Lade Posted History
+        history_file = Path("/home/lucawahl/Reddit/posted_posts.json")
+        if not history_file.exists():
+            print("❌ Keine Post-Historie gefunden")
+            return
+        
+        with open(history_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            recent_posts = data.get('recent_posts', [])
+        
+        if not recent_posts:
+            print("ℹ️ Keine kürzlichen Posts zum Überprüfen")
+            return
+        
+        removed_posts = []
+        active_posts = []
+        
+        # Prüfe nur Posts der letzten 7 Tage
+        for post_info in recent_posts[-20:]:  # Letzte 20 Posts
+            try:
+                post_id = post_info.get('id', '')
+                if not post_id:
+                    continue
+                
+                print(f"\n📝 Prüfe Post: {post_info.get('title', '')[:50]}...")
+                print(f"   Subreddit: r/{post_info.get('subreddit', 'unknown')}")
+                print(f"   Gepostet: {post_info.get('posted_at', 'unknown')}")
+                
+                # Hole Post von Reddit
+                submission = self.reddit.submission(id=post_id)
+                
+                # Prüfe verschiedene Removal-Indikatoren
+                if submission.removed_by_category:
+                    print(f"   ❌ ENTFERNT von Mods: {submission.removed_by_category}")
+                    removed_posts.append({
+                        'id': post_id,
+                        'title': post_info.get('title', ''),
+                        'subreddit': post_info.get('subreddit', ''),
+                        'reason': submission.removed_by_category
+                    })
+                elif submission.author is None:
+                    print(f"   ❌ Post gelöscht (Author nicht mehr vorhanden)")
+                    removed_posts.append({
+                        'id': post_id,
+                        'title': post_info.get('title', ''),
+                        'subreddit': post_info.get('subreddit', ''),
+                        'reason': 'deleted'
+                    })
+                elif hasattr(submission, 'banned_by') and submission.banned_by:
+                    print(f"   ❌ Gebannt von: {submission.banned_by}")
+                    removed_posts.append({
+                        'id': post_id,
+                        'title': post_info.get('title', ''),
+                        'subreddit': post_info.get('subreddit', ''),
+                        'reason': f'banned by {submission.banned_by}'
+                    })
+                else:
+                    # Post ist noch aktiv
+                    print(f"   ✅ Post ist AKTIV")
+                    print(f"   Score: {submission.score}, Kommentare: {submission.num_comments}")
+                    print(f"   URL: https://reddit.com{submission.permalink}")
+                    active_posts.append({
+                        'id': post_id,
+                        'title': post_info.get('title', ''),
+                        'subreddit': post_info.get('subreddit', ''),
+                        'score': submission.score,
+                        'comments': submission.num_comments,
+                        'url': f"https://reddit.com{submission.permalink}"
+                    })
+                    
+                # Kleine Pause zwischen Checks
+                time.sleep(1)
+                    
+            except Exception as e:
+                error_msg = str(e)
+                if "404" in error_msg or "not found" in error_msg.lower():
+                    print(f"   ❌ Post nicht gefunden (wahrscheinlich gelöscht)")
+                    removed_posts.append({
+                        'id': post_id,
+                        'title': post_info.get('title', ''),
+                        'subreddit': post_info.get('subreddit', ''),
+                        'reason': 'not found (404)'
+                    })
+                else:
+                    print(f"   ⚠️ Fehler beim Prüfen: {error_msg[:50]}")
+        
+        # Zusammenfassung
+        print("\n" + "="*60)
+        print("📊 ZUSAMMENFASSUNG:")
+        print(f"✅ Aktive Posts: {len(active_posts)}")
+        print(f"❌ Entfernte Posts: {len(removed_posts)}")
+        
+        if removed_posts:
+            print("\n🚫 ENTFERNTE POSTS:")
+            for post in removed_posts:
+                print(f"   • r/{post['subreddit']}: {post['title'][:50]}...")
+                print(f"     Grund: {post['reason']}")
+                
+            # Frage ob problematische Subreddits zur Blacklist hinzugefügt werden sollen
+            problematic_subs = {}
+            for post in removed_posts:
+                sub = post['subreddit']
+                if sub not in problematic_subs:
+                    problematic_subs[sub] = 1
+                else:
+                    problematic_subs[sub] += 1
+            
+            print(f"\n⚠️ Problematische Subreddits:")
+            for sub, count in problematic_subs.items():
+                print(f"   • r/{sub}: {count} entfernte Posts")
+                if count >= 2:  # Bei 2+ entfernten Posts
+                    print(f"     → Empfehlung: r/{sub} zur Blacklist hinzufügen")
+        
+        if active_posts:
+            print("\n✅ TOP AKTIVE POSTS:")
+            sorted_active = sorted(active_posts, key=lambda x: x['score'], reverse=True)
+            for post in sorted_active[:5]:
+                print(f"   • Score {post['score']}: {post['title'][:50]}...")
+                print(f"     {post['url']}")
+        
+        return {'active': active_posts, 'removed': removed_posts}
+    
     def show_statistics(self):
         """Zeigt Statistiken über die geladenen Posts"""
         print("\n📊 STATISTIKEN:")
@@ -2277,8 +2445,9 @@ def main():
     print("9. 📋 Zeige alle Subreddits")
     print("10. 🔑 API-Daten eingeben/ändern")
     print("11. 🔄 Tageslimits zurücksetzen")
+    print("12. 🔍 Prüfe ob Posts von Mods entfernt wurden")
     
-    choice = input("\nAuswahl (1-11): ").strip()
+    choice = input("\nAuswahl (1-12): ").strip()
     
     if choice == "1":
         # Automatischer Loop mit Tageslimit
@@ -2453,6 +2622,24 @@ def main():
         action = input("\nMöchtest du jetzt posten/kommentieren? (j/n): ").strip().lower()
         if action in ['j', 'ja', 'yes', 'y']:
             main()  # Rufe Hauptmenü nochmal auf
+    
+    elif choice == "12":
+        # Prüfe Post-Status
+        result = bot.check_posted_status()
+        
+        if result and result.get('removed'):
+            # Frage ob problematische Subreddits zur Blacklist hinzugefügt werden sollen
+            problematic = {}
+            for post in result['removed']:
+                sub = post['subreddit']
+                problematic[sub] = problematic.get(sub, 0) + 1
+            
+            for sub, count in problematic.items():
+                if count >= 2:
+                    add = input(f"\n⚠️ r/{sub} hat {count} entfernte Posts. Zur Blacklist hinzufügen? (j/n): ").strip().lower()
+                    if add in ['j', 'ja', 'yes', 'y']:
+                        bot.add_to_blacklist(sub)
+                        print(f"✅ r/{sub} wurde zur Blacklist hinzugefügt")
     
     else:
         print("Ungültige Auswahl")

@@ -143,7 +143,7 @@
   "thumbnail": "https://a.thumbs.redditmedia.com/zontb6AJ1afgvISJ5nfBug5Xg0yJLdQBgvPHWcznzm4.jpg",
   "thumbnail_height": 140,
   "thumbnail_width": 140,
-  "title": "I have no words for this one 💀",
+  "title": "I have no words for this one",
   "top_awarded_type": null,
   "total_awards_received": 0,
   "treatment_tags": [],
@@ -166,5 +166,8 @@
     "schizophrenia",
     "selfcare",
     "Meditation"
-  ]
+  ],
+  "original_title": "I have no words for this one 💀",
+  "minimally_varied": true,
+  "variation_date": "2025-08-12 11:57:05"
 }

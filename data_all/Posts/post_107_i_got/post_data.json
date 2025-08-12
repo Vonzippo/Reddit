@@ -135,7 +135,7 @@
   "score": 1782,
   "secure_media": null,
   "secure_media_embed": {},
-  "selftext": "After 3 Long Years I Have Graduated With A Degree Of Bachelor In Arts With Honours In History",
+  "selftext": "\nAfter 4 Long Years I Have Graduated With A Degree Of Bachelor In Arts With Honours In History",
   "send_replies": true,
   "spoiler": false,
   "stickied": false,
@@ -171,5 +171,9 @@
     "schizophrenia",
     "selfcare",
     "Meditation"
-  ]
+  ],
+  "original_title": "I Got My Degree In History",
+  "original_selftext": "After 3 Long Years I Have Graduated With A Degree Of Bachelor In Arts With Honours In History",
+  "minimally_varied": true,
+  "variation_date": "2025-08-12 11:26:06"
 }

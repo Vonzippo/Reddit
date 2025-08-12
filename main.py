@@ -12,10 +12,11 @@ from pathlib import Path
 import urllib.request
 import os
 import mimetypes
+import re
 
 class PostBot:
     def __init__(self):
-        self.base_dir = Path("/Users/patrick/Desktop/Reddit/data")
+        self.base_dir = Path("/Users/patrick/Desktop/Reddit/data_all")  # Geändert zu data_all
         self.posts_dir = self.base_dir / "Posts"
         self.posts = []
         self._load_data()
@@ -23,7 +24,7 @@ class PostBot:
         # Tägliches Post-Tracking
         self.daily_posts = {}
         self._load_daily_stats()
-        self.daily_target = None  # Wird täglich zufällig zwischen 5-20 gesetzt
+        self.daily_target = None  # Wird täglich zufällig zwischen 1-4 gesetzt
         
         # Track bereits gepostete Posts
         self.posted_posts = set()
@@ -35,8 +36,8 @@ class PostBot:
     def _init_reddit_connection(self):
         """Initialisiert die Reddit-Verbindung"""
         try:
-            import praw
             from config import ACTIVE_CONFIG
+            import praw
             
             self.reddit = praw.Reddit(
                 client_id=ACTIVE_CONFIG["client_id"],
@@ -195,15 +196,62 @@ class PostBot:
         print(f"📈 Tagesfortschritt: {current}/{target} Posts")
     
     def get_random_post(self):
-        """Gibt einen zufälligen Post zurück (bevorzugt noch nicht gepostete)"""
+        """Gibt einen zufälligen Post zurück mit alternativen Subreddits"""
+        # Subreddits die OC verlangen oder strenge Regeln haben
+        problematic_subs = ['pics', 'photography', 'itookapicture', 'art', 'drawing']
+        
         if self.posts:
             # Versuche einen noch nicht geposteten Post zu finden
             unposted = [p for p in self.posts if p.get('id') not in self.posted_posts]
             if unposted:
-                return random.choice(unposted)
-            # Falls alle gepostet, nimm irgendeinen
-            return random.choice(self.posts)
+                post = random.choice(unposted)
+            else:
+                post = random.choice(self.posts)
+            
+            # Nutze alternative Subreddits wenn vorhanden
+            if post.get('alternative_subreddits'):
+                # Wähle zufällig einen alternativen Subreddit
+                new_sub = random.choice(post['alternative_subreddits'])
+                print(f"   📋 Verwende alternativen Subreddit: r/{new_sub}")
+                post['subreddit'] = new_sub
+            elif post.get('subreddit', '').lower() in problematic_subs:
+                # Fallback für problematische Subs
+                safe_subs = ['interestingasfuck', 'Damnthatsinteresting', 'BeAmazed', 'nextfuckinglevel']
+                new_sub = random.choice(safe_subs)
+                print(f"   ⚠️ r/{post['subreddit']} problematisch - verwende r/{new_sub}")
+                post['subreddit'] = new_sub
+            
+            return post
         return None
+    
+    def clean_post_title(self, title):
+        """Bereinigt Post-Titel von problematischen Elementen"""
+        # Entferne mehrfache Leerzeichen
+        title = ' '.join(title.split())
+        
+        # Entferne verbotene Phrasen
+        banned_phrases = [
+            'upvote if', 'upvote this', 'please upvote',
+            '[OC]', '[oc]', '(OC)', '(oc)',
+            'EDIT:', 'UPDATE:'
+        ]
+        
+        for phrase in banned_phrases:
+            title = re.sub(re.escape(phrase), '', title, flags=re.IGNORECASE)
+        
+        # Prüfe auf ALL CAPS
+        if sum(1 for c in title if c.isupper()) > len(title) * 0.5:
+            title = title.title()
+            print(f"   📝 Titel von CAPS zu Normal konvertiert")
+        
+        # Entferne übermäßige Satzzeichen
+        title = re.sub(r'[!?.]{2,}$', '.', title)
+        
+        # Max 300 Zeichen
+        if len(title) > 300:
+            title = title[:297] + "..."
+        
+        return title.strip()
     
     def save_generated_post(self, post_data):
         """Speichert generierten Post in organisiertem Ordner"""
@@ -369,11 +417,14 @@ class PostBot:
                         print(f"   🏷️ Verwende Flair: {flair_text}")
                         break
             
+            # Bereinige Titel
+            clean_title = self.clean_post_title(post_data['title'])
+            
             # Erstelle den Post mit Flair wenn möglich
             if post_data.get('selftext'):
                 # Text-Post
                 submission = subreddit.submit(
-                    title=post_data['title'],
+                    title=clean_title,
                     selftext=post_data.get('selftext', ''),
                     flair_id=flair_id if flair_id else None
                 )
@@ -389,7 +440,7 @@ class PostBot:
                         try:
                             # Versuche als Bild-Post mit Datei
                             submission = subreddit.submit_image(
-                                title=post_data['title'],
+                                title=clean_title,
                                 image_path=image_path,
                                 flair_id=flair_id if flair_id else None
                             )
@@ -401,7 +452,7 @@ class PostBot:
                             print(f"   ⚠️ Upload fehlgeschlagen: {e}")
                             # Fallback: Verwende Original-URL
                             submission = subreddit.submit(
-                                title=post_data['title'],
+                                title=clean_title,
                                 url=url,
                                 flair_id=flair_id if flair_id else None
                             )
@@ -409,7 +460,7 @@ class PostBot:
                     else:
                         # Fallback wenn Download fehlschlägt
                         submission = subreddit.submit(
-                            title=post_data['title'],
+                            title=clean_title,
                             url=url,
                             flair_id=flair_id if flair_id else None
                         )
@@ -417,7 +468,7 @@ class PostBot:
                 else:
                     # Normaler Link-Post (kein Bild)
                     submission = subreddit.submit(
-                        title=post_data['title'],
+                        title=clean_title,
                         url=url,
                         flair_id=flair_id if flair_id else None
                     )

@@ -181,6 +181,24 @@ class KommentareBot:
         
         # Entferne Duplikate und sortiere
         self.all_subreddits = sorted(list(set(self.all_subreddits)))
+        
+        # FALLBACK wenn keine Subreddits geladen wurden
+        if not self.all_subreddits:
+            print("⚠️ Keine Subreddits aus Dateien geladen - verwende Fallback-Liste")
+            self.all_subreddits = [
+                'ADHD', 'ADHDUK', 'HowToADHD', 'AuDHD',
+                'GetDisciplined', 'productivity', 'bulletjournal',
+                'planners', 'PlannerAddicts', 'bujo', 'Journaling',
+                'mentalhealth', 'anxiety', 'therapy', 'selfcare',
+                'decidingtobebetter', 'selfimprovement', 'GetMotivated',
+                'organization', 'declutter', 'minimalism',
+                'Notion', 'ObsidianMD', 'todoist',
+                'needafriend', 'CasualConversation', 'offmychest'
+            ]
+            # Filtere Blacklist auch aus Fallback
+            self.all_subreddits = [s for s in self.all_subreddits 
+                                  if s.lower() not in self.blacklisted_subreddits]
+        
         print(f"📋 Geladen: {len(self.all_subreddits)} ADHD-fokussierte Subreddits (nach Blacklist-Filter)")
     
     def _load_commented_history(self):
@@ -338,7 +356,17 @@ class KommentareBot:
                         return random.choice(suitable_posts)
                         
                 except Exception as e:
-                    print(f"   ⚠️ Fehler bei r/{target_sub}: {str(e)[:50]}")
+                    error_msg = str(e)
+                    print(f"   ⚠️ Fehler bei r/{target_sub}: {error_msg[:50]}")
+                    
+                    # Auto-Blacklist bei bestimmten Fehlern
+                    if "403" in error_msg or "Redirect" in error_msg or "not found" in error_msg.lower():
+                        print(f"   🚫 r/{target_sub} wird zur Blacklist hinzugefügt")
+                        self.add_to_blacklist(target_sub)
+                        # Entferne aus aktiver Liste
+                        if target_sub in target_subs:
+                            target_subs.remove(target_sub)
+                    
                     continue
             
             print("   ❌ Keine Posts nach 5 Versuchen gefunden")
