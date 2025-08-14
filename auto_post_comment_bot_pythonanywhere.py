@@ -32,8 +32,8 @@ class AutoPostCommentBot:
             'pause_day_chance': 0.55   # 55% Chance für Pausentag (mehr Pause als Aktivität!)
         }
         
-        # Nutze data_all
-        self.base_dir = Path("/home/lucawahl/Reddit/data_all")
+        # Nutze Data_Text für reine Text-Posts (ohne Bilder)
+        self.base_dir = Path("/home/lucawahl/Reddit/Data_Text")
         self.posts_dir = self.base_dir / "Posts"
         self.posts = []
         self._load_data()
@@ -73,7 +73,7 @@ class AutoPostCommentBot:
     
     def _load_data(self):
         """Lädt alle Posts aus data_all/Posts"""
-        print(f"📂 Lade Daten von: {self.base_dir}")
+        print(f"📂 Lade Text-Posts von: {self.base_dir}")
         
         if self.posts_dir.exists():
             for post_folder in sorted(self.posts_dir.iterdir()):
@@ -84,7 +84,7 @@ class AutoPostCommentBot:
                             data = json.load(f)
                             self.posts.append(data)
         
-        print(f"✅ Geladen: {len(self.posts)} Posts")
+        print(f"✅ Geladen: {len(self.posts)} Text-Posts (ohne Bilder)")
     
     def _load_daily_stats(self):
         """Lädt tägliche Statistiken"""
@@ -284,46 +284,25 @@ class AutoPostCommentBot:
             
             clean_title = self.clean_post_title(post_data['title'])
             
-            # Erstelle Post
-            if post_data.get('selftext'):
+            # Erstelle Text-Post (Data_Text enthält NUR Text-Posts)
+            # Verwende variierten Text wenn vorhanden
+            text_to_use = post_data.get('varied_selftext', post_data.get('selftext', ''))
+            
+            if text_to_use:
                 submission = subreddit.submit(
                     title=clean_title,
-                    selftext=post_data.get('selftext', ''),
+                    selftext=text_to_use,
                     flair_id=flair_id
                 )
-            elif post_data.get('url'):
-                url = post_data.get('url', '')
-                is_image = any(ext in url.lower() for ext in ['.jpg', '.jpeg', '.png', '.gif', 'i.redd.it', 'imgur'])
-                
-                if is_image:
-                    image_path = self.get_image_for_post(post_data)
-                    if image_path:
-                        try:
-                            submission = subreddit.submit_image(
-                                title=clean_title,
-                                image_path=image_path,
-                                flair_id=flair_id
-                            )
-                            if 'temp_images' in image_path:
-                                os.remove(image_path)
-                        except Exception as e:
-                            submission = subreddit.submit(
-                                title=clean_title,
-                                url=url,
-                                flair_id=flair_id
-                            )
-                    else:
-                        submission = subreddit.submit(
-                            title=clean_title,
-                            url=url,
-                            flair_id=flair_id
-                        )
-                else:
-                    submission = subreddit.submit(
-                        title=clean_title,
-                        url=url,
-                        flair_id=flair_id
-                    )
+                print("   📝 Text-Post erstellt (ohne Bilder)")
+            else:
+                # Sollte bei Data_Text nicht vorkommen
+                print("   ⚠️ Warnung: Post ohne Text gefunden!")
+                submission = subreddit.submit(
+                    title=clean_title,
+                    selftext="",
+                    flair_id=flair_id
+                )
             
             print(f"✅ Post erstellt: https://reddit.com{submission.permalink}")
             
@@ -575,9 +554,10 @@ class AutoPostCommentBot:
             print(f"📊 Heute erstellt: {posts_today} Posts, {comments_today} Kommentare")
 
 def main():
-    print("🤖 VOLLAUTOMATISCHER REDDIT BOT")
+    print("🤖 VOLLAUTOMATISCHER REDDIT BOT (TEXT-ONLY)")
     print("="*50)
-    print("Erstellt automatisch Posts und Kommentare")
+    print("Erstellt automatisch TEXT-Posts und Kommentare")
+    print("Nutzt Data_Text (Top 100 Text-Posts ohne Bilder)")
     print("Keine User-Inputs erforderlich")
     print()
     
