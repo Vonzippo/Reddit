@@ -50,7 +50,8 @@ class AutoPostCommentBot:
         self._load_posted_history()
         
         # Reddit API Konfiguration
-        self._init_reddit_connection()
+        if not self._init_reddit_connection():
+            raise Exception("Reddit-Verbindung konnte nicht hergestellt werden!")
     
     def _init_reddit_connection(self):
         """Initialisiert die Reddit-Verbindung"""
@@ -67,9 +68,13 @@ class AutoPostCommentBot:
             )
             user = self.reddit.user.me()
             print(f"✅ Reddit-Verbindung hergestellt als u/{user.name}")
+            return True
             
         except Exception as e:
             print(f"⚠️ Reddit-Verbindung fehlgeschlagen: {e}")
+            print(f"❌ KRITISCHER FEHLER: Bot kann ohne Reddit-Verbindung nicht laufen!")
+            self.reddit = None
+            return False
     
     def _load_data(self):
         """Lädt alle Posts aus data_all/Posts"""
@@ -268,6 +273,10 @@ class AutoPostCommentBot:
     def create_post(self, post_data):
         """Erstellt einen Post auf Reddit"""
         try:
+            if not self.reddit:
+                print("❌ Keine Reddit-Verbindung vorhanden!")
+                return False
+            
             subreddit = self.reddit.subreddit(post_data['subreddit'])
             
             # Hole Flairs
@@ -329,6 +338,10 @@ class AutoPostCommentBot:
     
     def find_target_posts(self):
         """Findet Posts zum Kommentieren"""
+        if not self.reddit:
+            print("❌ Keine Reddit-Verbindung für Kommentare!")
+            return []
+        
         try:
             # Suche in verschiedenen Subreddits
             target_subreddits = [
