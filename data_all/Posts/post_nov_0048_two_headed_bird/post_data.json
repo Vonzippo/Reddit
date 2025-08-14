@@ -10,5 +10,12 @@
   "num_comments": 77,
   "over_18": false,
   "permalink": "/r/Grimdank/comments/1ggtnxp/two_headed_bird/",
-  "link_flair_text": "Dank Memes"
+  "link_flair_text": "Dank Memes",
+  "alternative_subreddits": [
+    "self",
+    "CasualConversation",
+    "NoStupidQuestions",
+    "DoesAnybodyElse"
+  ],
+  "varied_title": "Three headed bird"
 }

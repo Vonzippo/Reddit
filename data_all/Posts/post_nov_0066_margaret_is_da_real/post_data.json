@@ -10,5 +10,9 @@
   "num_comments": 5,
   "over_18": false,
   "permalink": "/r/shitposting/comments/1ggt1gl/margaret_is_da_real/",
-  "link_flair_text": "B 👍"
+  "link_flair_text": "B 👍",
+  "alternative_subreddits": [
+    "CasualConversation",
+    "self"
+  ]
 }

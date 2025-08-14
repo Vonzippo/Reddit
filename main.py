@@ -13,21 +13,26 @@ import urllib.request
 import os
 import mimetypes
 import re
+import requests
 
 class PostBot:
     def __init__(self):
         self.base_dir = Path("/Users/patrick/Desktop/Reddit/data_all")  # Geändert zu data_all
         self.posts_dir = self.base_dir / "Posts"
+        self.comments_dir = Path("/Users/patrick/Desktop/Reddit/data/Comments")  # Für Kommentare
         self.posts = []
+        self.comments = []
         self._load_data()
         
         # Tägliches Post-Tracking
         self.daily_posts = {}
         self._load_daily_stats()
         self.daily_target = None  # Wird täglich zufällig zwischen 1-4 gesetzt
+        self.daily_comment_target = None  # Für Kommentare
         
-        # Track bereits gepostete Posts
+        # Track bereits gepostete Posts und Kommentare
         self.posted_posts = set()
+        self.posted_comments = set()
         self._load_posted_history()
         
         # Reddit API Konfiguration
@@ -52,21 +57,32 @@ class PostBot:
             print(f"⚠️ Reddit-Verbindung fehlgeschlagen: {e}")
     
     def _load_data(self):
-        """Lädt alle Posts aus dem Posts Ordner"""
+        """Lädt alle Posts aus dem Posts Ordner und Kommentare aus data/Comments"""
         print(f"📂 Lade Daten von: {self.base_dir}")
         
         # Posts laden direkt aus Posts Ordner
         if self.posts_dir.exists():
             print(f"  📁 Lade Posts aus: {self.posts_dir.name}")
             for post_folder in sorted(self.posts_dir.iterdir()):
-                if post_folder.is_dir() and post_folder.name.startswith("post_"):
+                if post_folder.is_dir():
                     json_file = post_folder / "post_data.json"
                     if json_file.exists():
                         with open(json_file, 'r', encoding='utf-8') as f:
                             data = json.load(f)
                             self.posts.append(data)
         
-        print(f"✅ Geladen: {len(self.posts)} Posts")
+        # Kommentare laden aus data/Comments
+        if self.comments_dir.exists():
+            print(f"  📁 Lade Kommentare aus: {self.comments_dir}")
+            for comment_folder in sorted(self.comments_dir.iterdir()):
+                if comment_folder.is_dir() and comment_folder.name.startswith("comment_"):
+                    json_file = comment_folder / "comment_data.json"
+                    if json_file.exists():
+                        with open(json_file, 'r', encoding='utf-8') as f:
+                            data = json.load(f)
+                            self.comments.append(data)
+        
+        print(f"✅ Geladen: {len(self.posts)} Posts, {len(self.comments)} Kommentare")
     
     def _load_daily_stats(self):
         """Lädt tägliche Post-Statistiken"""
@@ -86,17 +102,22 @@ class PostBot:
         today = datetime.now().strftime("%Y-%m-%d")
         if today in self.daily_posts:
             self.daily_target = self.daily_posts[today].get('target')
+            self.daily_comment_target = self.daily_posts[today].get('comment_target')
             # Falls target nicht gesetzt oder None, setze neues Ziel
             if self.daily_target is None:
                 self.daily_target = random.randint(1, 4)
                 self.daily_posts[today]['target'] = self.daily_target
                 self._save_daily_stats()
                 print(f"🎯 Tagesziel korrigiert: {self.daily_target} Posts")
+            if self.daily_comment_target is None:
+                self.daily_comment_target = random.randint(5, 20)
+                self.daily_posts[today]['comment_target'] = self.daily_comment_target
+                self._save_daily_stats()
             elif self.daily_target == 0:
                 print(f"🚫 Heute ist ein Pausentag - keine Posts")
             else:
-                print(f"📊 Heutiges Ziel: {self.daily_target} Posts")
-                print(f"   Bereits erstellt: {self.daily_posts[today].get('count', 0)}")
+                print(f"📊 Heutiges Ziel: {self.daily_target} Posts, {self.daily_comment_target} Kommentare")
+                print(f"   Bereits erstellt: {self.daily_posts[today].get('count', 0)} Posts, {self.daily_posts[today].get('comment_count', 0)} Kommentare")
         else:
             # 15% Chance für einen Pausentag (0 Posts) - reduziert von 30%
             if random.random() < 0.15:
@@ -109,14 +130,18 @@ class PostBot:
                 }
                 print(f"😴 Heute ist ein Pausentag - keine Posts geplant")
             else:
-                # Setze neues tägliches Ziel (1-4 Posts)
+                # Setze neues tägliches Ziel (1-4 Posts, 5-20 Kommentare)
                 self.daily_target = random.randint(1, 4)
+                self.daily_comment_target = random.randint(5, 20)
                 self.daily_posts[today] = {
                     'target': self.daily_target,
+                    'comment_target': self.daily_comment_target,
                     'count': 0,
-                    'posts': []
+                    'comment_count': 0,
+                    'posts': [],
+                    'comments': []
                 }
-                print(f"🎯 Neues Tagesziel gesetzt: {self.daily_target} Posts")
+                print(f"🎯 Neues Tagesziel gesetzt: {self.daily_target} Posts, {self.daily_comment_target} Kommentare")
             self._save_daily_stats()
     
     def _save_daily_stats(self):
@@ -133,17 +158,21 @@ class PostBot:
                 with open(history_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
                     self.posted_posts = set(data.get('posts', []))
-                    print(f"📝 Historie geladen: {len(self.posted_posts)} bereits gepostete Posts")
+                    self.posted_comments = set(data.get('comments', []))
+                    print(f"📝 Historie geladen: {len(self.posted_posts)} Posts, {len(self.posted_comments)} Kommentare")
             except:
                 self.posted_posts = set()
         else:
             self.posted_posts = set()
     
     def _save_posted_history(self):
-        """Speichert Historie der geposteten Posts"""
+        """Speichert Historie der geposteten Posts und Kommentare"""
         history_file = Path("/Users/patrick/Desktop/Reddit/posted_posts.json")
         with open(history_file, 'w', encoding='utf-8') as f:
-            json.dump({'posts': list(self.posted_posts)}, f, indent=2)
+            json.dump({
+                'posts': list(self.posted_posts),
+                'comments': list(self.posted_comments)
+            }, f, indent=2)
     
     def get_today_post_count(self):
         """Gibt zurück wie viele Posts heute bereits erstellt wurden"""
@@ -417,15 +446,17 @@ class PostBot:
                         print(f"   🏷️ Verwende Flair: {flair_text}")
                         break
             
-            # Bereinige Titel
-            clean_title = self.clean_post_title(post_data['title'])
+            # Verwende variierten Titel wenn vorhanden, sonst Original
+            title_to_use = post_data.get('varied_title', post_data['title'])
+            clean_title = self.clean_post_title(title_to_use)
             
             # Erstelle den Post mit Flair wenn möglich
             if post_data.get('selftext'):
-                # Text-Post
+                # Text-Post - verwende variierten Text wenn vorhanden
+                text_to_use = post_data.get('varied_selftext', post_data.get('selftext', ''))
                 submission = subreddit.submit(
                     title=clean_title,
-                    selftext=post_data.get('selftext', ''),
+                    selftext=text_to_use,
                     flair_id=flair_id if flair_id else None
                 )
             elif post_data.get('url'):
@@ -614,6 +645,263 @@ class PostBot:
             print(f"📊 Heute erstellt: {current_count}/{self.daily_target} Posts")
             print(f"   Sessions heute: {session_count}")
     
+    def find_target_posts(self):
+        """Findet Posts zum Kommentieren in relevanten Subreddits"""
+        try:
+            # Target Subreddits für Kommentare (niedrige Anforderungen)
+            target_subreddits = [
+                'CasualConversation', 'self', 'NoStupidQuestions',
+                'findareddit', 'Showerthoughts', 'DoesAnybodyElse',
+                'offmychest', 'TrueOffMyChest', 'confession',
+                'Journaling', 'productivity', 'GetMotivated'
+            ]
+            
+            target_posts = []
+            
+            # Durchsuche erste 3 Subreddits
+            for sub_name in random.sample(target_subreddits, min(3, len(target_subreddits))):
+                try:
+                    subreddit = self.reddit.subreddit(sub_name)
+                    # Hole neue Posts (letzte 24h)
+                    for post in subreddit.new(limit=10):
+                        if post.created_utc > time.time() - 86400:  # Letzten 24h
+                            if post.id not in self.posted_comments:
+                                if not post.locked and not post.archived:
+                                    target_posts.append(post)
+                except Exception as e:
+                    print(f"   ⚠️ Fehler bei r/{sub_name}: {str(e)[:50]}")
+                    continue
+            
+            return target_posts
+            
+        except Exception as e:
+            print(f"❌ Fehler beim Suchen von Posts: {e}")
+            return []
+    
+    def find_best_comment_with_ai(self, post):
+        """Nutzt OpenRouter API um den passendsten Kommentar aus dem Archiv zu finden"""
+        if not self.comments:
+            print("❌ Keine Kommentare im Archiv gefunden!")
+            return None
+        
+        try:
+            from config import OPENROUTER_API_KEY
+            
+            # Nimm eine Auswahl von Kommentaren (max 20 um API Kosten zu sparen)
+            sample_size = min(20, len(self.comments))
+            comment_sample = random.sample(self.comments, sample_size)
+            
+            # Bereite Kommentare für API vor
+            comments_text = ""
+            for i, comment in enumerate(comment_sample):
+                body = comment.get('body', '')[:300]  # Max 300 Zeichen pro Kommentar
+                comments_text += f"{i+1}. {body}\n\n"
+            
+            # API Request
+            prompt = f"""You are selecting the MOST RELEVANT comment from an archive to reply to a Reddit post.
+
+Post Title: {post.title}
+Post Subreddit: r/{post.subreddit.display_name}
+
+Available Comments:
+{comments_text}
+
+Select the NUMBER of the comment that best fits as a reply to this post. Consider:
+- Relevance to the topic
+- Appropriate tone for the subreddit
+- Natural flow of conversation
+
+Return ONLY the number (1-{sample_size}) of the best comment, nothing else."""
+
+            response = requests.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": "meta-llama/llama-3.2-3b-instruct:free",
+                    "messages": [{"role": "user", "content": prompt}],
+                    "temperature": 0.3,
+                    "max_tokens": 10
+                },
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                choice_text = result['choices'][0]['message']['content'].strip()
+                
+                # Extrahiere Nummer
+                try:
+                    choice_num = int(''.join(filter(str.isdigit, choice_text)))
+                    if 1 <= choice_num <= sample_size:
+                        selected = comment_sample[choice_num - 1]
+                        print(f"   🤖 AI wählte Kommentar #{choice_num} als passendsten")
+                        comment_body = selected.get('body', '')
+                    else:
+                        # Fallback: Zufällig
+                        selected = random.choice(comment_sample)
+                        print(f"   📋 AI-Auswahl ungültig, nutze zufälligen Kommentar")
+                        comment_body = selected.get('body', '')
+                except:
+                    # Fallback: Zufällig
+                    selected = random.choice(comment_sample)
+                    print(f"   📋 AI-Antwort nicht parsebar, nutze zufälligen Kommentar")
+                    comment_body = selected.get('body', '')
+            else:
+                # API Fehler - Fallback
+                selected = random.choice(self.comments)
+                print(f"   ⚠️ API-Fehler ({response.status_code}), nutze zufälligen Kommentar")
+                comment_body = selected.get('body', '')
+                
+        except Exception as e:
+            # Fehler - Fallback
+            print(f"   ⚠️ Fehler bei AI-Auswahl: {str(e)[:50]}")
+            selected = random.choice(self.comments)
+            print(f"   📋 Nutze zufälligen Kommentar als Fallback")
+            comment_body = selected.get('body', '')
+        
+        # Kürze sehr lange Kommentare
+        if len(comment_body) > 500:
+            sentences = comment_body[:500].split('. ')
+            if len(sentences) > 1:
+                comment_body = '. '.join(sentences[:-1]) + '.'
+            else:
+                comment_body = comment_body[:497] + '...'
+        
+        return comment_body
+    
+    def get_random_comment_from_archive(self, post=None):
+        """Holt einen passenden Kommentar aus dem Archiv (mit AI wenn möglich)"""
+        if not self.comments:
+            print("❌ Keine Kommentare im Archiv gefunden!")
+            return None
+        
+        # Versuche AI-basierte Auswahl wenn Post gegeben
+        if post and hasattr(post, 'title'):
+            return self.find_best_comment_with_ai(post)
+        else:
+            # Kein Post - nimm zufälligen
+            selected = random.choice(self.comments)
+            print(f"   📋 Zufälliger Kommentar aus Archiv")
+            comment_body = selected.get('body', '')
+            
+            # Kürze sehr lange Kommentare
+            if len(comment_body) > 500:
+                sentences = comment_body[:500].split('. ')
+                if len(sentences) > 1:
+                    comment_body = '. '.join(sentences[:-1]) + '.'
+                else:
+                    comment_body = comment_body[:497] + '...'
+            
+            return comment_body
+    
+    def generate_comment(self, post):
+        """Nutzt einen Kommentar aus dem Archiv"""
+        return self.get_random_comment_from_archive(post)
+    
+    def create_comment(self, post):
+        """Erstellt einen Kommentar auf einem Post"""
+        try:
+            comment_text = self.generate_comment(post)
+            
+            # Erstelle Kommentar
+            comment = post.reply(comment_text)
+            
+            print(f"✅ Kommentar erstellt auf r/{post.subreddit.display_name}")
+            print(f"   Post: {post.title[:60]}...")
+            print(f"   Kommentar: {comment_text[:100]}...")
+            print(f"   URL: https://reddit.com{comment.permalink}")
+            
+            # Update Tracking
+            self.posted_comments.add(post.id)
+            self._save_posted_history()
+            
+            # Update tägliche Statistik
+            from datetime import datetime
+            today = datetime.now().strftime("%Y-%m-%d")
+            
+            if today not in self.daily_posts:
+                self._load_daily_stats()
+            
+            if 'comment_count' not in self.daily_posts[today]:
+                self.daily_posts[today]['comment_count'] = 0
+                self.daily_posts[today]['comments'] = []
+            
+            self.daily_posts[today]['comment_count'] += 1
+            self.daily_posts[today]['comments'].append({
+                'time': datetime.now().isoformat(),
+                'post_title': post.title[:100],
+                'subreddit': post.subreddit.display_name,
+                'comment': comment_text[:200],
+                'permalink': comment.permalink
+            })
+            self._save_daily_stats()
+            
+            return True
+            
+        except Exception as e:
+            error_msg = str(e)
+            if "403" in error_msg:
+                print(f"❌ Zugriff verweigert (403): ")
+                print(f"   • Account könnte zu neu sein oder zu wenig Karma haben")
+                print(f"   • r/{post.subreddit.display_name} hat möglicherweise Beschränkungen")
+                print(f"   • Versuche ein anderes Subreddit")
+            elif "429" in error_msg:
+                print(f"❌ Rate Limit erreicht - zu viele Anfragen")
+                print(f"   • Warte ein paar Minuten")
+            elif "401" in error_msg:
+                print(f"❌ Authentifizierung fehlgeschlagen")
+                print(f"   • Überprüfe deine Reddit Credentials in config.py")
+            else:
+                print(f"❌ Fehler beim Kommentieren: {error_msg[:100]}")
+            return False
+    
+    def can_comment_today(self):
+        """Prüft ob heute noch Kommentare erstellt werden können"""
+        from datetime import datetime
+        today = datetime.now().strftime("%Y-%m-%d")
+        
+        if today not in self.daily_posts:
+            self._load_daily_stats()
+        
+        current_count = self.daily_posts[today].get('comment_count', 0)
+        target = self.daily_posts[today].get('comment_target', self.daily_comment_target or 10)
+        
+        if current_count >= target:
+            print(f"⚠️ Kommentar-Limit erreicht: {current_count}/{target} Kommentare")
+            return False
+        return True
+    
+    def create_comments_batch(self, count=5):
+        """Erstellt mehrere Kommentare in einem Batch"""
+        print(f"\n💬 Erstelle bis zu {count} Kommentare...")
+        
+        target_posts = self.find_target_posts()
+        if not target_posts:
+            print("❌ Keine passenden Posts zum Kommentieren gefunden")
+            return 0
+        
+        created = 0
+        for i in range(min(count, len(target_posts))):
+            if not self.can_comment_today():
+                break
+                
+            post = target_posts[i]
+            print(f"\n💬 Kommentar {i+1}/{count}:")
+            
+            if self.create_comment(post):
+                created += 1
+                # Pause zwischen Kommentaren
+                if i < count - 1:
+                    wait = random.randint(60, 300)  # 1-5 Min
+                    print(f"   ⏳ Warte {wait} Sekunden...")
+                    time.sleep(wait)
+        
+        print(f"\n✅ {created} Kommentare erstellt")
+        return created
+    
     def show_statistics(self):
         """Zeigt Statistiken über die geladenen Posts"""
         print("\n📊 STATISTIKEN:")
@@ -642,18 +930,20 @@ class PostBot:
 
 def main():
     """Hauptfunktion"""
+    from datetime import datetime
     bot = PostBot()
     
-    print("\n🤖 Post Bot - Reddit Post Generator")
+    print("\n🤖 Post Bot - Reddit Post & Kommentar Generator")
     print("="*50)
     print("Was möchtest du tun?")
     print("1. 🔄 Automatischer Post-Loop")
     print("2. 📝 Einzelnen Post erstellen")
-    print("3. 📊 Statistiken anzeigen")
-    print("4. 🎲 Zufälligen Post anzeigen")
-    print("5. 🔍 Posts nach Subreddit filtern")
+    print("3. 💬 Kommentare erstellen")
+    print("4. 📊 Statistiken anzeigen")
+    print("5. 🎲 Zufälligen Post anzeigen")
+    print("6. 🔍 Posts nach Subreddit filtern")
     
-    choice = input("\nAuswahl (1-5): ").strip()
+    choice = input("\nAuswahl (1-6): ").strip()
     
     if choice == "1":
         # Automatischer Loop mit Tageslimit
@@ -691,9 +981,51 @@ def main():
                 print("❌ Abgebrochen")
                 
     elif choice == "3":
-        bot.show_statistics()
+        # Kommentare erstellen
+        print("\n💬 KOMMENTARE ERSTELLEN")
+        print("="*60)
+        
+        today_comments = bot.daily_posts.get(datetime.now().strftime("%Y-%m-%d"), {}).get('comment_count', 0)
+        comment_target = bot.daily_comment_target or 10
+        
+        print(f"Heutiges Kommentar-Ziel: {comment_target}")
+        print(f"Bereits erstellt: {today_comments}")
+        
+        if today_comments >= comment_target:
+            print("⚠️ Tageslimit für Kommentare bereits erreicht!")
+        else:
+            remaining = comment_target - today_comments
+            print(f"Noch möglich: {remaining} Kommentare")
+            
+            print("\nWie viele Kommentare erstellen?")
+            print(f"1. Einzelnen Kommentar")
+            print(f"2. 5 Kommentare")
+            print(f"3. 10 Kommentare")
+            print(f"4. Alle verbleibenden ({remaining})")
+            
+            sub_choice = input("\nAuswahl (1-4): ").strip()
+            
+            if sub_choice == "1":
+                count = 1
+            elif sub_choice == "2":
+                count = min(5, remaining)
+            elif sub_choice == "3":
+                count = min(10, remaining)
+            elif sub_choice == "4":
+                count = remaining
+            else:
+                count = 1
+            
+            confirm = input(f"\n⚠️ {count} Kommentare erstellen? (j/n): ").strip().lower()
+            if confirm in ['j', 'ja', 'yes', 'y']:
+                bot.create_comments_batch(count)
+            else:
+                print("❌ Abgebrochen")
         
     elif choice == "4":
+        bot.show_statistics()
+        
+    elif choice == "5":
         # Zufälligen Post anzeigen
         post = bot.get_random_post()
         if post:
@@ -711,7 +1043,7 @@ def main():
             elif post.get('url'):
                 print(f"\nURL: {post.get('url')}")
                 
-    elif choice == "5":
+    elif choice == "6":
         # Posts nach Subreddit filtern
         subreddit = input("\nSubreddit eingeben (z.B. adhdmeme): ").strip()
         

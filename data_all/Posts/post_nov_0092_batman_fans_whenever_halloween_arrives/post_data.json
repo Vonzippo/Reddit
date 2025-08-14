@@ -10,5 +10,9 @@
   "num_comments": 61,
   "over_18": false,
   "permalink": "/r/batman/comments/1ggsuul/batman_fans_whenever_halloween_arrives/",
-  "link_flair_text": "FUNNY"
+  "link_flair_text": "FUNNY",
+  "alternative_subreddits": [
+    "CasualConversation",
+    "self"
+  ]
 }

@@ -292,15 +292,10 @@
   "visited": false,
   "wls": null,
   "alternative_subreddits": [
-    "stopprocrastinating",
-    "bulletjournal",
-    "declutter",
-    "minimalism",
-    "selfimprovement",
-    "college",
-    "bipolar",
-    "schizophrenia",
-    "selfcare",
-    "Meditation"
-  ]
+    "self",
+    "DoesAnybodyElse",
+    "CasualConversation",
+    "rant"
+  ],
+  "varied_title": "Sometimes we don’t even get that three shot"
 }

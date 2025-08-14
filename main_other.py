@@ -20,14 +20,14 @@ import re
 
 class CombinedBot:
     def __init__(self, use_config_file=False):
-        self.base_dir = Path("/home/lucawahl/Reddit/data_all")
+        self.base_dir = Path("/Users/patrick/Desktop/Reddit/data_all")
         self.posts_dir = self.base_dir / "Posts"
         self.comments_dir = self.base_dir / "Comments"
         self.posts = []
         self.comments = []
         
         # Lade oder erstelle Konfiguration
-        self.config_file = Path("/home/lucawahl/Reddit/bot_config.json")
+        self.config_file = Path("/Users/patrick/Desktop/Reddit/bot_config.json")
         self.config = self._load_or_create_config(use_config_file)
         
         self._load_data()
@@ -60,7 +60,7 @@ class CombinedBot:
         self.users_to_process = self._load_users_from_file()
         
         # Viral Post Tracking für gestern gepostete Beiträge
-        self.viral_posts_file = Path("/home/lucawahl/Reddit/viral_posts_tracking.json")
+        self.viral_posts_file = Path("/Users/patrick/Desktop/Reddit/viral_posts_tracking.json")
         self.viral_posts = self._load_viral_tracking()
         
         # Natürliche Variationen für Kommentare
@@ -197,7 +197,7 @@ class CombinedBot:
     def _load_users_from_file(self):
         """Lädt Benutzernamen aus otherUser.txt"""
         users = []
-        user_file = Path("/home/lucawahl/Reddit/otherUser.txt")
+        user_file = Path("/Users/patrick/Desktop/Reddit/otherUser.txt")
         
         if user_file.exists():
             try:
@@ -278,7 +278,7 @@ class CombinedBot:
         self.text_only_subreddits = []
         
         # Lade Blacklist zuerst
-        blacklist_file = Path("/home/lucawahl/Reddit/blacklist_subreddits.txt")
+        blacklist_file = Path("/Users/patrick/Desktop/Reddit/blacklist_subreddits.txt")
         if blacklist_file.exists():
             with open(blacklist_file, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -288,7 +288,7 @@ class CombinedBot:
             print(f"🚫 Blacklist geladen: {len(self.blacklisted_subreddits)} gesperrte Subreddits")
         
         # Lade Text-only Subreddits
-        text_only_file = Path("/home/lucawahl/Reddit/text_only_subreddits.txt")
+        text_only_file = Path("/Users/patrick/Desktop/Reddit/text_only_subreddits.txt")
         if text_only_file.exists():
             with open(text_only_file, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -298,7 +298,7 @@ class CombinedBot:
             print(f"📝 Text-only geladen: {len(self.text_only_subreddits)} Subreddits")
         
         # Lade aus target_subreddits.txt
-        target_file = Path("/home/lucawahl/Reddit/target_subreddits.txt")
+        target_file = Path("/Users/patrick/Desktop/Reddit/target_subreddits.txt")
         if target_file.exists():
             with open(target_file, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -309,7 +309,7 @@ class CombinedBot:
                             self.all_subreddits.append(sub)
         
         # Lade aus target_subreddits_extended.txt (ohne Duplikate)
-        extended_file = Path("/home/lucawahl/Reddit/target_subreddits_extended.txt")
+        extended_file = Path("/Users/patrick/Desktop/Reddit/target_subreddits_extended.txt")
         if extended_file.exists():
             with open(extended_file, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -326,7 +326,7 @@ class CombinedBot:
     def _load_daily_stats(self):
         """Lädt tägliche Post-Statistiken"""
         from datetime import datetime
-        stats_file = Path("/home/lucawahl/Reddit/daily_post_stats.json")
+        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_post_stats.json")
         
         if stats_file.exists():
             try:
@@ -343,7 +343,7 @@ class CombinedBot:
             self.daily_post_target = self.daily_posts[today].get('target')
             # Falls target nicht gesetzt oder None, setze neues Ziel
             if self.daily_post_target is None:
-                self.daily_post_target = random.randint(1, 4)
+                self.daily_post_target = random.randint(1, 2)  # MAX 2 Posts pro Tag
                 self.daily_posts[today]['target'] = self.daily_post_target
                 self._save_daily_stats()
                 print(f"🎯 Post-Tagesziel korrigiert: {self.daily_post_target} Posts")
@@ -365,7 +365,7 @@ class CombinedBot:
                 print(f"😴 Heute ist ein Pausentag - keine Posts geplant")
             else:
                 # Setze neues tägliches Ziel (1-4 Posts)
-                self.daily_post_target = random.randint(1, 4)
+                self.daily_post_target = random.randint(1, 2)  # MAX 2 Posts pro Tag
                 self.daily_posts[today] = {
                     'target': self.daily_post_target,
                     'count': 0,
@@ -376,14 +376,14 @@ class CombinedBot:
     
     def _save_daily_stats(self):
         """Speichert tägliche Post-Statistiken"""
-        stats_file = Path("/home/lucawahl/Reddit/daily_post_stats.json")
+        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_post_stats.json")
         with open(stats_file, 'w', encoding='utf-8') as f:
             json.dump(self.daily_posts, f, indent=2, ensure_ascii=False)
     
     def _load_comment_daily_stats(self):
         """Lädt tägliche Kommentar-Statistiken"""
         from datetime import datetime
-        stats_file = Path("/home/lucawahl/Reddit/daily_comment_stats.json")
+        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_comment_stats.json")
         
         if stats_file.exists():
             try:
@@ -400,13 +400,13 @@ class CombinedBot:
             self.daily_comment_target = self.daily_comments[today].get('target')
             # Falls target nicht gesetzt oder None, setze neues Ziel
             if self.daily_comment_target is None:
-                self.daily_comment_target = random.randint(3, 7)
+                self.daily_comment_target = random.randint(2, 5)  # MAX 5 Kommentare pro Tag
                 self.daily_comments[today]['target'] = self.daily_comment_target
                 self._save_comment_daily_stats()
                 print(f"🎯 Kommentar-Tagesziel korrigiert: {self.daily_comment_target} Kommentare")
             elif self.daily_comment_target == 0:
                 # Falls irgendwie 0, setze neues Ziel
-                self.daily_comment_target = random.randint(3, 7)
+                self.daily_comment_target = random.randint(2, 5)  # MAX 5 Kommentare pro Tag
                 self.daily_comments[today]['target'] = self.daily_comment_target
                 self._save_comment_daily_stats()
                 print(f"🎯 Kommentar-Tagesziel korrigiert: {self.daily_comment_target} Kommentare")
@@ -415,7 +415,7 @@ class CombinedBot:
                 print(f"   Bereits erstellt: {self.daily_comments[today].get('count', 0)}")
         else:
             # Setze IMMER ein tägliches Ziel (5-20 Kommentare, keine Pausentage)
-            self.daily_comment_target = random.randint(3, 7)
+            self.daily_comment_target = random.randint(2, 5)  # MAX 5 Kommentare pro Tag
             self.daily_comments[today] = {
                 'target': self.daily_comment_target,
                 'count': 0,
@@ -426,18 +426,18 @@ class CombinedBot:
         
         # Finale Sicherheitsprüfung
         if self.daily_comment_target is None or self.daily_comment_target == 0:
-            self.daily_comment_target = random.randint(3, 7)
+            self.daily_comment_target = random.randint(2, 5)  # MAX 5 Kommentare pro Tag
             print(f"🎯 Standard-Kommentar-Tagesziel gesetzt: {self.daily_comment_target} Kommentare")
     
     def _save_comment_daily_stats(self):
         """Speichert tägliche Kommentar-Statistiken"""
-        stats_file = Path("/home/lucawahl/Reddit/daily_comment_stats.json")
+        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_comment_stats.json")
         with open(stats_file, 'w', encoding='utf-8') as f:
             json.dump(self.daily_comments, f, indent=2, ensure_ascii=False)
     
     def _load_posted_history(self):
         """Lädt Historie der bereits geposteten Posts"""
-        history_file = Path("/home/lucawahl/Reddit/posted_posts.json")
+        history_file = Path("/Users/patrick/Desktop/Reddit/posted_posts.json")
         if history_file.exists():
             try:
                 with open(history_file, 'r', encoding='utf-8') as f:
@@ -451,13 +451,13 @@ class CombinedBot:
     
     def _save_posted_history(self):
         """Speichert Historie der geposteten Posts"""
-        history_file = Path("/home/lucawahl/Reddit/posted_posts.json")
+        history_file = Path("/Users/patrick/Desktop/Reddit/posted_posts.json")
         with open(history_file, 'w', encoding='utf-8') as f:
             json.dump({'posts': list(self.posted_posts)}, f, indent=2)
     
     def _load_commented_history(self):
         """Lädt Historie der bereits kommentierten Posts"""
-        history_file = Path("/home/lucawahl/Reddit/commented_posts.json")
+        history_file = Path("/Users/patrick/Desktop/Reddit/commented_posts.json")
         if history_file.exists():
             try:
                 with open(history_file, 'r', encoding='utf-8') as f:
@@ -471,7 +471,7 @@ class CombinedBot:
     
     def _save_commented_history(self):
         """Speichert Historie der kommentierten Posts"""
-        history_file = Path("/home/lucawahl/Reddit/commented_posts.json")
+        history_file = Path("/Users/patrick/Desktop/Reddit/commented_posts.json")
         with open(history_file, 'w', encoding='utf-8') as f:
             json.dump({'posts': list(self.commented_posts)}, f, indent=2)
     
@@ -504,7 +504,7 @@ class CombinedBot:
         
         if today not in self.daily_posts:
             self.daily_posts[today] = {
-                'target': self.daily_post_target or random.randint(1, 4),
+                'target': self.daily_post_target or random.randint(1, 2),  # MAX 2 Posts
                 'count': 0,
                 'posts': []
             }
@@ -532,7 +532,7 @@ class CombinedBot:
         
         if today not in self.daily_comments:
             self.daily_comments[today] = {
-                'target': self.daily_comment_target or random.randint(3, 7),
+                'target': self.daily_comment_target or random.randint(2, 5),  # MAX 5 Kommentare
                 'count': 0,
                 'comments': []
             }
@@ -627,7 +627,7 @@ class CombinedBot:
         from datetime import datetime
         
         # Erstelle Ordnerstruktur: generated_posts/YYYY-MM/DD/
-        base_dir = Path("/home/lucawahl/Reddit/generated_posts")
+        base_dir = Path("/Users/patrick/Desktop/Reddit/generated_posts")
         date_now = datetime.now()
         year_month = date_now.strftime("%Y-%m")
         day = date_now.strftime("%d")
@@ -677,7 +677,7 @@ class CombinedBot:
         
         # Stelle sicher dass heute ein Eintrag existiert
         if today not in self.daily_comments:
-            self.daily_comment_target = random.randint(3, 7)
+            self.daily_comment_target = random.randint(2, 5)  # MAX 5 Kommentare pro Tag
             self.daily_comments[today] = {
                 'target': self.daily_comment_target,
                 'count': 0,
@@ -867,11 +867,11 @@ class CombinedBot:
         return None
     
     def generate_funny_contextual_comment(self, post_title, parent_comment, other_replies=[], subreddit_name=""):
-        """Generiert einen kontextbezogenen Kommentar mit AI - optimiert für virale Reichweite"""
+        """Generiert einen kontextbezogenen Kommentar mit AI - optimiert für positive Karma"""
         
         if not self.openrouter_api_key:
             print("⚠️ OpenRouter API Key nicht gesetzt - verwende Fallback")
-            return self.generate_viral_fallback_comment(subreddit_name)
+            return self.generate_adhd_contextual_comment(post_title, parent_comment, subreddit_name)
         
         # Sammle Kontext von anderen Replies für bessere Anpassung
         reply_context = "\n".join([f"- {r.body[:100]}" for r in other_replies[:3]])
@@ -887,8 +887,95 @@ class CombinedBot:
         is_niche = any(hobby in subreddit_name.lower() for hobby in niche_hobbies)
         is_help_sub = any(sub in subreddit_name.lower() for sub in help_subs)
         
-        # Wähle Kommentar-Stil basierend auf Subreddit
-        if is_niche:
+        # ADHD-spezifische Keywords erkennen
+        adhd_keywords = ['adhd', 'executive dysfunction', 'hyperfocus', 'stimming', 'medication', 
+                        'diagnosis', 'dopamine', 'focus', 'attention', 'hyperactive', 'impulsive',
+                        'time blind', 'rejection sensitive', 'rsd', 'neurodivergent', 'neurotypical']
+        
+        planning_keywords = ['planner', 'bullet journal', 'bujo', 'organization', 'productivity',
+                           'task', 'schedule', 'routine', 'habit', 'tracking', 'goals']
+        
+        mental_health_keywords = ['anxiety', 'depression', 'therapy', 'therapist', 'coping',
+                                 'mental health', 'self care', 'mindfulness', 'meditation']
+        
+        # Erkenne Thema
+        title_and_comment = (post_title + " " + parent_comment).lower()
+        is_adhd_related = any(kw in title_and_comment for kw in adhd_keywords)
+        is_planning_related = any(kw in title_and_comment for kw in planning_keywords)
+        is_mental_health = any(kw in title_and_comment for kw in mental_health_keywords)
+        
+        # Wähle Kommentar-Stil basierend auf Kontext
+        if is_adhd_related or 'adhd' in subreddit_name.lower():
+            # ADHD-spezifische Kommentare
+            prompt = f"""You're an ADHD person responding in r/{subreddit_name}.
+
+POST: "{post_title}"
+COMMENT: "{parent_comment[:300]}"
+
+Write a SHORT (1-2 sentences) response that:
+- Shares a relatable ADHD experience or struggle
+- Shows understanding and empathy
+- Adds value through personal insight or coping strategy
+- Uses ADHD community language naturally
+- Is supportive and non-judgmental
+
+Examples of good comments:
+- "the executive dysfunction is real! what helps me is setting 5 timers and still forgetting what they're for lol"
+- "body doubling saved my life, even just having someone on video call while i work helps so much"
+- "this is why i have 47 unfinished projects and just started a new one yesterday"
+- "wait other people don't have 73 browser tabs open at all times?"
+
+Avoid:
+- Generic "same" or "this" comments
+- Medical advice or diagnosis suggestions
+- Overly long explanations
+- Being preachy or condescending
+
+Your response (lowercase, genuine ADHD perspective):"""
+        
+        elif is_planning_related:
+            # Planner/Organization Kommentare
+            prompt = f"""You're responding in r/{subreddit_name} about planning/organization.
+
+POST: "{post_title}"
+COMMENT: "{parent_comment[:300]}"
+
+Write a SHORT (1-2 sentences) response that:
+- Shares a specific technique or tool that works for you
+- Asks a thoughtful question about their system
+- Relates to the struggle of staying organized
+- Is encouraging and constructive
+
+Examples:
+- "love the color coding! have you tried using washi tape for quick visual categories?"
+- "this is genius, definitely stealing this for my weekly spread"
+- "how do you keep up with it? i always start strong then forget after 3 days"
+- "the minimalist approach actually works better for my adhd brain too"
+
+Your helpful response (lowercase, conversational):"""
+        
+        elif is_mental_health:
+            # Mental Health Support Kommentare
+            prompt = f"""You're supportively responding in r/{subreddit_name}.
+
+POST: "{post_title}"
+COMMENT: "{parent_comment[:300]}"
+
+Write a SHORT (1-2 sentences) supportive response that:
+- Validates their experience
+- Shares brief relatable experience
+- Offers gentle encouragement
+- Shows genuine care without being overbearing
+
+Examples:
+- "proud of you for taking this step, the first session is always the hardest"
+- "this resonates so much, you're not alone in feeling this way"
+- "celebrating small wins like this is so important, you're doing great"
+- "it gets easier, sending you strength for the journey"
+
+Your supportive response (lowercase, warm):"""
+        
+        elif is_niche:
             # Für Nischen-Hobbys: Stelle ehrliche Anfängerfragen
             prompt = f"""You're a curious beginner in r/{subreddit_name} asking genuine questions.
 
@@ -1028,7 +1115,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
                     "Content-Type": "application/json"
                 },
                 json={
-                    "model": "openai/gpt-5-mini",
+                    "model": "openai/gpt-4o-mini",
                     "messages": [
                         {"role": "user", "content": prompt}
                     ],
@@ -1043,99 +1130,136 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
                 # Stelle sicher dass Kommentar nicht zu kurz ist
                 if len(comment) < 10:
                     print(f"   ⚠️ Kommentar zu kurz ({len(comment)} Zeichen), verwende Fallback")
-                    return self.generate_viral_fallback_comment(subreddit_name)
+                    return self.generate_adhd_contextual_comment(post_title, "", subreddit_name)
                 # Mache es noch natürlicher
                 return self.add_natural_variations(comment)
             
         except Exception as e:
             print(f"❌ AI-Generierung fehlgeschlagen: {e}")
         
-        return self.generate_fallback_comment(subreddit_name)
+        return self.generate_adhd_contextual_comment(post_title, parent_comment, subreddit_name)
     
-    def generate_viral_fallback_comment(self, subreddit_name=""):
-        """Generiert virale Kommentare basierend auf erfolgreichen Reddit-Mustern"""
+    def generate_adhd_contextual_comment(self, post_title="", parent_comment="", subreddit_name=""):
+        """Generiert kontextuelle ADHD-fokussierte Kommentare ohne API"""
         
-        # VIRALE KOMMENTAR-MUSTER (aus Analyse von Top-Comments)
-        viral_patterns = {
-            'relatable_struggle': [
-                "i feel personally attacked by this accuracy",
-                "why would you expose me like this on a friday",
-                "this hit way too close to home and now i need therapy",
-                "sir how did you get access to my life story",
-                "i came here to have a good time and honestly im feeling so attacked right now",
-                "delete this before my wife sees it and realizes im not unique"
-            ],
-            
-            'unexpected_twist': [
-                "plot twist: the real treasure was the anxiety we developed along the way",
-                "instructions unclear, accidentally became successful",
-                "task failed successfully",
-                "this went from 0 to 100 real quick",
-                "they had us in the first half not gonna lie",
-                "well that escalated quickly"
-            ],
-            
-            'wholesome_support': [
-                "you dropped this 👑",
-                "this is the kind of content i signed up for",
-                "protect this human at all costs",
-                "faith in humanity restored",
-                "we dont deserve you but we need you",
-                "youre doing amazing sweetie"
-            ],
-            
-            'clever_observation': [
-                "the fact that we all collectively agreed on this without discussion is peak humanity",
-                "this is either genius or insane and honestly both work",
-                "tell me youre [thing] without telling me youre [thing]",
-                "this has the same energy as [relatable thing] and i love it",
-                "why is nobody talking about the real issue here",
-                "ok but can we appreciate the fact that [specific detail]"
-            ],
-            
-            'self_deprecating': [
-                "bold of you to assume i have my life together enough for this",
-                "cries in poor",
-                "laughs nervously in millennial",
-                "my therapist would like a word with you",
-                "i didnt come here to be called out but here we are",
-                "this is the most expensive free advice ive ever received"
-            ],
-            
-            'reddit_meta': [
-                "reddit moment",
-                "this guy reddits",
-                "username checks out",
-                "this is why i love reddit",
-                "peak reddit right here",
-                "the real LPT is always in the comments"
+        # Analysiere Post-Kontext
+        context = (post_title + " " + parent_comment).lower()
+        
+        # ADHD-spezifische Kommentare basierend auf Kontext
+        if any(word in context for word in ['medication', 'meds', 'adderall', 'ritalin', 'vyvanse', 'concerta']):
+            comments = [
+                "finding the right meds is such a journey, took me years to get it right",
+                "the difference when you find what works is life changing honestly",
+                "remember to eat and drink water! i always forget on meds",
+                "pro tip: set medication reminders on your phone, saved me so many times"
             ]
-        }
-        
-        # Wähle Muster basierend auf Subreddit
-        if any(word in subreddit_name.lower() for word in ['wholesome', 'made', 'smile', 'aww', 'happy']):
-            pattern_type = 'wholesome_support'
-        elif any(word in subreddit_name.lower() for word in ['funny', 'meme', 'joke']):
-            pattern_type = random.choice(['relatable_struggle', 'unexpected_twist', 'self_deprecating'])
-        elif any(word in subreddit_name.lower() for word in ['ask', 'question']):
-            pattern_type = 'clever_observation'
+        elif any(word in context for word in ['executive dysfunction', 'cant start', 'paralyzed', 'stuck']):
+            comments = [
+                "the wall of awful is so real, sometimes i just sit there knowing what to do but cant move",
+                "body doubling helps me so much with this, even just someone on a call",
+                "i trick my brain by saying ill just do it for 2 minutes, usually keeps going after",
+                "task paralysis hits different when you have 10 things due tomorrow"
+            ]
+        elif any(word in context for word in ['hyperfocus', 'focused', 'zone', 'hours']):
+            comments = [
+                "hyperfocus is a superpower until you realize you forgot to eat for 8 hours",
+                "i set timers every 30 min now to remind myself the outside world exists",
+                "my record is 14 hours straight on a random wikipedia rabbit hole",
+                "the hyperfocus tunnel is real, emerged at 3am wondering what year it is"
+            ]
+        elif any(word in context for word in ['planner', 'bullet journal', 'bujo', 'organized']):
+            comments = [
+                "i have 5 planners and use none of them consistently but buying them gives me dopamine",
+                "simplified my bujo to just daily tasks and it actually works now",
+                "color coding changed the game for me, visual cues help so much",
+                "digital or paper? i can never decide so i use both and neither properly"
+            ]
+        elif any(word in context for word in ['diagnosis', 'diagnosed', 'assessment', 'psychiatrist']):
+            comments = [
+                "getting diagnosed was validating, finally understood why everything was so hard",
+                "the imposter syndrome before diagnosis is real, kept thinking i was just lazy",
+                "diagnosis changed everything, suddenly my whole life made sense",
+                "pro tip: write down examples before your appointment, i forgot everything when asked"
+            ]
+        elif any(word in context for word in ['routine', 'habit', 'morning', 'schedule']):
+            comments = [
+                "routines are impossible until theyre not, then one small change ruins everything",
+                "my morning routine is checking my phone for 2 hours while telling myself to get up",
+                "habit stacking saved me, attach new habits to existing ones",
+                "i have 15 alarms and still somehow run late every morning"
+            ]
+        elif any(word in context for word in ['rejection', 'rsd', 'sensitive', 'criticism']):
+            comments = [
+                "rsd is the worst part of adhd that nobody talks about enough",
+                "learning about rsd explained so many of my reactions, thought i was just too sensitive",
+                "the emotional dysregulation is real, working on it in therapy helps",
+                "i replay conversations from 10 years ago at 3am thanks to rsd"
+            ]
+        elif any(word in context for word in ['time', 'late', 'deadline', 'procrastin']):
+            comments = [
+                "time blindness is real, 5 minutes and 5 hours feel the same",
+                "i either arrive 30 min early or 10 min late, no in between",
+                "panic monster is my only motivator for deadlines unfortunately",
+                "i work best under pressure because its the only time my brain cooperates"
+            ]
+        elif any(word in context for word in ['anxiety', 'anxious', 'worry', 'stress']):
+            comments = [
+                "adhd and anxiety is like having a browser with 100 tabs open and audio playing from somewhere",
+                "the anxiety-adhd combo is exhausting, brain going fast but nowhere",
+                "meditation helps but only after failing to meditate 50 times first",
+                "exercise is the only thing that quiets both the adhd and anxiety for me"
+            ]
+        elif any(word in context for word in ['relationship', 'partner', 'dating', 'marriage']):
+            comments = [
+                "communication is key, explaining adhd behaviors helps so much",
+                "my partner learned to text me reminders and its honestly so helpful",
+                "adhd in relationships is hard but finding someone patient changes everything",
+                "we both have adhd, chaos but we understand each other completely"
+            ]
+        elif any(word in context for word in ['work', 'job', 'boss', 'office', 'wfh']):
+            comments = [
+                "wfh is amazing for adhd until you realize home has all your distractions",
+                "pomodoro technique saves my work day, 25 min sprints are perfect",
+                "noise canceling headphones are essential for open offices with adhd",
+                "i disclose my adhd at work now, the accommodations help so much"
+            ]
         else:
-            # Zufällige Auswahl für maximale Viralität
-            pattern_type = random.choice(list(viral_patterns.keys()))
-        
-        comment = random.choice(viral_patterns[pattern_type])
-        
-        # Füge manchmal Edit hinzu (10% Chance) - das macht es authentischer
-        if random.random() < 0.1:
-            edits = [
-                "\n\nedit: wow this blew up",
-                "\n\nedit: thanks for the gold kind stranger!",
-                "\n\nedit: rip my inbox",
-                "\n\nedit: my highest rated comment is about this... thanks reddit"
+            # Generische ADHD-Community Kommentare (aber immer noch spezifisch)
+            comments = [
+                "this is so validating to read, thought it was just me",
+                "the adhd tax is real on this one",
+                "neurotypicals will never understand the struggle",
+                "adding this to my collection of adhd life hacks",
+                "this explains so much about my life honestly",
+                "fellow adhd brain here and yes exactly this",
+                "the dopamine hit from relating to this post though",
+                "saving this for when people ask what adhd is like",
+                "felt this in my executive dysfunction",
+                "this is why i love this community, we get each other",
+                "my adhd brain: noted, filed, and immediately forgotten",
+                "this deserves to be pinned in every adhd sub",
+                "showing this to my therapist next session",
+                "i feel seen and also slightly attacked",
+                "brb sending this to everyone who thinks adhd is just being hyper"
             ]
-            comment += random.choice(edits)
+        
+        # Wähle zufälligen Kommentar aus passender Kategorie
+        comment = random.choice(comments)
+        
+        # Füge gelegentlich kleine Variationen hinzu
+        if random.random() < 0.2:
+            starters = ['oh man ', 'honestly ', 'okay but ', 'wait ', 'literally ']
+            comment = random.choice(starters) + comment
+        
+        if random.random() < 0.1:
+            endings = [' lol', ' haha', ' fr']
+            comment = comment + random.choice(endings)
         
         return comment
+    
+    def generate_viral_fallback_comment(self, subreddit_name=""):
+        """Legacy Fallback - leitet zu neuer ADHD-fokussierter Funktion weiter"""
+        return self.generate_adhd_contextual_comment("", "", subreddit_name)
     
     def generate_fallback_comment(self, subreddit_name=""):
         """Fallback für Kommentare ohne AI - angepasst an Subreddit"""
@@ -1270,7 +1394,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
     
     def add_to_blacklist(self, subreddit_name):
         """Fügt ein Subreddit zur Blacklist hinzu"""
-        blacklist_file = Path("/home/lucawahl/Reddit/blacklist_subreddits.txt")
+        blacklist_file = Path("/Users/patrick/Desktop/Reddit/blacklist_subreddits.txt")
         
         # Lese existierende Blacklist
         existing = []
@@ -1333,7 +1457,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
         from datetime import datetime
         
         # Erstelle Ordnerstruktur
-        base_dir = Path("/home/lucawahl/Reddit/generated_comments")
+        base_dir = Path("/Users/patrick/Desktop/Reddit/generated_comments")
         date_now = datetime.now()
         year_month = date_now.strftime("%Y-%m")
         day = date_now.strftime("%d")
@@ -1533,7 +1657,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
             
         try:
             # Erstelle temp_images Ordner
-            temp_dir = Path("/home/lucawahl/Reddit/temp_images")
+            temp_dir = Path("/Users/patrick/Desktop/Reddit/temp_images")
             temp_dir.mkdir(exist_ok=True)
             
             print(f"   ⬇️ Lade Bild herunter von URL...")
@@ -1674,8 +1798,9 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
                         print(f"   ❌ r/{alt} nicht verfügbar: {str(e)[:50]}")
                         continue
             
-            # Bereinige Titel von problematischen Elementen
-            clean_title = self.clean_post_title(post_data['title'])
+            # Verwende variierten Titel wenn vorhanden, sonst Original
+            title_to_use = post_data.get('varied_title', post_data['title'])
+            clean_title = self.clean_post_title(title_to_use)
             
             # Prüfe ob Subreddit nur Text erlaubt
             is_text_only = subreddit.display_name.lower() in getattr(self, 'text_only_subreddits', [])
@@ -1692,10 +1817,11 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
             
             # Erstelle den Post mit Flair wenn möglich
             if post_data.get('selftext') or is_text_only:
-                # Text-Post
+                # Text-Post - verwende variierten Text wenn vorhanden
+                text_to_use = post_data.get('varied_selftext', post_data.get('selftext', ''))
                 submission = subreddit.submit(
                     title=clean_title,
-                    selftext=post_data.get('selftext', ''),
+                    selftext=text_to_use,
                     flair_id=flair_id if flair_id else None
                 )
             elif post_data.get('url'):
@@ -1768,7 +1894,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
             }
             
             # Lade existing history
-            history_file = Path("/home/lucawahl/Reddit/posted_posts.json")
+            history_file = Path("/Users/patrick/Desktop/Reddit/posted_posts.json")
             if history_file.exists():
                 with open(history_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
@@ -1807,7 +1933,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
                 print(f"❌ r/{post_data.get('subreddit')} erlaubt keine Bilder/Links!")
                 
                 # Füge zur Text-only Liste hinzu
-                text_only_file = Path("/home/lucawahl/Reddit/text_only_subreddits.txt")
+                text_only_file = Path("/Users/patrick/Desktop/Reddit/text_only_subreddits.txt")
                 sub_name = post_data.get('subreddit', '')
                 
                 # Lese existierende Liste
@@ -1899,7 +2025,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
                 if self.daily_post_target is None:
                     self._load_daily_stats()
                     if self.daily_post_target is None:
-                        self.daily_post_target = random.randint(1, 4)
+                        self.daily_post_target = random.randint(1, 2)  # MAX 2 Posts pro Tag
                 
                 remaining_today = self.daily_post_target - current_count
                 active_hours_left = end_hour - current_hour
@@ -2182,27 +2308,36 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
         print("\n🧪 TESTE KOMMENTAR-GENERIERUNG")
         print("="*60)
         
-        # Beispiel-Daten
+        # ADHD-relevante Test-Daten
         test_posts = [
-            "My cat learned how to open doors and now I have no privacy",
-            "Just finished my first marathon at 45 years old",
-            "Found this weird bug in my code after 3 hours of debugging"
+            "Finally got diagnosed with ADHD at 35, everything makes sense now",
+            "My new bullet journal system is actually working for once!",
+            "Hyperfocused for 8 hours straight on organizing my desk instead of working",
+            "Anyone else set 10 alarms and still manage to be late?",
+            "Started medication yesterday and wow, is this how neurotypicals feel all the time?",
+            "The executive dysfunction is real today, can't even start simple tasks"
         ]
         
         test_comments = [
-            "This is literally the best thing I've seen all day",
-            "Same thing happened to me last week",
-            "You should definitely post this on the other subreddit too"
+            "I've been struggling with the same thing lately",
+            "This is exactly what I needed to see today",
+            "Has anyone found something that actually helps with this?",
+            "I thought I was the only one who did this"
         ]
         
-        for i in range(3):
+        # Teste verschiedene Subreddits
+        test_subreddits = ['ADHD', 'bulletjournal', 'productivity', 'mentalhealth']
+        
+        for i in range(4):
             post = random.choice(test_posts)
             comment = random.choice(test_comments)
+            subreddit = random.choice(test_subreddits)
             
             print(f"\n📝 Post: {post}")
             print(f"💭 Top-Kommentar: {comment}")
+            print(f"📍 Subreddit: r/{subreddit}")
             
-            generated = self.generate_funny_contextual_comment(post, comment, [])
+            generated = self.generate_funny_contextual_comment(post, comment, [], subreddit)
             print(f"🤖 Generiert: {generated}")
             print("-"*40)
     
@@ -2253,7 +2388,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
         from datetime import datetime, timedelta
         
         # Lade Posted History
-        history_file = Path("/home/lucawahl/Reddit/posted_posts.json")
+        history_file = Path("/Users/patrick/Desktop/Reddit/posted_posts.json")
         if not history_file.exists():
             print("❌ Keine Post-Historie gefunden")
             return
@@ -2405,7 +2540,7 @@ def main():
     """Hauptfunktion"""
     
     # Prüfe ob Config-Datei existiert
-    config_file = Path("/home/lucawahl/Reddit/bot_config.json")
+    config_file = Path("/Users/patrick/Desktop/Reddit/bot_config.json")
     use_config = config_file.exists()
     
     if not use_config:

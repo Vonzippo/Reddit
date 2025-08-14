@@ -10,5 +10,11 @@
   "num_comments": 88,
   "over_18": false,
   "permalink": "/r/FunnyandSad/comments/1ggsrwg/who_remembers/",
-  "link_flair_text": "Controversial"
+  "link_flair_text": "Controversial",
+  "alternative_subreddits": [
+    "NoStupidQuestions",
+    "DoesAnybodyElse",
+    "self",
+    "CasualConversation"
+  ]
 }

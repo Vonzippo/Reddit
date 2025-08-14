@@ -20,6 +20,18 @@ from datetime import datetime, timedelta
 
 class AutoPostCommentBot:
     def __init__(self):
+        # Bot Settings MÜSSEN ZUERST definiert werden
+        self.settings = {
+            'post_delay_min': 1800,    # 30 Min
+            'post_delay_max': 7200,    # 2 Stunden
+            'comment_delay_min': 300,  # 5 Min
+            'comment_delay_max': 1800, # 30 Min
+            'active_hours': (10, 22),  # 10:00 - 22:00
+            'max_posts_per_day': 2,     # MAX 2 Posts pro Tag
+            'max_comments_per_day': 5,  # MAX 5 Kommentare pro Tag
+            'pause_day_chance': 0.55   # 55% Chance für Pausentag (mehr Pause als Aktivität!)
+        }
+        
         # Nutze data_all
         self.base_dir = Path("/Users/patrick/Desktop/Reddit/data_all")
         self.posts_dir = self.base_dir / "Posts"
@@ -39,18 +51,6 @@ class AutoPostCommentBot:
         
         # Reddit API Konfiguration
         self._init_reddit_connection()
-        
-        # Bot Settings
-        self.settings = {
-            'post_delay_min': 1800,    # 30 Min
-            'post_delay_max': 7200,    # 2 Stunden
-            'comment_delay_min': 300,  # 5 Min
-            'comment_delay_max': 1800, # 30 Min
-            'active_hours': (10, 22),  # 10:00 - 22:00
-            'max_posts_per_day': 4,
-            'max_comments_per_day': 20,
-            'pause_day_chance': 0.15   # 15% Chance für Pausentag
-        }
     
     def _init_reddit_connection(self):
         """Initialisiert die Reddit-Verbindung"""
@@ -109,15 +109,15 @@ class AutoPostCommentBot:
     
     def _set_daily_targets(self, today):
         """Setzt tägliche Ziele"""
-        # 15% Chance für Pausentag
+        # 55% Chance für Pausentag - Bot ist mehr inaktiv als aktiv!
         if random.random() < self.settings['pause_day_chance']:
             self.daily_post_target = 0
             self.daily_comment_target = 0
             is_pause_day = True
             print(f"😴 Heute ist ein Pausentag")
         else:
-            self.daily_post_target = random.randint(1, self.settings['max_posts_per_day'])
-            self.daily_comment_target = random.randint(5, self.settings['max_comments_per_day'])
+            self.daily_post_target = random.randint(1, 2)  # 1-2 Posts
+            self.daily_comment_target = random.randint(2, 5)  # 2-5 Kommentare
             is_pause_day = False
             print(f"🎯 Heutige Ziele: {self.daily_post_target} Posts, {self.daily_comment_target} Kommentare")
         
@@ -282,13 +282,17 @@ class AutoPostCommentBot:
             except:
                 pass
             
-            clean_title = self.clean_post_title(post_data['title'])
+            # Verwende variierten Titel wenn vorhanden
+            title_to_use = post_data.get('varied_title', post_data['title'])
+            clean_title = self.clean_post_title(title_to_use)
             
             # Erstelle Post
             if post_data.get('selftext'):
+                # Verwende variierten Text wenn vorhanden
+                text_to_use = post_data.get('varied_selftext', post_data.get('selftext', ''))
                 submission = subreddit.submit(
                     title=clean_title,
-                    selftext=post_data.get('selftext', ''),
+                    selftext=text_to_use,
                     flair_id=flair_id
                 )
             elif post_data.get('url'):

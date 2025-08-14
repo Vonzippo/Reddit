@@ -21,8 +21,11 @@
   "media": null,
   "preview": null,
   "alternative_subreddits": [
-    "education",
-    "SpecialEducation",
-    "StudyTips"
-  ]
+    "self",
+    "offmychest",
+    "rant",
+    "CasualConversation"
+  ],
+  "varied_title": "Actual Conversation I had with admin recently: buying stuff for the class.",
+  "varied_selftext": "After a long training about how to differentiate based on state test scores. We are supposed to only use state test scores for differentiation, and look up each learning standard then divide in groups based on that: Me: Ok, but a lot of students just click through the test as fast as possible. Their scores don't reflect their actual ability, just their boredom with the test Admin: Offer a pizza party after school for the kids who do well Me: Ok, where do I send the bill for the pizzas? Admin: You could do cookies instead. Me: Ok, where do I send the bill for the cookies? Admin: Cookies are actually cheap at Costco. Me: Ok, Who is paying for the cookies and my Costco membership?"
 }

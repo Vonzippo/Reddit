@@ -21,8 +21,9 @@
   "media": null,
   "preview": null,
   "alternative_subreddits": [
-    "education",
-    "SpecialEducation",
-    "StudyTips"
+    "self",
+    "offmychest",
+    "rant",
+    "CasualConversation"
   ]
 }

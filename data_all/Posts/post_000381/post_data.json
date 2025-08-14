@@ -56,15 +56,11 @@
     ]
   },
   "alternative_subreddits": [
-    "ADHD",
-    "AdultADHD",
-    "ADHDUK",
-    "ADHDmemes",
-    "ADHD_Parenting",
-    "HowToADHD",
-    "AuDHD",
-    "adhd_anxiety",
-    "MenGetADHDToo",
-    "ADHD_Entrepreneurs"
-  ]
+    "self",
+    "DoesAnybodyElse",
+    "CasualConversation",
+    "rant"
+  ],
+  "varied_title": "It actually feels this way!!",
+  "varied_selftext": "It's crazy that truly feels like this!!"
 }

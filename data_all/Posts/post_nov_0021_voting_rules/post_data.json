@@ -10,5 +10,11 @@
   "num_comments": 91,
   "over_18": false,
   "permalink": "/r/196/comments/1ggsul1/voting_rules/",
-  "link_flair_text": "Rule"
+  "link_flair_text": "Rule",
+  "alternative_subreddits": [
+    "self",
+    "CasualConversation",
+    "NoStupidQuestions",
+    "DoesAnybodyElse"
+  ]
 }

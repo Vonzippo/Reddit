@@ -10,5 +10,12 @@
   "num_comments": 70,
   "over_18": false,
   "permalink": "/r/GetStudying/comments/1gjl16o/what_can_i_do_to_improve_my_study_space/",
-  "link_flair_text": "Question"
+  "link_flair_text": "Question",
+  "alternative_subreddits": [
+    "NoStupidQuestions",
+    "DoesAnybodyElse",
+    "selfimprovement",
+    "DecidingToBeBetter",
+    "self"
+  ]
 }

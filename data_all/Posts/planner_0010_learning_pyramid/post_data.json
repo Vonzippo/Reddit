@@ -10,5 +10,11 @@
   "num_comments": 23,
   "over_18": false,
   "permalink": "/r/GetStudying/comments/1ghpsic/learning_pyramid/",
-  "link_flair_text": "Giving Advice"
+  "link_flair_text": "Giving Advice",
+  "alternative_subreddits": [
+    "selfimprovement",
+    "DecidingToBeBetter",
+    "self",
+    "NoStupidQuestions"
+  ]
 }

@@ -10,5 +10,11 @@
   "num_comments": 0,
   "over_18": false,
   "permalink": "/r/GetStudying/comments/1gjbrl5/remember/",
-  "link_flair_text": "Study Memes"
+  "link_flair_text": "Study Memes",
+  "alternative_subreddits": [
+    "selfimprovement",
+    "DecidingToBeBetter",
+    "self",
+    "NoStupidQuestions"
+  ]
 }

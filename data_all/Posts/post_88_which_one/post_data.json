@@ -140,15 +140,11 @@
   "visited": false,
   "wls": null,
   "alternative_subreddits": [
-    "stopprocrastinating",
-    "bulletjournal",
-    "declutter",
-    "minimalism",
-    "selfimprovement",
-    "college",
-    "bipolar",
-    "schizophrenia",
-    "selfcare",
-    "Meditation"
-  ]
+    "NoStupidQuestions",
+    "DoesAnybodyElse",
+    "self",
+    "CasualConversation",
+    "rant"
+  ],
+  "varied_title": "Which two are you?"
 }

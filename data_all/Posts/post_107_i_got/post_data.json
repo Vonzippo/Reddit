@@ -161,19 +161,15 @@
   "visited": false,
   "wls": null,
   "alternative_subreddits": [
-    "stopprocrastinating",
-    "bulletjournal",
-    "declutter",
-    "minimalism",
-    "selfimprovement",
-    "college",
-    "bipolar",
-    "schizophrenia",
-    "selfcare",
-    "Meditation"
+    "self",
+    "CasualConversation",
+    "NoStupidQuestions",
+    "DoesAnybodyElse"
   ],
   "original_title": "I Got My Degree In History",
   "original_selftext": "After 3 Long Years I Have Graduated With A Degree Of Bachelor In Arts With Honours In History",
   "minimally_varied": true,
-  "variation_date": "2025-08-12 11:26:06"
+  "variation_date": "2025-08-12 11:26:06",
+  "varied_title": "I Got My Degree In History",
+  "varied_selftext": "After 5 Long Year I Have Graduated With A Degree Of Bachelor In Arts With Honours In History"
 }

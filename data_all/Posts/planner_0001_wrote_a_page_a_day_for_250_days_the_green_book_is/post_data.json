@@ -10,5 +10,11 @@
   "num_comments": 46,
   "over_18": false,
   "permalink": "/r/Journaling/comments/1gj8vk0/wrote_a_page_a_day_for_250_days_the_green_book_is/",
-  "link_flair_text": "My Journals"
+  "link_flair_text": "My Journals",
+  "alternative_subreddits": [
+    "self",
+    "CasualConversation",
+    "selfimprovement"
+  ],
+  "varied_title": "Wrote a page a day for 250 day. The green book is for the next 250 time."
 }

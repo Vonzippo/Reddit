@@ -10,5 +10,11 @@
   "num_comments": 1,
   "over_18": false,
   "permalink": "/r/GetStudying/comments/1gjc4af/its_pretty_accurate/",
-  "link_flair_text": "Study Memes"
+  "link_flair_text": "Study Memes",
+  "alternative_subreddits": [
+    "selfimprovement",
+    "DecidingToBeBetter",
+    "self",
+    "NoStupidQuestions"
+  ]
 }

@@ -10,5 +10,11 @@
   "num_comments": 205,
   "over_18": false,
   "permalink": "/r/pcmasterrace/comments/1ggstd0/should_i_upgrade_my_gpu/",
-  "link_flair_text": "Meme/Macro"
+  "link_flair_text": "Meme/Macro",
+  "alternative_subreddits": [
+    "NoStupidQuestions",
+    "DoesAnybodyElse",
+    "self",
+    "CasualConversation"
+  ]
 }

@@ -10,5 +10,10 @@
   "num_comments": 6,
   "over_18": false,
   "permalink": "/r/me_irl/comments/1ggtl5g/me_irl/",
-  "link_flair_text": null
+  "link_flair_text": null,
+  "alternative_subreddits": [
+    "DoesAnybodyElse",
+    "CasualConversation",
+    "self"
+  ]
 }

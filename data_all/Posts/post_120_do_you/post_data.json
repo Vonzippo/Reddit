@@ -153,15 +153,11 @@
   "visited": false,
   "wls": null,
   "alternative_subreddits": [
-    "stopprocrastinating",
-    "bulletjournal",
-    "declutter",
-    "minimalism",
-    "selfimprovement",
-    "college",
-    "bipolar",
-    "schizophrenia",
-    "selfcare",
-    "Meditation"
-  ]
+    "NoStupidQuestions",
+    "DoesAnybodyElse",
+    "self",
+    "CasualConversation"
+  ],
+  "varied_title": "Do you find this to be true?",
+  "varied_selftext": "Personally, I find only three or five to be the case with me."
 }

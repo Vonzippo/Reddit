@@ -10,5 +10,12 @@
   "num_comments": 20,
   "over_18": false,
   "permalink": "/r/GetStudying/comments/1gjlbyl/little_advice/",
-  "link_flair_text": "Giving Advice"
+  "link_flair_text": "Giving Advice",
+  "alternative_subreddits": [
+    "selfimprovement",
+    "DecidingToBeBetter",
+    "self",
+    "NoStupidQuestions"
+  ],
+  "varied_title": "Tiny advice"
 }

@@ -107,19 +107,14 @@
   "visited": false,
   "wls": 6,
   "alternative_subreddits": [
-    "stopprocrastinating",
-    "bulletjournal",
-    "declutter",
-    "minimalism",
     "selfimprovement",
-    "college",
-    "bipolar",
-    "schizophrenia",
-    "selfcare",
-    "Meditation"
+    "DecidingToBeBetter",
+    "self"
   ],
   "original_title": "Simple trick to outsmart procrastination",
   "original_selftext": "While reading Paul Graham's essay *\"How to Do Great Work,\"* I noticed that even the brightest minds struggle with procrastination. The key difference? They’ve developed clever ways to outsmart it.\n\nGraham shares a simple trick for overcoming that dreaded mental resistance. He writes:\n\n>\"When I'm reluctant to start work in the morning, I often trick myself by saying \"I'll just read over what I've got so far.\" Five minutes later I've found something that seems mistaken or incomplete, and I'm off.\"\n\nBy framing the task as something simple — *just reviewing* — he lowers the stakes enough to bypass that inner voice screaming, *\"Not yet!\"* Once he starts, the momentum takes over, and before he knows it, he’s back in the flow of productive work.\n\nTelling yourself, *\"I’ll just look at what I wrote yesterday,\"* or, *\"I’ll do a tiny, low-effort task,\"* makes starting feel less intimidating. And often, starting is the hardest part.\n\nWhat about you? What are your tricks?",
   "minimally_varied": true,
-  "variation_date": "2025-08-12 11:46:06"
+  "variation_date": "2025-08-12 11:46:06",
+  "varied_title": "Simple trick to outsmart procrastination",
+  "varied_selftext": "While reading Paul Graham's essay *\"How to Do Nice Work,\"* I noticed that even the brightest minds struggle with procrastination. The key difference? They’ve developed large ways to outsmart it. Graham shares a simple trick for overcoming that dreaded mental resistance. He writes: >\"When I'm reluctant to start work in the afternoon, I often trick myself by saying \"I'll just read over what I've got so far.\" Five minutes later I've found something that seems mistaken or incomplete, and I'm off.\""
 }

@@ -10,5 +10,10 @@
   "num_comments": 24,
   "over_18": false,
   "permalink": "/r/notebooks/comments/1gh10ih/my_best_notebook_yet/",
-  "link_flair_text": null
+  "link_flair_text": null,
+  "alternative_subreddits": [
+    "self",
+    "CasualConversation",
+    "selfimprovement"
+  ]
 }

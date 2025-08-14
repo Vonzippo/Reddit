@@ -10,5 +10,10 @@
   "num_comments": 15,
   "over_18": false,
   "permalink": "/r/Journaling/comments/1gh6bfe/miss_my_best_friend_so_much/",
-  "link_flair_text": "Art"
+  "link_flair_text": "Art",
+  "alternative_subreddits": [
+    "self",
+    "CasualConversation",
+    "selfimprovement"
+  ]
 }

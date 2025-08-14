@@ -109,15 +109,12 @@
   "visited": false,
   "wls": null,
   "alternative_subreddits": [
-    "AdultADHD",
-    "ADHDUK",
-    "ADHDmemes",
-    "ADHD_Parenting",
-    "HowToADHD",
-    "AuDHD",
-    "adhdmeme",
-    "adhd_anxiety",
-    "MenGetADHDToo",
-    "ADHD_Entrepreneurs"
-  ]
+    "selfimprovement",
+    "DecidingToBeBetter",
+    "DoesAnybodyElse",
+    "self",
+    "NoStupidQuestions"
+  ],
+  "varied_title": "Children with higher IQ scores were diagnosed later with ADHD than those with lower scores. Children with higher cognitive abilities might be able to mask ADHD symptoms better, especially inattentive symptoms, which are less disruptive.",
+  "varied_selftext": "A fresh study was published today in the [British Journal of Psychology](https://bpspsychub.onlinelibrary.wiley.com/doi/10.1111/bjc.12485). They've finally done a study on something I think a lot of us have suspected for a while. You're more likely to be diagnosed with ADHD later if you have high IQ. This doesn't surprise me at all to be honest. I suspect the hierarchy for diagnosis, especially as a child is: - Hyperactive/ disruptive regardless of intelligence - Inattentive with a parent who has it and knows the signs regardless of intelligence - Inattentive with average intelligence or less (may or may not be diagnosed as a child) - Inattentive with high intelligence (unlikely to be diagnosed as a kid and perhaps at all) What are your thoughts?"
 }

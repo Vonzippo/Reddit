@@ -21,8 +21,11 @@
   "media": null,
   "preview": null,
   "alternative_subreddits": [
-    "education",
-    "SpecialEducation",
-    "StudyTips"
-  ]
+    "self",
+    "offmychest",
+    "rant",
+    "CasualConversation"
+  ],
+  "varied_title": "It's me everyone, sorry.",
+  "varied_selftext": "Got an email from a parent that says \"you are the reason the education system in America is failing our students\". Again, sorry guys I had no idea it was me, I'll stop being tough I guess."
 }

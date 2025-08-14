@@ -10,5 +10,11 @@
   "num_comments": 42,
   "over_18": false,
   "permalink": "/r/notinteresting/comments/1ggu240/i_found_a_3_leaf_clover/",
-  "link_flair_text": null
+  "link_flair_text": null,
+  "alternative_subreddits": [
+    "CasualConversation",
+    "self",
+    "DoesAnybodyElse"
+  ],
+  "varied_title": "I found a 5 leaf clover"
 }

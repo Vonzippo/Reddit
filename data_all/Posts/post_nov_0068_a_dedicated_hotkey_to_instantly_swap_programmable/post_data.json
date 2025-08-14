@@ -10,5 +10,9 @@
   "num_comments": 235,
   "over_18": false,
   "permalink": "/r/Helldivers/comments/1ggtyq5/a_dedicated_hotkey_to_instantly_swap_programmable/",
-  "link_flair_text": "FEEDBACK/SUGGESTION"
+  "link_flair_text": "FEEDBACK/SUGGESTION",
+  "alternative_subreddits": [
+    "CasualConversation",
+    "self"
+  ]
 }

@@ -10,5 +10,11 @@
   "num_comments": 16,
   "over_18": false,
   "permalink": "/r/Journaling/comments/1giwm3u/finished_my_first_journal_after_four_months/",
-  "link_flair_text": "First journal"
+  "link_flair_text": "First journal",
+  "alternative_subreddits": [
+    "self",
+    "CasualConversation",
+    "selfimprovement"
+  ],
+  "varied_title": "finished my second journal after four months!"
 }

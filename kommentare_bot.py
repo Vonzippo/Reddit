@@ -377,19 +377,119 @@ class KommentareBot:
         return None
     
     def generate_smart_comment(self, post_title, post_body, existing_comments, subreddit=""):
-        """Generiert intelligente Kommentare mit AI - 40% mit Mehrwert"""
+        """Generiert intelligente ADHD-fokussierte Kommentare mit AI"""
         
-        # Entscheide Kommentar-Typ
-        comment_type = random.choice([
-            'value',      # 40% - Echter Mehrwert
-            'value',      # Doppelt für höhere Chance
-            'funny',      # 20% - Lustig
-            'question',   # 20% - Frage
-            'relatable'   # 20% - Relatable
-        ])
+        # Analysiere Post-Kontext für ADHD-Relevanz
+        context = (post_title + " " + post_body).lower()
+        
+        # ADHD-spezifische Keywords
+        adhd_keywords = ['adhd', 'executive dysfunction', 'hyperfocus', 'medication', 
+                        'diagnosis', 'dopamine', 'focus', 'attention', 'hyperactive',
+                        'time blind', 'rejection sensitive', 'rsd', 'neurodivergent']
+        
+        planning_keywords = ['planner', 'bullet journal', 'bujo', 'organization', 
+                           'productivity', 'task', 'schedule', 'routine', 'habit']
+        
+        is_adhd_related = any(kw in context for kw in adhd_keywords) or 'adhd' in subreddit.lower()
+        is_planning_related = any(kw in context for kw in planning_keywords)
+        
+        # Wähle passenden Kommentar-Typ
+        if is_adhd_related:
+            comment_type = random.choice(['adhd_experience', 'adhd_tip', 'adhd_support'])
+        elif is_planning_related:
+            comment_type = random.choice(['planning_tip', 'planning_question', 'planning_relate'])
+        else:
+            comment_type = random.choice(['value', 'question', 'relatable'])
         
         # Erstelle Prompt basierend auf Typ
-        if comment_type == 'value':
+        if comment_type == 'adhd_experience':
+            prompt = f"""Generate an ADHD community comment sharing personal experience.
+Post title: {post_title}
+Subreddit: r/{subreddit}
+
+Create a comment that:
+- Shares a specific ADHD experience or struggle
+- Shows understanding and empathy
+- Uses ADHD community language naturally
+- Is 1-2 sentences long
+- Sounds genuine and supportive
+
+Examples:
+- "the executive dysfunction is real, sometimes i just stare at my to-do list for hours"
+- "hyperfocus kicked in and suddenly its 3am and i know everything about medieval blacksmithing"
+- "body doubling saved my productivity, even virtual coworking helps so much"
+
+Write ONLY the comment text (lowercase, casual):"""
+        
+        elif comment_type == 'adhd_tip':
+            prompt = f"""Generate an ADHD community comment with helpful advice.
+Post title: {post_title}
+
+Create a comment that:
+- Shares a specific ADHD coping strategy or tip
+- Is practical and actionable
+- Sounds like it comes from experience
+- Is 1-2 sentences
+
+Examples:
+- "timers are my best friend, i set one every 15 min to stay on track"
+- "the pomodoro technique but make it 10 minutes because adhd brain"
+- "i put my meds next to my toothbrush so i never forget them"
+
+Write ONLY the comment text (lowercase):"""
+        
+        elif comment_type == 'adhd_support':
+            prompt = f"""Generate a supportive ADHD community comment.
+Post title: {post_title}
+
+Create a comment that:
+- Validates their ADHD experience
+- Shows genuine understanding
+- Is warm and encouraging
+- Is 1-2 sentences
+
+Examples:
+- "youre not lazy, your brain just works differently and thats okay"
+- "getting diagnosed changed everything, suddenly my whole life made sense"
+- "this is so validating, thought i was the only one struggling with this"
+
+Write ONLY the comment text (lowercase):"""
+        
+        elif comment_type == 'planning_tip':
+            prompt = f"""Generate a planning/organization tip comment.
+Post title: {post_title}
+
+Create a comment that:
+- Shares a specific planning technique
+- Is practical for ADHD brains
+- Sounds experienced
+- Is 1-2 sentences
+
+Examples:
+- "color coding saved my bujo, visual cues work so well for adhd"
+- "simplified my spreads to just daily tasks and it actually works now"
+- "digital reminders plus physical planner is the sweet spot for me"
+
+Write ONLY the comment text (lowercase):"""
+        
+        elif comment_type == 'planning_question':
+            prompt = f"""Generate a curious question about planning/organization.
+Post title: {post_title}
+
+Ask a genuine question that:
+- Shows interest in their system
+- Is specific and thoughtful
+- Encourages sharing
+- Is 1 sentence
+
+Examples:
+- "how do you keep up with it consistently? i always forget after a few days"
+- "do you use any apps alongside your physical planner?"
+- "whats your backup plan when executive dysfunction hits?"
+
+Write ONLY the question (lowercase):"""
+        
+        elif comment_type == 'value':
             prompt = f"""Generate a VALUABLE Reddit comment that adds real insight or helpful advice.
 Post title: {post_title}
 Subreddit: r/{subreddit}
@@ -479,17 +579,60 @@ Write ONLY the comment text, nothing else."""
             return self.generate_fallback_comment(post_title)
     
     def generate_fallback_comment(self, post_title):
-        """Generiert Fallback-Kommentare wenn API fehlschlägt"""
-        fallbacks = [
-            "This is exactly what I needed to see today!",
-            "I've been dealing with the same thing lately",
-            "Thanks for sharing this, really helpful",
-            "This hits different when you have ADHD",
-            "Never thought about it this way before",
-            "Can relate to this so much",
-            "This is why I love this community"
-        ]
-        return random.choice(fallbacks)
+        """Generiert ADHD-fokussierte Fallback-Kommentare wenn API fehlschlägt"""
+        
+        # Analysiere Post-Titel für Kontext
+        title_lower = post_title.lower()
+        
+        # Kontext-spezifische ADHD-Kommentare
+        if any(word in title_lower for word in ['medication', 'meds', 'diagnosed', 'diagnosis']):
+            fallbacks = [
+                "getting diagnosed was so validating, finally everything made sense",
+                "the right meds changed my life, hope you find what works for you",
+                "diagnosis explained so much about my past struggles",
+                "remember meds are just one tool, therapy helps too"
+            ]
+        elif any(word in title_lower for word in ['focus', 'hyperfocus', 'distracted']):
+            fallbacks = [
+                "hyperfocus is a blessing and a curse honestly",
+                "the adhd tax of losing focus mid-task is real",
+                "body doubling helps me stay focused, even virtually",
+                "pomodoro timers are the only way i can focus"
+            ]
+        elif any(word in title_lower for word in ['planner', 'bujo', 'organize', 'system']):
+            fallbacks = [
+                "simplified systems work best for my adhd brain",
+                "i have 5 planners and use none consistently lol",
+                "color coding changed the game for me",
+                "digital or paper? why not both and use neither properly"
+            ]
+        elif any(word in title_lower for word in ['late', 'time', 'procrastinat']):
+            fallbacks = [
+                "time blindness is so real, 5 min feels like 5 hours",
+                "i have 20 alarms and still somehow run late",
+                "waiting mode is the worst, cant do anything before an appointment",
+                "panic monster is my only motivator unfortunately"
+            ]
+        else:
+            # Generelle ADHD-Community Kommentare
+            fallbacks = [
+                "this is so validating, thought it was just me",
+                "the adhd tax is real on this one",
+                "felt this in my executive dysfunction",
+                "saving this to show my therapist",
+                "neurotypicals will never understand this struggle",
+                "this is why i love the adhd community",
+                "my adhd brain: noted and immediately forgotten"
+            ]
+        
+        comment = random.choice(fallbacks)
+        
+        # Füge gelegentlich Variationen hinzu
+        if random.random() < 0.15:
+            starters = ['honestly ', 'okay but ', 'wait ']
+            comment = random.choice(starters) + comment
+        
+        return comment
     
     def add_natural_variations(self, text):
         """Fügt natürliche Variationen zum Text hinzu"""

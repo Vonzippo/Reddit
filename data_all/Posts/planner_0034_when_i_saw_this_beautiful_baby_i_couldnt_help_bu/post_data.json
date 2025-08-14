@@ -10,5 +10,10 @@
   "num_comments": 11,
   "over_18": false,
   "permalink": "/r/notebooks/comments/1ghsvkx/when_i_saw_this_beautiful_baby_i_couldnt_help_but/",
-  "link_flair_text": "Notebook Share"
+  "link_flair_text": "Notebook Share",
+  "alternative_subreddits": [
+    "self",
+    "CasualConversation",
+    "selfimprovement"
+  ]
 }

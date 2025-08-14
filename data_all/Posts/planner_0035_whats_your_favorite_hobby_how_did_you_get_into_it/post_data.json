@@ -10,5 +10,12 @@
   "num_comments": 73,
   "over_18": false,
   "permalink": "/r/Journaling/comments/1giozoo/whats_your_favorite_hobby_how_did_you_get_into_it/",
-  "link_flair_text": "Question"
+  "link_flair_text": "Question",
+  "alternative_subreddits": [
+    "NoStupidQuestions",
+    "DoesAnybodyElse",
+    "self",
+    "CasualConversation",
+    "selfimprovement"
+  ]
 }
