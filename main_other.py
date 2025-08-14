@@ -20,14 +20,14 @@ import re
 
 class CombinedBot:
     def __init__(self, use_config_file=False):
-        self.base_dir = Path("/Users/patrick/Desktop/Reddit/data_all")
+        self.base_dir = Path("data_all")
         self.posts_dir = self.base_dir / "Posts"
         self.comments_dir = self.base_dir / "Comments"
         self.posts = []
         self.comments = []
         
         # Lade oder erstelle Konfiguration
-        self.config_file = Path("/Users/patrick/Desktop/Reddit/bot_config.json")
+        self.config_file = Path("./bot_config.json")
         self.config = self._load_or_create_config(use_config_file)
         
         self._load_data()
@@ -60,7 +60,7 @@ class CombinedBot:
         self.users_to_process = self._load_users_from_file()
         
         # Viral Post Tracking für gestern gepostete Beiträge
-        self.viral_posts_file = Path("/Users/patrick/Desktop/Reddit/viral_posts_tracking.json")
+        self.viral_posts_file = Path("./viral_posts_tracking.json")
         self.viral_posts = self._load_viral_tracking()
         
         # Natürliche Variationen für Kommentare
@@ -197,7 +197,7 @@ class CombinedBot:
     def _load_users_from_file(self):
         """Lädt Benutzernamen aus otherUser.txt"""
         users = []
-        user_file = Path("/Users/patrick/Desktop/Reddit/otherUser.txt")
+        user_file = Path("./otherUser.txt")
         
         if user_file.exists():
             try:
@@ -278,7 +278,7 @@ class CombinedBot:
         self.text_only_subreddits = []
         
         # Lade Blacklist zuerst
-        blacklist_file = Path("/Users/patrick/Desktop/Reddit/blacklist_subreddits.txt")
+        blacklist_file = Path("./blacklist_subreddits.txt")
         if blacklist_file.exists():
             with open(blacklist_file, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -288,7 +288,7 @@ class CombinedBot:
             print(f"🚫 Blacklist geladen: {len(self.blacklisted_subreddits)} gesperrte Subreddits")
         
         # Lade Text-only Subreddits
-        text_only_file = Path("/Users/patrick/Desktop/Reddit/text_only_subreddits.txt")
+        text_only_file = Path("./text_only_subreddits.txt")
         if text_only_file.exists():
             with open(text_only_file, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -298,7 +298,7 @@ class CombinedBot:
             print(f"📝 Text-only geladen: {len(self.text_only_subreddits)} Subreddits")
         
         # Lade aus target_subreddits.txt
-        target_file = Path("/Users/patrick/Desktop/Reddit/target_subreddits.txt")
+        target_file = Path("./target_subreddits.txt")
         if target_file.exists():
             with open(target_file, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -309,7 +309,7 @@ class CombinedBot:
                             self.all_subreddits.append(sub)
         
         # Lade aus target_subreddits_extended.txt (ohne Duplikate)
-        extended_file = Path("/Users/patrick/Desktop/Reddit/target_subreddits_extended.txt")
+        extended_file = Path("./target_subreddits_extended.txt")
         if extended_file.exists():
             with open(extended_file, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -326,7 +326,7 @@ class CombinedBot:
     def _load_daily_stats(self):
         """Lädt tägliche Post-Statistiken"""
         from datetime import datetime
-        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_post_stats.json")
+        stats_file = Path("./daily_post_stats.json")
         
         if stats_file.exists():
             try:
@@ -376,14 +376,14 @@ class CombinedBot:
     
     def _save_daily_stats(self):
         """Speichert tägliche Post-Statistiken"""
-        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_post_stats.json")
+        stats_file = Path("./daily_post_stats.json")
         with open(stats_file, 'w', encoding='utf-8') as f:
             json.dump(self.daily_posts, f, indent=2, ensure_ascii=False)
     
     def _load_comment_daily_stats(self):
         """Lädt tägliche Kommentar-Statistiken"""
         from datetime import datetime
-        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_comment_stats.json")
+        stats_file = Path("./daily_comment_stats.json")
         
         if stats_file.exists():
             try:
@@ -431,13 +431,13 @@ class CombinedBot:
     
     def _save_comment_daily_stats(self):
         """Speichert tägliche Kommentar-Statistiken"""
-        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_comment_stats.json")
+        stats_file = Path("./daily_comment_stats.json")
         with open(stats_file, 'w', encoding='utf-8') as f:
             json.dump(self.daily_comments, f, indent=2, ensure_ascii=False)
     
     def _load_posted_history(self):
         """Lädt Historie der bereits geposteten Posts"""
-        history_file = Path("/Users/patrick/Desktop/Reddit/posted_posts.json")
+        history_file = Path("./posted_posts.json")
         if history_file.exists():
             try:
                 with open(history_file, 'r', encoding='utf-8') as f:
@@ -451,13 +451,13 @@ class CombinedBot:
     
     def _save_posted_history(self):
         """Speichert Historie der geposteten Posts"""
-        history_file = Path("/Users/patrick/Desktop/Reddit/posted_posts.json")
+        history_file = Path("./posted_posts.json")
         with open(history_file, 'w', encoding='utf-8') as f:
             json.dump({'posts': list(self.posted_posts)}, f, indent=2)
     
     def _load_commented_history(self):
         """Lädt Historie der bereits kommentierten Posts"""
-        history_file = Path("/Users/patrick/Desktop/Reddit/commented_posts.json")
+        history_file = Path("./commented_posts.json")
         if history_file.exists():
             try:
                 with open(history_file, 'r', encoding='utf-8') as f:
@@ -471,7 +471,7 @@ class CombinedBot:
     
     def _save_commented_history(self):
         """Speichert Historie der kommentierten Posts"""
-        history_file = Path("/Users/patrick/Desktop/Reddit/commented_posts.json")
+        history_file = Path("./commented_posts.json")
         with open(history_file, 'w', encoding='utf-8') as f:
             json.dump({'posts': list(self.commented_posts)}, f, indent=2)
     
@@ -627,7 +627,7 @@ class CombinedBot:
         from datetime import datetime
         
         # Erstelle Ordnerstruktur: generated_posts/YYYY-MM/DD/
-        base_dir = Path("/Users/patrick/Desktop/Reddit/generated_posts")
+        base_dir = Path("./generated_posts")
         date_now = datetime.now()
         year_month = date_now.strftime("%Y-%m")
         day = date_now.strftime("%d")
@@ -1394,7 +1394,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
     
     def add_to_blacklist(self, subreddit_name):
         """Fügt ein Subreddit zur Blacklist hinzu"""
-        blacklist_file = Path("/Users/patrick/Desktop/Reddit/blacklist_subreddits.txt")
+        blacklist_file = Path("./blacklist_subreddits.txt")
         
         # Lese existierende Blacklist
         existing = []
@@ -1457,7 +1457,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
         from datetime import datetime
         
         # Erstelle Ordnerstruktur
-        base_dir = Path("/Users/patrick/Desktop/Reddit/generated_comments")
+        base_dir = Path("./generated_comments")
         date_now = datetime.now()
         year_month = date_now.strftime("%Y-%m")
         day = date_now.strftime("%d")
@@ -1657,7 +1657,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
             
         try:
             # Erstelle temp_images Ordner
-            temp_dir = Path("/Users/patrick/Desktop/Reddit/temp_images")
+            temp_dir = Path("./temp_images")
             temp_dir.mkdir(exist_ok=True)
             
             print(f"   ⬇️ Lade Bild herunter von URL...")
@@ -1894,7 +1894,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
             }
             
             # Lade existing history
-            history_file = Path("/Users/patrick/Desktop/Reddit/posted_posts.json")
+            history_file = Path("./posted_posts.json")
             if history_file.exists():
                 with open(history_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
@@ -1933,7 +1933,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
                 print(f"❌ r/{post_data.get('subreddit')} erlaubt keine Bilder/Links!")
                 
                 # Füge zur Text-only Liste hinzu
-                text_only_file = Path("/Users/patrick/Desktop/Reddit/text_only_subreddits.txt")
+                text_only_file = Path("./text_only_subreddits.txt")
                 sub_name = post_data.get('subreddit', '')
                 
                 # Lese existierende Liste
@@ -2388,7 +2388,7 @@ Make it MEMORABLE and QUOTABLE (lowercase, casual):"""
         from datetime import datetime, timedelta
         
         # Lade Posted History
-        history_file = Path("/Users/patrick/Desktop/Reddit/posted_posts.json")
+        history_file = Path("./posted_posts.json")
         if not history_file.exists():
             print("❌ Keine Post-Historie gefunden")
             return
@@ -2540,7 +2540,7 @@ def main():
     """Hauptfunktion"""
     
     # Prüfe ob Config-Datei existiert
-    config_file = Path("/Users/patrick/Desktop/Reddit/bot_config.json")
+    config_file = Path("./bot_config.json")
     use_config = config_file.exists()
     
     if not use_config:

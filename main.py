@@ -17,9 +17,9 @@ import requests
 
 class PostBot:
     def __init__(self):
-        self.base_dir = Path("/Users/patrick/Desktop/Reddit/data_all")  # Geändert zu data_all
+        self.base_dir = Path("data_all")  # Geändert zu data_all
         self.posts_dir = self.base_dir / "Posts"
-        self.comments_dir = Path("/Users/patrick/Desktop/Reddit/data/Comments")  # Für Kommentare
+        self.comments_dir = Path("data/Comments")  # Für Kommentare
         self.posts = []
         self.comments = []
         self._load_data()
@@ -87,7 +87,7 @@ class PostBot:
     def _load_daily_stats(self):
         """Lädt tägliche Post-Statistiken"""
         from datetime import datetime
-        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_post_stats.json")
+        stats_file = Path("./daily_post_stats.json")
         
         if stats_file.exists():
             try:
@@ -146,13 +146,13 @@ class PostBot:
     
     def _save_daily_stats(self):
         """Speichert tägliche Post-Statistiken"""
-        stats_file = Path("/Users/patrick/Desktop/Reddit/daily_post_stats.json")
+        stats_file = Path("./daily_post_stats.json")
         with open(stats_file, 'w', encoding='utf-8') as f:
             json.dump(self.daily_posts, f, indent=2, ensure_ascii=False)
     
     def _load_posted_history(self):
         """Lädt Historie der bereits geposteten Posts"""
-        history_file = Path("/Users/patrick/Desktop/Reddit/posted_posts.json")
+        history_file = Path("./posted_posts.json")
         if history_file.exists():
             try:
                 with open(history_file, 'r', encoding='utf-8') as f:
@@ -167,7 +167,7 @@ class PostBot:
     
     def _save_posted_history(self):
         """Speichert Historie der geposteten Posts und Kommentare"""
-        history_file = Path("/Users/patrick/Desktop/Reddit/posted_posts.json")
+        history_file = Path("./posted_posts.json")
         with open(history_file, 'w', encoding='utf-8') as f:
             json.dump({
                 'posts': list(self.posted_posts),
@@ -287,7 +287,7 @@ class PostBot:
         from datetime import datetime
         
         # Erstelle Ordnerstruktur: generated_posts/YYYY-MM/DD/
-        base_dir = Path("/Users/patrick/Desktop/Reddit/generated_posts")
+        base_dir = Path("./generated_posts")
         date_now = datetime.now()
         year_month = date_now.strftime("%Y-%m")
         day = date_now.strftime("%d")
@@ -356,7 +356,7 @@ class PostBot:
             
         try:
             # Erstelle temp_images Ordner
-            temp_dir = Path("/Users/patrick/Desktop/Reddit/temp_images")
+            temp_dir = Path("./temp_images")
             temp_dir.mkdir(exist_ok=True)
             
             print(f"   ⬇️ Lade Bild herunter von URL...")

@@ -19,7 +19,7 @@ import urllib.request
 
 class KommentareBot:
     def __init__(self):
-        self.base_dir = Path("/Users/patrick/Desktop/Reddit/data_all")
+        self.base_dir = Path("data_all")
         self.posts_dir = self.base_dir / "Posts"
         self.comments_dir = self.base_dir / "Comments"
         self.posts = []
@@ -45,7 +45,7 @@ class KommentareBot:
     def _load_users_from_file(self):
         """Lädt Benutzernamen aus otherUser.txt"""
         users = []
-        user_file = Path("/Users/patrick/Desktop/Reddit/otherUser.txt")
+        user_file = Path("./otherUser.txt")
         
         if user_file.exists():
             try:
@@ -148,7 +148,7 @@ class KommentareBot:
         self.blacklisted_subreddits = []
         
         # Lade Blacklist zuerst
-        blacklist_file = Path("/Users/patrick/Desktop/Reddit/blacklist_subreddits.txt")
+        blacklist_file = Path("./blacklist_subreddits.txt")
         if blacklist_file.exists():
             with open(blacklist_file, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -158,7 +158,7 @@ class KommentareBot:
             print(f"🚫 Blacklist geladen: {len(self.blacklisted_subreddits)} gesperrte Subreddits")
         
         # Lade aus target_subreddits.txt
-        target_file = Path("/Users/patrick/Desktop/Reddit/target_subreddits.txt")
+        target_file = Path("./target_subreddits.txt")
         if target_file.exists():
             with open(target_file, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -169,7 +169,7 @@ class KommentareBot:
                             self.all_subreddits.append(sub)
         
         # Lade aus target_subreddits_extended.txt (ohne Duplikate)
-        extended_file = Path("/Users/patrick/Desktop/Reddit/target_subreddits_extended.txt")
+        extended_file = Path("./target_subreddits_extended.txt")
         if extended_file.exists():
             with open(extended_file, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -203,7 +203,7 @@ class KommentareBot:
     
     def _load_commented_history(self):
         """Lädt Historie der bereits kommentierten Posts"""
-        history_file = Path("/Users/patrick/Desktop/Reddit/commented_posts.json")
+        history_file = Path("./commented_posts.json")
         if history_file.exists():
             try:
                 with open(history_file, 'r', encoding='utf-8') as f:
@@ -217,7 +217,7 @@ class KommentareBot:
     
     def _save_commented_history(self):
         """Speichert Historie der kommentierten Posts"""
-        history_file = Path("/Users/patrick/Desktop/Reddit/commented_posts.json")
+        history_file = Path("./commented_posts.json")
         with open(history_file, 'w', encoding='utf-8') as f:
             json.dump({'posts': list(self.commented_posts)}, f, indent=2)
     
@@ -260,7 +260,7 @@ class KommentareBot:
     
     def add_to_blacklist(self, subreddit_name):
         """Fügt ein Subreddit zur Blacklist hinzu"""
-        blacklist_file = Path("/Users/patrick/Desktop/Reddit/blacklist_subreddits.txt")
+        blacklist_file = Path("./blacklist_subreddits.txt")
         
         # Lese existierende Blacklist
         existing = []
@@ -755,7 +755,7 @@ Write ONLY the comment text, nothing else."""
         from datetime import datetime
         
         # Erstelle Ordnerstruktur
-        base_dir = Path("/Users/patrick/Desktop/Reddit/generated_comments")
+        base_dir = Path("./generated_comments")
         date_now = datetime.now()
         year_month = date_now.strftime("%Y-%m")
         day = date_now.strftime("%d")

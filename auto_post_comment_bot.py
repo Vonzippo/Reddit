@@ -33,7 +33,7 @@ class AutoPostCommentBot:
         }
         
         # Nutze data_all
-        self.base_dir = Path("/Users/patrick/Desktop/Reddit/data_all")
+        self.base_dir = Path("data_all")
         self.posts_dir = self.base_dir / "Posts"
         self.posts = []
         self._load_data()
@@ -88,7 +88,7 @@ class AutoPostCommentBot:
     
     def _load_daily_stats(self):
         """Lädt tägliche Statistiken"""
-        stats_file = Path("/Users/patrick/Desktop/Reddit/auto_bot_stats.json")
+        stats_file = Path("./auto_bot_stats.json")
         
         if stats_file.exists():
             try:
@@ -134,13 +134,13 @@ class AutoPostCommentBot:
     
     def _save_daily_stats(self):
         """Speichert tägliche Statistiken"""
-        stats_file = Path("/Users/patrick/Desktop/Reddit/auto_bot_stats.json")
+        stats_file = Path("./auto_bot_stats.json")
         with open(stats_file, 'w', encoding='utf-8') as f:
             json.dump(self.daily_stats, f, indent=2, ensure_ascii=False)
     
     def _load_posted_history(self):
         """Lädt Historie der bereits geposteten Posts/Kommentare"""
-        history_file = Path("/Users/patrick/Desktop/Reddit/auto_bot_history.json")
+        history_file = Path("./auto_bot_history.json")
         if history_file.exists():
             try:
                 with open(history_file, 'r', encoding='utf-8') as f:
@@ -157,7 +157,7 @@ class AutoPostCommentBot:
     
     def _save_posted_history(self):
         """Speichert Historie"""
-        history_file = Path("/Users/patrick/Desktop/Reddit/auto_bot_history.json")
+        history_file = Path("./auto_bot_history.json")
         with open(history_file, 'w', encoding='utf-8') as f:
             json.dump({
                 'posts': list(self.posted_posts),
@@ -219,7 +219,7 @@ class AutoPostCommentBot:
             return None
             
         try:
-            temp_dir = Path("/Users/patrick/Desktop/Reddit/temp_images")
+            temp_dir = Path("./temp_images")
             temp_dir.mkdir(exist_ok=True)
             
             if '.gif' in url.lower():

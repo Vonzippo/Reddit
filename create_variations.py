@@ -12,7 +12,7 @@ import random
 
 class CreateVariations:
     def __init__(self):
-        self.posts_dir = Path("/Users/patrick/Desktop/Reddit/data_all/Posts")
+        self.posts_dir = Path("data_all/Posts")
         self.openrouter_url = "https://openrouter.ai/api/v1/chat/completions"
         
         # OpenRouter API Key aus config.py

@@ -10,7 +10,7 @@ from pathlib import Path
 
 class SimpleVariator:
     def __init__(self):
-        self.posts_dir = Path("/Users/patrick/Desktop/Reddit/data_all/Posts")
+        self.posts_dir = Path("data_all/Posts")
         
         # Einfache Ersetzungen
         self.number_variations = {
